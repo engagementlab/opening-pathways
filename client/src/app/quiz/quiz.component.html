@@ -1,0 +1,16 @@
+<div id="pages">
+    <form [formGroup]="quizForm" *ngIf="hasContent">
+        
+        <div class="page" [class.active]="i1 === 0" *ngFor="let page of quizPageKeys; let i1 = index;">
+            <div class="prompt" *ngFor="let prompt of getPage(page); let i2 = index;">
+                    <quiz-field [data]="prompt" [parentForm]="quizForm" [formCtrlName]="i1+1 + '_' + i2"></quiz-field>
+            </div>
+
+            <!-- <div class="error"></div> -->
+            
+            <app-button label="next" clickData="true" (clickEvent)="nextPage()"></app-button>
+            
+        </div>
+        
+    </form>
+</div>

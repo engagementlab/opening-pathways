@@ -31,6 +31,7 @@ router.all('/*', function(req, res, next) {
 });
 
 router.get('/api/data/get/:type', routeIncludes, routes.api.data.get);
+router.get('/api/quiz/get', routeIncludes, routes.api.quiz.get);
 router.all('/api/narrative/create', routeIncludes, routes.api.narrative.create);
 
 module.exports = router;

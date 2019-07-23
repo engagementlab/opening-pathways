@@ -28,7 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
+              "src/style/global.scss",
               "./node_modules/trumbowyg/dist/ui/trumbowyg.min.css"
             ],
             "scripts": [

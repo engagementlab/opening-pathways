@@ -12,7 +12,7 @@
 
 // Load .env vars
 if(process.env.NODE_ENV !== 'test')
-	require('dotenv').load();
+	require('dotenv').load({ path: __dirname + '/.env' });
 
 const winston = require('winston'),
 bodyParser = require('body-parser'),
@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 bootstrap.start(
-	'./config.json', 
+	__dirname + '/config.json', 
 	app,
 	__dirname + '/', 
 	{

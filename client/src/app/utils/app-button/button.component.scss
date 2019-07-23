@@ -1,0 +1,114 @@
+@import "~src/style/_variables";
+
+.btn {
+
+  @include pxtoem(14, 18);
+
+  width: 175px;
+  height: 50px;
+  border-radius: 50px;
+
+  text-align: center;
+  text-decoration: none;
+
+  border: solid 1px black;
+
+  @include transition(all, .3s, ease-in-out);
+
+  cursor: pointer;
+
+  @include not-phones {
+
+    width: 280px;
+    height: 80px;
+
+  }
+
+/*   svg {
+    margin-left: 4%;
+  }
+
+  &.space-grotesk-semi {
+    font-family: 'SpaceGrotesk-SemiBold';
+    line-height: 1.42;
+    letter-spacing: 2px;
+  }
+
+  &.full {
+    @include pxtoem(18, 24);
+
+    @include desktop {
+
+      display: flex;
+      justify-content: space-evenly;
+
+      width: 370px;
+      height: 130px;
+      border-radius: 80px;
+      text-align: left;
+
+    }
+
+    @include phones {
+
+      width: 200px;
+      height: 50px;
+
+      svg {
+        @include scale(.5);
+      }
+
+    }
+  }
+
+  &.grape {
+    background-color: $grape;
+    border-color: $grape;
+
+    @include not-phones {
+
+      width: 280px;
+      height: 80px;
+
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+
+    width: 175px;
+    height: 50px;
+    border-radius: 50px;
+
+    @include transition(opacity, 0.3s, ease-in-out);
+    opacity: 0;
+
+    @include box-shadow(0, 0, 20px, rgba(0, 0, 0, 0.25));
+
+    @include not-phones {
+
+      width: 280px;
+      height: 80px;
+
+    }
+  }
+
+  &:hover {
+
+    background-color: white;
+    color: $rouge;
+
+    &.grape {
+      color: $grape;
+      svg path {
+        stroke: $grape;
+      }
+    }
+
+    &::before {
+      opacity: 1;
+    }
+  } */
+}

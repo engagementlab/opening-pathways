@@ -4,16 +4,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ButtonComponent } from './utils/app-button/button.component';
+
+import { SubmitComponent } from './submit/submit.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { FieldComponent } from './quiz/field/field.component';
 
 // Cloudinary
 import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
 import { CloudinaryConfiguration, CloudinaryModule } from '@cloudinary/angular-5.x';
 import cloudinaryConfiguration from './cdn.config';
-import { SubmitComponent } from './submit/submit.component';
+
+import { DataService } from './utils/data.service';
 
 // npm
 import { NgxTrumbowygModule } from 'ngx-trumbowyg';
-import { DataService } from './utils/data.service';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 export const cloudinary = {
@@ -24,7 +29,10 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
 @NgModule({
   declarations: [
     AppComponent,
-    SubmitComponent
+    ButtonComponent,
+    SubmitComponent,
+    QuizComponent,
+    FieldComponent
   ],
   imports: [
     BrowserModule,

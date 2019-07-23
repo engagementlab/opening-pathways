@@ -1,0 +1,23 @@
+<h4>
+  {{data.prompt}}
+</h4>
+
+<h5 [innerHtml]="data.note.html"></h5>
+
+<div class="responses" [formGroup]="parentForm" *ngIf="data.responsesObj.length > 0">
+
+    <div class="option" *ngFor="let response of data.responsesObj; let i = index;">
+        
+        <label class="radio" for="{{data.slug}}_{{i}}">
+        <input id="{{data.slug}}_{{i}}" value="{{data.slug}}_{{i}}" [formControlName]="formCtrlName" type="radio" [attr.data-text]="data.slug+'_'+i+'_txt'" />
+          {{response.txt}}
+
+        </label>
+
+        <br />
+        <input id="{{data.slug}}_{{i}}_txt" type="text" [formControlName]="formCtrlName" *ngIf="response.field" />
+
+  </div>
+</div>
+
+<textarea rows="30" cols="150" *ngIf="data.type === 'text'"></textarea>
