@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../utils/data.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 
 import * as _ from 'underscore';
 
@@ -12,6 +12,8 @@ import * as _ from 'underscore';
 export class QuizComponent implements OnInit {
 
   public hasContent: boolean;
+  public formError: boolean;
+
   public quizForm: FormGroup;
 
   public quizPages: any;
@@ -33,14 +35,49 @@ export class QuizComponent implements OnInit {
       // Assemble form fields for validation
       this.quizPageKeys.forEach((p) => {
         this.quizPages[p].forEach((resp, i) => {
-          fields[p+'_'+i] = [null, [Validators.required]];
-          console.log(_.contains(resp, (r) => {return r.field}))
+
+          if(resp.type === 'choice') {
+            fields[p+'_'+i] = [null, [Validators.required]];
+            
+            _.each(resp.responsesObj, (txt, fi) => {
+              fields[p+'_'+i+'_'+fi+'_txt'] = [null];
+            });
+          }
+          else {
+            fields[p+'_'+i] = [null, [Validators.required, Validators.minLength(50)]];
+          }
+
         });
       });
+
       this.quizForm = this._formBuilder.group(fields);
-      this.quizForm.get('1_0').valueChanges.subscribe(val => {
-        console.log(document.getElementById(val).dataset['text'])
-      })
+
+      console.log(fields)
+      Object.keys(this.quizForm.controls).forEach(index => {
+
+        this.quizForm.get(index).valueChanges.subscribe(prompt => {
+
+          // Clear all txt field validators first
+          let txtFields = document.querySelectorAll('#responses_' + index + ' .txt')
+          _.each(txtFields, (e, i) => {
+            const txtCtrl = this.quizForm.get(e.id);
+            
+            if(txtCtrl.validator) {
+              document.getElementById('error_' + e.id).style.display = 'none';
+              txtCtrl.setValidators(null);              
+              txtCtrl.updateValueAndValidity();
+            }
+            
+          });
+
+          // Now add validator if corresponding option picked
+          if(document.getElementById(index+'_'+prompt+'_txt')) {
+            const txtCtrl = this.quizForm.get(index+'_'+prompt+'_txt');
+            txtCtrl.setValidators([Validators.required, Validators.minLength(2)]);
+            txtCtrl.updateValueAndValidity();
+          }
+        });
+      });
 
       this.hasContent = true;
 
@@ -56,9 +93,32 @@ export class QuizComponent implements OnInit {
 
   public nextPage() {
 
-    console.log(this.quizForm.errors)
-    console.log(this.quizForm.value)
-    if(!this.quizForm.valid) return;
+    // Get only field vals for this page
+    let pageFields = _.pick(this.quizForm.value, (v, key) => { return key.indexOf(this.quizPage+1) === 0 && this.quizForm.get(key).status === 'INVALID'; })
+    let pageFinished = _.every(pageFields, (v) => {return v !== null});
+    
+    // Hide errors
+    _.each(document.querySelectorAll('.error'), (e) => {
+      e.style.display = 'none'
+    })
+
+    if(!pageFinished) {
+
+      Object.keys(pageFields).forEach(key => {
+
+      (document.getElementById('error_' + key) as HTMLElement).style.display = 'block'
+
+      // const controlErrors: ValidationErrors = this.quizForm.get(key).errors;
+      // if (controlErrors != null) {
+      //       Object.keys(controlErrors).forEach(keyError => {
+      //         console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+      //       });
+      //     }
+        });
+      // this.formError = true;
+      return;
+    }
+    this.formError = false;
     
     let pages = document.querySelectorAll('.page');
     (pages[this.quizPage] as HTMLElement).classList.remove('active')

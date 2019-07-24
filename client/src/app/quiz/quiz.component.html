@@ -3,11 +3,12 @@
         
         <div class="page" [class.active]="i1 === 0" *ngFor="let page of quizPageKeys; let i1 = index;">
             <div class="prompt" *ngFor="let prompt of getPage(page); let i2 = index;">
-                    <quiz-field [data]="prompt" [parentForm]="quizForm" [formCtrlName]="i1+1 + '_' + i2"></quiz-field>
+                <quiz-field [data]="prompt" [parentForm]="quizForm" [formCtrlName]="i1+1 + '_' + i2" [formCtrlNameText]="i1+1 + '_' + i2 + '_'"></quiz-field>
             </div>
 
             <!-- <div class="error"></div> -->
-            
+            <strong *ngIf="formError"><br />Please select an option for each response.</strong>
+
             <app-button label="next" clickData="true" (clickEvent)="nextPage()"></app-button>
             
         </div>

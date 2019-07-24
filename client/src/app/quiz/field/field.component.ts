@@ -10,6 +10,7 @@ export class FieldComponent implements OnInit {
 
   @Input() parentForm: FormGroup;
   @Input() formCtrlName: string;
+  @Input() formCtrlNameText: string;
   @Input() data: any;
 
   constructor() { }
