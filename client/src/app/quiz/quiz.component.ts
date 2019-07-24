@@ -83,13 +83,7 @@ export class QuizComponent implements OnInit {
 
   }
 
-  public getPage(pg: Number) {
-
-    return this.quizPages[pg + ''];
-
-  }
-
-  public nextPage() {
+  private formCheck() {
 
     // Get only field vals for this page
     let pageFields = _.pick(this.quizForm.value, (v, key) => {
@@ -109,14 +103,39 @@ export class QuizComponent implements OnInit {
       Object.keys(pageFields).forEach(key => {
         (document.getElementById('error_' + key) as HTMLElement).style.display = 'block'
       });
-      return;
     }
 
+    return pageFinished;
+
+  }
+
+  public getPage(pg: Number) {
+
+    return this.quizPages[pg + ''];
+
+  }
+
+  public nextPage() {
+
+    let pageFinished = this.formCheck();
+    if (!pageFinished) return;
+    
     let pages = document.querySelectorAll('.page');
     (pages[this.quizPage] as HTMLElement).classList.remove('active')
 
     this.quizPage++;
     (pages[this.quizPage] as HTMLElement).classList.add('active')
+
+  }
+
+  public submitQuiz() {
+    
+    let pageFinished = this.formCheck();
+    if (!pageFinished) return;
+    
+    this._dataSvc.sendDataToUrl('/api/quiz/create', this.quizForm.value).subscribe(response => { 
+      console.log(response);
+    });
 
   }
 

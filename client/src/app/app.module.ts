@@ -20,6 +20,7 @@ import { DataService } from './utils/data.service';
 // npm
 import { NgxTrumbowygModule } from 'ngx-trumbowyg';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -32,7 +33,8 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     ButtonComponent,
     SubmitComponent,
     QuizComponent,
-    FieldComponent
+    FieldComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
