@@ -1,7 +1,91 @@
-.page {
-    display: none;
+@import "~src/style/_variables";
 
-    &.active {
-        display: block;
+nav {
+  position: relative;
+  height: 67px;
+  width: 700px;
+
+  ul {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    list-style: none;
+
+    margin: 0;
+    top: -10%;
+
+    div {
+      top: -1px;
+      left: 0;
+      margin-top: -5px;
+      padding: 0;
+      display: inline-table;
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+       border: 3px solid black;
+      
+      &:before {
+          display: block;
+          top: -5px;
+          left: -5px;
+          content: '';
+          height: 20px;
+          width: 20px;
+          border: 3px solid white;
+        background: white;
+        border-radius: 50%;
+        @include transition(transform, .5s, ease-in-out);
+      }
+
+      &.current {
+        &:before {
+          background: black;
+        }
+      }
+
+      div {
+        @include desktop {
+          display: block;
+        }
+
+        display: none;
+        min-width: 120px;
+        left: -35%;
+        position: relative;
+        text-align: center;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: black;
+      }
     }
+  }
+
+  .progress-bar {
+    position: relative;
+    display: block;
+    height: 8px;
+    width: 0%;
+    left: 1%;
+    margin: 0;
+    z-index: -1;
+    background: blue;
+  }
+
+  .border {
+    position: relative;
+    display: block;
+    z-index: -3;
+    height: 2px;
+    margin-top: -5px;
+    border-bottom: 2px solid black;
+  }
+}
+
+.page {
+  display: none;
+
+  &.active {
+    display: block;
+  }
 }

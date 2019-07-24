@@ -38,6 +38,7 @@ QuizField.add({
 	prompt: { type: String, required: true, initial: true },
 	page: { type: Number, required: true, initial: true, note: 'Which page of quiz to show field.' },
 	pageOrder: { type: Number, required: true, initial: true, note: 'Ordering of field on page. Should be unique amongst siblings on page.' },
+	pageName: { type: String, dependsOn: {pageOrder: '1'}, note: 'Name to show on page above this prompt.' },
 	type: { type: Types.Select, options: 'choice, text', required: true, initial: true },
     note: { type: Types.Markdown },
     responses: { type: Types.TextArray, dependsOn: {type: 'choice'}, note: 'Add " []" to end of a response (w/ preceding space) to show a fill-in field.' }

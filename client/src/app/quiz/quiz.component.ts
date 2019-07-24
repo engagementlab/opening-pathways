@@ -19,14 +19,14 @@ export class QuizComponent implements OnInit {
   public quizPages: any;
   public quizPageKeys: any[];
 
-  private quizPage: number = 0;
+  public quizPage: number = 0;
 
   constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
 
     this._dataSvc.getDataForUrl('/api/quiz/get').subscribe((response) => {
-      
+
       let fields = {};
 
       this.quizPages = response;
@@ -36,15 +36,14 @@ export class QuizComponent implements OnInit {
       this.quizPageKeys.forEach((p) => {
         this.quizPages[p].forEach((resp, i) => {
 
-          if(resp.type === 'choice') {
-            fields[p+'_'+i] = [null, [Validators.required]];
-            
+          if (resp.type === 'choice') {
+            fields[p + '_' + i] = [null, [Validators.required]];
+
             _.each(resp.responsesObj, (txt, fi) => {
-              fields[p+'_'+i+'_'+fi+'_txt'] = [null];
+              fields[p + '_' + i + '_' + fi + '_txt'] = [null];
             });
-          }
-          else {
-            fields[p+'_'+i] = [null, [Validators.required, Validators.minLength(50)]];
+          } else {
+            fields[p + '_' + i] = [null, [Validators.required, Validators.minLength(50)]];
           }
 
         });
@@ -52,7 +51,6 @@ export class QuizComponent implements OnInit {
 
       this.quizForm = this._formBuilder.group(fields);
 
-      console.log(fields)
       Object.keys(this.quizForm.controls).forEach(index => {
 
         this.quizForm.get(index).valueChanges.subscribe(prompt => {
@@ -61,18 +59,18 @@ export class QuizComponent implements OnInit {
           let txtFields = document.querySelectorAll('#responses_' + index + ' .txt')
           _.each(txtFields, (e, i) => {
             const txtCtrl = this.quizForm.get(e.id);
-            
-            if(txtCtrl.validator) {
+
+            if (txtCtrl.validator) {
               document.getElementById('error_' + e.id).style.display = 'none';
-              txtCtrl.setValidators(null);              
+              txtCtrl.setValidators(null);
               txtCtrl.updateValueAndValidity();
             }
-            
+
           });
 
           // Now add validator if corresponding option picked
-          if(document.getElementById(index+'_'+prompt+'_txt')) {
-            const txtCtrl = this.quizForm.get(index+'_'+prompt+'_txt');
+          if (document.getElementById(index + '_' + prompt + '_txt')) {
+            const txtCtrl = this.quizForm.get(index + '_' + prompt + '_txt');
             txtCtrl.setValidators([Validators.required, Validators.minLength(2)]);
             txtCtrl.updateValueAndValidity();
           }
@@ -87,45 +85,38 @@ export class QuizComponent implements OnInit {
 
   public getPage(pg: Number) {
 
-      return this.quizPages[pg+''];
+    return this.quizPages[pg + ''];
 
   }
 
   public nextPage() {
 
     // Get only field vals for this page
-    let pageFields = _.pick(this.quizForm.value, (v, key) => { return key.indexOf(this.quizPage+1) === 0 && this.quizForm.get(key).status === 'INVALID'; })
-    let pageFinished = _.every(pageFields, (v) => {return v !== null});
-    
+    let pageFields = _.pick(this.quizForm.value, (v, key) => {
+      return key.indexOf(this.quizPage + 1) === 0 && this.quizForm.get(key).status === 'INVALID';
+    })
+    let pageFinished = _.every(pageFields, (v) => {
+      return v !== null
+    });
+
     // Hide errors
     _.each(document.querySelectorAll('.error'), (e) => {
       e.style.display = 'none'
-    })
+    });
 
-    if(!pageFinished) {
-
+    // If page not done, flag errored fields
+    if (!pageFinished) {
       Object.keys(pageFields).forEach(key => {
-
-      (document.getElementById('error_' + key) as HTMLElement).style.display = 'block'
-
-      // const controlErrors: ValidationErrors = this.quizForm.get(key).errors;
-      // if (controlErrors != null) {
-      //       Object.keys(controlErrors).forEach(keyError => {
-      //         console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
-      //       });
-      //     }
-        });
-      // this.formError = true;
+        (document.getElementById('error_' + key) as HTMLElement).style.display = 'block'
+      });
       return;
     }
-    this.formError = false;
-    
+
     let pages = document.querySelectorAll('.page');
     (pages[this.quizPage] as HTMLElement).classList.remove('active')
-    
+
     this.quizPage++;
     (pages[this.quizPage] as HTMLElement).classList.add('active')
-
 
   }
 

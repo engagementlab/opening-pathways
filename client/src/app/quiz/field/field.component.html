@@ -2,24 +2,27 @@
   {{data.prompt}}
 </h4>
 
-<h5 [innerHtml]="data.note.html"></h5>
+<h5 [innerHtml]="data.note.html" *ngIf="data.note"></h5>
 
 <div class="responses" id="responses_{{formCtrlName}}" [formGroup]="parentForm" *ngIf="data.responsesObj.length > 0">
 
-    <div [id]="'error_' + formCtrlName" class="error">Please make a selection.</div>
-    <div class="option" *ngFor="let response of data.responsesObj; let i = index;">
-        
-        <label class="radio" for="{{formCtrlName}}_{{i}}">
-        <input id="{{formCtrlName}}_{{i}}" value="{{i}}" [formControlName]="formCtrlName" type="radio" />
-          {{response.txt}}
-        </label>
+  <div [id]="'error_' + formCtrlName" class="error">Please make a selection.</div>
+  <div class="option" *ngFor="let response of data.responsesObj; let i = index;">
 
-        <br />
-        <input id="{{formCtrlName}}_{{i}}_txt" class="txt" type="text" [formControlName]="formCtrlNameText + i + '_txt'" *ngIf="response.field" />
-        <div [id]="'error_' + formCtrlName + '_' + i + '_txt'" class="error" *ngIf="response.field">Please fill field.</div>
-    
+    <label class="radio" for="{{formCtrlName}}_{{i}}">
+      <input id="{{formCtrlName}}_{{i}}" value="{{i}}" [formControlName]="formCtrlName" type="radio" />
+      {{response.txt}}
+    </label>
+
+    <br />
+    <input id="{{formCtrlName}}_{{i}}_txt" class="txt" type="text" [formControlName]="formCtrlNameText + i + '_txt'"
+      *ngIf="response.field" />
+    <div [id]="'error_' + formCtrlName + '_' + i + '_txt'" class="error" *ngIf="response.field">Please fill field.</div>
   </div>
+
 </div>
 
-<textarea rows="30" cols="150" *ngIf="data.type === 'text'"></textarea>
-<div [id]="'error_' + formCtrlName" class="error" *ngIf="data.type === 'text'">Please fill field.</div>
+<div class="text" [formGroup]="parentForm" *ngIf="data.type === 'text'">
+  <textarea id="{{formCtrlName}}_0" rows="30" cols="150" [formControlName]="formCtrlName"></textarea>
+  <div [id]="'error_' + formCtrlName" class="error">Please fill field.</div>
+</div>

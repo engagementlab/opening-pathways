@@ -13,7 +13,7 @@ const keystone = global.keystone,
 
 var buildData = async (res) => {
 
-    let quizFieldsFields = 'prompt page pageOrder note.html type responsesObj slug -_id';
+    let quizFieldsFields = 'prompt page pageOrder pageName note.html type responsesObj slug -_id';
 
     let quizFields = keystone.list('QuizField').model;
     let data = quizFields.find({}, quizFieldsFields).sort({
