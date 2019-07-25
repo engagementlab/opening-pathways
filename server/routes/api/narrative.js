@@ -9,15 +9,15 @@
  * ==========
  */
 const keystone = global.keystone,
-      Narrative = keystone.list('Narrative');
+	  Narrative = keystone.list('Narrative');
  
 /**
  * Create a Post
  */
 exports.create = function(req, res) {
     
-    const data = req.body,
-          item = new Narrative.model(data);    
+    const data = Object.assign(req.body, {submitDate: Date.now()}),
+		  item = new Narrative.model(data);
 
 	item.getUpdateHandler(req).process(data, function(err) {
 		

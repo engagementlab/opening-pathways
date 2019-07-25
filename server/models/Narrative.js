@@ -25,6 +25,7 @@ var Narrative = new keystone.List('Narrative',
 	label: 'Narratives',
 	autokey: { path: 'slug', from: 'title' },
 	map: { name: 'title' },
+	nocreate: true
 });
 
 /**
@@ -37,14 +38,28 @@ Narrative.add({
 	email: { type: String, required: true, initial: true, noedit: true },
 	title: { type: String, required: true, initial: true, noedit: true },
 	body: { type: Types.Html, wysiwyg: true, required: true, initial: true },
-	date: { type: Types.Datetime, default: Date.now, noedit: true },
-	accepted: { type: Boolean }	
+	submitDate: { type: Types.Datetime, noedit: true, required: true, initial: true },
+
+	accepted: { type: Boolean, note: 'Can be unpublished later.' },
+	published: { type: Boolean, dependsOn: {accepted:true} },
+	acceptedDate: { type: Types.Datetime, noedit: true }
 
 });
+
+// Update accepted date if accepted ticked
+Narrative.schema.pre('save', function (next) {
+	
+	if(this.accepted)
+		this.acceptedDate = Date.now();
+    
+    next();
+
+});
+
 
 /**
  * Model Registration
  */
 Narrative.defaultSort = '-createdAt';
-Narrative.defaultColumns = 'title, name, date, accepted';
+Narrative.defaultColumns = 'title, name, submitDate, accepted';
 Narrative.register();
