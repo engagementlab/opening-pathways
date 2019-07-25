@@ -20,8 +20,7 @@ import {
 export class SubmitComponent implements OnInit {
 
   public submitted: boolean;
-
-  private responseForm: FormGroup;
+  public responseForm: FormGroup;
 
   constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder) {}
 
@@ -46,7 +45,7 @@ export class SubmitComponent implements OnInit {
       return;
 
     this._dataSvc.sendDataToUrl('/api/narrative/create', this.responseForm.value).subscribe(response => { 
-      console.log(response)
+      alert('submitted')
     });
 
   }

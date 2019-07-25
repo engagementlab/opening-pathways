@@ -3,6 +3,7 @@ import { DataService } from '../utils/data.service';
 import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 
 import * as _ from 'underscore';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-quiz',
@@ -13,6 +14,8 @@ export class QuizComponent implements OnInit {
 
   public hasContent: boolean;
   public formError: boolean;
+  public lastPage: boolean;
+  public quizDone: boolean;
 
   public quizForm: FormGroup;
 
@@ -43,7 +46,7 @@ export class QuizComponent implements OnInit {
               fields[p + '_' + i + '_' + fi + '_txt'] = [null];
             });
           } else {
-            fields[p + '_' + i] = [null, [Validators.required, Validators.minLength(50)]];
+            fields[p + '_' + i] = [null, [Validators.required]];
           }
 
         });
@@ -126,16 +129,29 @@ export class QuizComponent implements OnInit {
     this.quizPage++;
     (pages[this.quizPage] as HTMLElement).classList.add('active')
 
+    this.lastPage = this.quizPage === pages.length-1;
+
   }
 
   public submitQuiz() {
     
     let pageFinished = this.formCheck();
     if (!pageFinished) return;
+
+    this.quizDone = true;
     
     // this._dataSvc.sendDataToUrl('/api/quiz/create', this.quizForm.value).subscribe(response => { 
     //   console.log(response);
     // });
+
+  }
+  
+  public exportPdf() {
+
+    let doc = new jsPDF();
+    let dt = Date.now();
+    doc.text(this.quizForm.value);
+    doc.save('results_' + dt + '.pdf');
 
   }
 

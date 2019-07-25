@@ -32,6 +32,7 @@
     "cloudinary-core": "^2.6.3",
     "ismobilejs": "^0.5.2",
     "jquery": "^3.4.1",
+    "jspdf": "^1.5.3",
     "ngx-trumbowyg": "^6.0.7",
     "rxjs": "~6.4.0",
     "trumbowyg": "^2.18.0",

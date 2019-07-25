@@ -23,6 +23,7 @@ import { SanitizeHtmlPipe } from './utils/sanitize-html.pipe';
 // npm
 import { NgxTrumbowygModule } from 'ngx-trumbowyg';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { CdnImageComponent } from './utils/cdn-image/cdn-image.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -31,13 +32,14 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
 
 @NgModule({
   declarations: [
+    CdnImageComponent,
+    SanitizeHtmlPipe,
     AppComponent,
     ButtonComponent,
     SubmitComponent,
     QuizComponent,
     FieldComponent,
     HomeComponent,
-    SanitizeHtmlPipe,
     NarrativeComponent
   ],
   imports: [

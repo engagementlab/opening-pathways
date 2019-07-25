@@ -11,7 +11,7 @@
 </nav>
       
 
-<div id="pages">
+<div id="pages" *ngIf="!quizDone">
     <form [formGroup]="quizForm" *ngIf="hasContent">
         
         <div class="page" [class.active]="i1 === 0" *ngFor="let page of quizPageKeys; let i1 = index;">
@@ -23,9 +23,16 @@
             <!-- <div class="error"></div> -->
             <strong *ngIf="formError"><br />Please select an option for each response.</strong>
 
-            <app-button label="next" clickData="true" (clickEvent)="nextPage()"></app-button>
+            <app-button label="next" clickData="true" (clickEvent)="nextPage()" *ngIf="!lastPage"></app-button>
+            <app-button label="submit" clickData="true" (clickEvent)="submitQuiz()" *ngIf="lastPage"></app-button>
             
         </div>
         
     </form>
+</div>
+
+<div id="send" *ngIf="quizDone">
+    
+    <app-button label="download" clickData="true" (clickEvent)="exportPdf()"></app-button>
+    
 </div>
