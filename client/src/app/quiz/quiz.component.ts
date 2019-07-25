@@ -133,9 +133,9 @@ export class QuizComponent implements OnInit {
     let pageFinished = this.formCheck();
     if (!pageFinished) return;
     
-    this._dataSvc.sendDataToUrl('/api/quiz/create', this.quizForm.value).subscribe(response => { 
-      console.log(response);
-    });
+    // this._dataSvc.sendDataToUrl('/api/quiz/create', this.quizForm.value).subscribe(response => { 
+    //   console.log(response);
+    // });
 
   }
 
