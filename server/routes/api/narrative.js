@@ -9,10 +9,40 @@
  * ==========
  */
 const keystone = global.keystone,
-	  Narrative = keystone.list('Narrative');
+	  Narrative = keystone.list('Narrative');var buildData = async (res) => {
+
+		let quizFieldsFields = 'prompt page pageOrder pageName note.html type responsesObj slug -_id';
+	
+		let quizFields = keystone.list('QuizField').model;
+		let data = quizFields.find({}, quizFieldsFields).sort({
+			page: 1,
+			pageOrder: 1
+		});
+	
+		try {
+			let result = await data.lean().exec();
+			let groupedRes = _l.groupBy(result, 'page');
+	
+			res.json(groupedRes);
+		} catch (e) {
+			res.status(500).json({
+				e
+			});
+		}
+	
+	};
+	
+	/*
+	 * Get published narratives
+	 */
+	exports.get = function (req, res) {
+	
+		return buildData(res);
+	
+	}
  
 /**
- * Create a Post
+ * Create a submission
  */
 exports.create = function(req, res) {
     

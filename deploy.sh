@@ -16,7 +16,7 @@ bash ./toggledowntime.sh start;
 nvm use;
 npm i;
 
-pm2 stop 'meetr-client'; 
+pm2 stop 'opening-pathways-client'; 
 
 if [ "$1" == "prod" ]; then
     npm run build;
@@ -24,13 +24,13 @@ else
     npm run build-qa;
 fi
 
-pm2 start 'meetr-client';
+pm2 start 'opening-pathways-client';
 
 # Server
 cd ../server;
 nvm use;
 npm i;
-pm2 restart 'meetr-server';
+pm2 restart 'opening-pathways-server';
 
 # Stop downtime page
 cd ../client;
