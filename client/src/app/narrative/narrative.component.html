@@ -1,0 +1,9 @@
+
+<div id="narrative" *ngIf="hasContent">
+
+    <h2>{{narrative.title}}</h2>
+    <h3>{{narrative.name}}</h3>
+    <h4>{{narrative.submitDate | date}}</h4>
+
+    <p [innerHtml]="narrative.body"></p>
+</div>

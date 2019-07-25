@@ -9,38 +9,48 @@
  * ==========
  */
 const keystone = global.keystone,
-	  Narrative = keystone.list('Narrative');var buildData = async (res) => {
+	  Narrative = keystone.list('Narrative');
 
-		let quizFieldsFields = 'prompt page pageOrder pageName note.html type responsesObj slug -_id';
+var buildData = async (res, id) => {
+
+	let narrativeFields = 'name title body slug submitDate -_id';
+	let query = !id ? {accepted: true, published: true} : {slug: id};
+	let data = null;
 	
-		let quizFields = keystone.list('QuizField').model;
-		let data = quizFields.find({}, quizFieldsFields).sort({
-			page: 1,
-			pageOrder: 1
+	if(id)
+		data = Narrative.model.findOne(query, narrativeFields);
+	else 
+		data = Narrative.model.find(query, narrativeFields).sort({ submitDate: -1 });
+
+	try {
+		let result = await data.lean().exec();
+		res.json(result);
+	} catch (e) {
+		res.status(500).json({
+			e
 		});
-	
-		try {
-			let result = await data.lean().exec();
-			let groupedRes = _l.groupBy(result, 'page');
-	
-			res.json(groupedRes);
-		} catch (e) {
-			res.status(500).json({
-				e
-			});
-		}
-	
-	};
-	
-	/*
-	 * Get published narratives
-	 */
-	exports.get = function (req, res) {
-	
-		return buildData(res);
-	
 	}
- 
+
+};
+
+/*
+* Get published narratives
+*/
+exports.all = function (req, res) {
+
+	return buildData(res);
+
+}
+
+/*
+* Get narrative by slug id
+*/
+exports.get = function (req, res) {
+
+	return buildData(res, req.params.id);
+
+}
+
 /**
  * Create a submission
  */

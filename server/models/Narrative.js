@@ -36,7 +36,7 @@ Narrative.add({
 	
 	name: { type: String, required: true, initial: true, noedit: true },
 	email: { type: String, required: true, initial: true, noedit: true },
-	title: { type: String, required: true, initial: true, noedit: true },
+	title: { type: String, required: true, initial: true, noedit: true, unique: true },
 	body: { type: Types.Html, wysiwyg: true, required: true, initial: true },
 	submitDate: { type: Types.Datetime, noedit: true, required: true, initial: true },
 

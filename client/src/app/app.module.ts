@@ -6,9 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './utils/app-button/button.component';
 
-import { SubmitComponent } from './submit/submit.component';
-import { QuizComponent } from './quiz/quiz.component';
+import { HomeComponent } from './home/home.component';
 import { FieldComponent } from './quiz/field/field.component';
+import { NarrativeComponent } from './narrative/narrative.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { SubmitComponent } from './submit/submit.component';
 
 // Cloudinary
 import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
@@ -16,11 +18,11 @@ import { CloudinaryConfiguration, CloudinaryModule } from '@cloudinary/angular-5
 import cloudinaryConfiguration from './cdn.config';
 
 import { DataService } from './utils/data.service';
+import { SanitizeHtmlPipe } from './utils/sanitize-html.pipe';
 
 // npm
 import { NgxTrumbowygModule } from 'ngx-trumbowyg';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -34,7 +36,9 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     SubmitComponent,
     QuizComponent,
     FieldComponent,
-    HomeComponent
+    HomeComponent,
+    SanitizeHtmlPipe,
+    NarrativeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 {
   "name": "opening-pathways",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "npm-run-all -l -p browser api",

@@ -3,11 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { SubmitComponent } from './submit/submit.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { HomeComponent } from './home/home.component';
+import { NarrativeComponent } from './narrative/narrative.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'narratives/:id',
+    component: NarrativeComponent
   },
   {
     path: 'submit',

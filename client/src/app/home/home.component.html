@@ -1,2 +1,11 @@
 <a routerLink="/submit">Submit Narrative</a> | 
 <a routerLink="/quiz">Quiz</a>
+
+<h3>Narratives</h3>
+
+<div class="narrative" *ngFor="let nar of narratives;">
+
+    <h4>{{nar.title}} <a routerLink="/narratives/{{nar.slug}}">[READ]</a></h4>
+    <h5>by {{nar.name}}</h5>
+
+</div>
