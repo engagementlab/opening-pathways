@@ -1,0 +1,38 @@
+<nav class="container desktop columns is-mobile is-multiline" id="nav">
+
+  <div class="column is-half-mobile is-9-tablet is-10-desktop">
+    <a routerLink="/" id="logo">
+      <cdn-image cloudinaryId="img/logo" svg="true" alt="Opening Pathways logo image"></cdn-image>
+    </a>
+  </div>
+
+  <div id="menu-btn" class="column">
+    <a href="#" (click)="openCloseNav()"><span>x</span>menu</a>
+  </div>
+
+  <section id="menu" class="columns column is-full is-mobile">
+
+    <div class="column is-5">
+      <h2>Partner Site</h2>
+      <h2>Patient Site</h2>
+
+      <h4>openingpathways.org</h4>
+    </div>
+
+    <div class="column is-half">
+      <ol>
+        <li>
+          Partner Narratives
+        </li>
+        <li>
+          Partner Pathway
+        </li>
+        <li>
+          Resources
+        </li>
+      </ol>
+    </div>
+
+  </section>
+
+</nav>

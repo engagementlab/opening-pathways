@@ -38,7 +38,7 @@ export class CdnImageComponent implements OnInit {
   
   ngOnInit() {
 
-    this.imgId = (this.cloudinaryPrefix ? this.cloudinaryPrefix : 'engagement-journalism/') + this.cloudinaryId;
+    this.imgId = (this.cloudinaryPrefix ? this.cloudinaryPrefix : 'opening-pathways/') + this.cloudinaryId;
     let useMobileWidth = (this.isPhone && this.phoneWidth);
 
     if(useMobileWidth)

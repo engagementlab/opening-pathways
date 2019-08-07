@@ -20,6 +20,9 @@ import cloudinaryConfiguration from './cdn.config';
 import { DataService } from './utils/data.service';
 import { SanitizeHtmlPipe } from './utils/sanitize-html.pipe';
 
+import { NavComponent } from './nav/nav.component';
+import { FooterComponent } from './footer/footer.component';
+
 // npm
 import { NgxTrumbowygModule } from 'ngx-trumbowyg';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
@@ -40,7 +43,9 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     QuizComponent,
     FieldComponent,
     HomeComponent,
-    NarrativeComponent
+    NarrativeComponent,
+    NavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
