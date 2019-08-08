@@ -1,11 +1,60 @@
-<a routerLink="/submit">Submit Narrative</a> | 
-<a routerLink="/quiz">Quiz</a>
+<section *ngIf="hasContent">
 
-<h3>Narratives</h3>
 
-<div class="narrative" *ngFor="let nar of narratives;">
+  <div id="top" class="columns column is-mobile is-multiline no-margin">
+
+    <div class="column is-full-mobile is-half-tablet no-pad">
+      <cdn-image cloudinaryId="img/home-mobile" width="355" [responsive]="true" alt="Opening Pathways decor image"
+        *ngIf="isPhone"></cdn-image>
+      <cdn-image cloudinaryId="img/home" width="500" [responsive]="true" alt="Opening Pathways decor image"
+        *ngIf="!isPhone"></cdn-image>
+    </div>
+
+    <div class="column is-full-mobile is-5-tablet no-pad">
+      <h1 class="man-bold no-margin" data-text="Opening Pathways">Opening Pathways</h1>
+<!-- 
+      <svg class="man-bold" width="100%" viewBox="0 0 100 40" *ngIf="isPhone"><text dx="0" dy="0"
+          fill="transparent" stroke="black" stroke-width=".5px">
+          <tspan x="0" dy=".8em">opening</tspan>
+          <tspan dy="1.2em" x="0">pathways</tspan>
+        </text>
+      </svg>
+      <svg class="man-bold" width="100%" viewBox="0 0 130 70" *ngIf="!isPhone"><text dx="0" dy="0"
+          fill="transparent" stroke="black" stroke-width=".5px">
+          <tspan x="0" dy=".8em">opening</tspan>
+          <tspan dy="35px" x="0">pathways</tspan>
+        </text>
+      </svg> -->
+
+      <h3>{{intro.tagline}}</h3>
+    </div>
+
+  </div>
+
+  <div class="columns column is-mobile is-multiline no-margin">
+
+    <div class="column is-full no-pad">
+      <h2 class="gang-bold" [attr.data-text]="intro.introHeader">
+        {{intro.introHeader}}
+      </h2>
+    </div>
+
+    <div class="column is-full-mobile is-half-tablet no-pad">
+      <p class="lg">
+        {{intro.introText}}
+      </p>
+    </div>
+
+  </div>
+
+
+  <h3>Narratives</h3>
+
+  <div class="narrative" *ngFor="let nar of narratives;">
 
     <h4>{{nar.title}} <a routerLink="/narratives/{{nar.slug}}">[READ]</a></h4>
     <h5>by {{nar.name}}</h5>
 
-</div>
+  </div>
+
+</section>

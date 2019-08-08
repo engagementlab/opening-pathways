@@ -12,7 +12,7 @@ export class AppComponent {
 
   public isQABuild: boolean;
 
-  title = 'Opening Ppathways';
+  title = 'Opening Pathways';
 
   constructor(private _titleSvc: Title) { 
     

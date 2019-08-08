@@ -3,32 +3,32 @@ $cloudinary-account: 'engagement-lab-home';
 $cdn-product: 'opening-pathways';
 
 // FONT CONFIG
-$base-font-size: 14;
-$base-font-size-mobile: 12;
+$base-font-size: 24;
+$base-font-size-mobile: 18;
 
 @font-face {
     font-family: 'GangsterGrotesk-Regular';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/GangsterGrotesk-Regular.otf') format('otf');
+    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/GangsterGrotesk-Regular.otf');
 }
 @font-face {
     font-family: 'GangsterGrotesk-Bold';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/GangsterGrotesk-Bold.otf') format('otf');
+    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/GangsterGrotesk-Bold.otf');
 }
 @font-face {
     font-family: 'Manrope-Regular';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-regular.otf') format('otf');
+    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-regular.otf');
 }
 @font-face {
     font-family: 'Manrope-Medium';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-medium.otf') format('otf');
+    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-medium.otf');
 }
 @font-face {
     font-family: 'Manrope-Semibold';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-semibold.otf') format('otf');
+    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-semibold.otf');
 }
 @font-face {
     font-family: 'Manrope-Bold';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-bold.otf') format('otf');
+    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-bold.otf');
 }
 
 @mixin pxtoem($mobile, $desktop: $base-font-size) {

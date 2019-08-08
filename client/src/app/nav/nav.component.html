@@ -1,13 +1,24 @@
 <nav class="container desktop columns is-mobile is-multiline" id="nav">
 
-  <div class="column is-half-mobile is-9-tablet is-10-desktop">
+  <div class="column is-half-mobile is-8-tablet is-8-desktop">
     <a routerLink="/" id="logo">
       <cdn-image cloudinaryId="img/logo" svg="true" alt="Opening Pathways logo image"></cdn-image>
     </a>
   </div>
 
   <div id="menu-btn" class="column">
-    <a href="#" (click)="openCloseNav()"><span>x</span>menu</a>
+    <a href="#" (click)="openCloseNav()">
+      <span>
+      <svg viewBox="0 0 14 14" width="14" height="14">
+          <g>
+            <line style="stroke: rgb(0, 0, 0); stroke-width: 1px;" x1="0" y1="0" x2="14" y2="14"></line>
+          </g>
+          <g transform="matrix(0, -1, 1, 0, 0, 14)">
+            <line style="stroke: rgb(0, 0, 0); stroke-width: 1px;" x1="0" y1="0" x2="14" y2="14"></line>
+          </g>
+        </svg>
+      </span>
+      menu</a>
   </div>
 
   <section id="menu" class="columns column is-full is-mobile">

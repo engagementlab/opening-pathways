@@ -18,24 +18,22 @@ export class NavComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
     let menu = document.getElementById('menu');
+    let menuBtn = document.getElementById('menu-btn');
 
     this.tl = new TimelineLite({paused:true, reversed:true});
     let tl = this.tl;
 
-    tl.fromTo(menu, .7, {autoAlpha:0}, {autoAlpha:1, display:'flex', ease:Circ.easeOut});
+    tl.set(menuBtn, {className:'+=open'});
+    tl.fromTo(menu, .7, {autoAlpha:0, display:'none'}, {autoAlpha:1, display:'flex', ease:Circ.easeOut});
+    tl.fromTo(document.getElementById('menu-overlay'), .5, {autoAlpha:0, display:'none'}, {autoAlpha:1, display:'block'}, '-=.7');
 
   }
    
   public openCloseNav() {
-    // if(!this.tl.reversed()) {
-
-    //   this.tl.reverse().timeScale(1.3);
-      
-    //   this.searchField.nativeElement.value = '';
-    //   this.searchResults = null;
-    // }
-    // else
-    this.tl.play();
+    if(!this.tl.reversed())
+      this.tl.reverse().timeScale(1.3);
+    else
+      this.tl.play();
 
   }
 

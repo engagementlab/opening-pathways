@@ -1,9 +1,47 @@
+@import "~src/style/_variables";
+
+nav {
+    position: relative;
+    z-index: 10;
+}
+
 #logo {
     display: block;
     max-width: 185px;
+    
+    @include phones {
+        max-width: 100px;
+    }
+}
+
+#menu-btn {
+    text-align: center;
+    @include phones {
+        text-align: right;
+    }
+    a {
+        color: black;
+        text-decoration: none;
+
+        span {
+            margin-right: 19px;
+            svg {
+                line {
+                    @include scale(0);
+                }
+            }
+        }
+    }
+
+    &.open {
+        a span svg line {
+            @include scale(1);
+
+        }
+    }
 }
 
 #menu {
-    // display: none;
-    z-index: 3;
+    display: none;
+    z-index: 6;
 }
