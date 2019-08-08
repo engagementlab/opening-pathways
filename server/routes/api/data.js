@@ -13,7 +13,7 @@ const keystone = global.keystone,
 
 var buildData = async (type, res) => {
 
-    let homeFields = 'introHeader introText tagline -_id';
+    let homeFields = 'introHeader introText quizHeader quizBlurb tagline -_id';
     // let aboutFields = 'image.public_id para1.html para2.html -_id';
 
     let home = keystone.list('Home').model;

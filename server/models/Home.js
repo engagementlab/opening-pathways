@@ -36,9 +36,12 @@ Home.add({
 	
     name: { type: String, default: "Home Page Content", hidden: true, required: true, initial: true },
     
-	tagline: { type: String, required: true, initial: true},
-	introHeader: { type: String, required: true, initial: true},
-	introText: { type: Types.Textarea, required: true, initial: true}
+	tagline: { type: String, required: true, initial: true },
+	introHeader: { type: String, required: true, initial: true },
+	introText: { type: Types.Textarea, required: true, initial: true },
+
+	quizHeader: { type: String, required: true, initial: true },
+	quizBlurb: { type: Types.Textarea, required: true, initial: true }
 
 });
 

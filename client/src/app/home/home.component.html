@@ -12,7 +12,7 @@
 
     <div class="column is-full-mobile is-5-tablet no-pad">
       <h1 class="man-bold no-margin" data-text="Opening Pathways">Opening Pathways</h1>
-<!-- 
+      <!-- 
       <svg class="man-bold" width="100%" viewBox="0 0 100 40" *ngIf="isPhone"><text dx="0" dy="0"
           fill="transparent" stroke="black" stroke-width=".5px">
           <tspan x="0" dy=".8em">opening</tspan>
@@ -47,13 +47,51 @@
 
   </div>
 
+  <h5 class="gang">Partner Narratives</h5>
+  <div class="columns column is-mobile is-multiline no-margin" *ngIf="narratives !== undefined">
 
-  <h3>Narratives</h3>
+    <div class="column is-full-mobile is-half-tablet narrative no-pad" *ngFor="let nar of narratives;">
 
-  <div class="narrative" *ngFor="let nar of narratives;">
+      <p>{{nar.title}}<p>
+          <hr />
+          <div class="blurb">
+            {{nar.blurb}}
+          </div>
+          <a routerLink="/narratives/{{nar.slug}}">read more</a>
+    </div>
 
-    <h4>{{nar.title}} <a routerLink="/narratives/{{nar.slug}}">[READ]</a></h4>
-    <h5>by {{nar.name}}</h5>
+    <div class="column is-full center">
+
+      <app-button label="see all narratives" route="/narratives"></app-button>
+
+    </div>
+  </div>
+
+  <h5 class="gang">Explore your partner pathway</h5>
+  <div id="partner" class="columns column is-mobile is-multiline no-margin">
+
+    <div class="column is-full center">
+      <div id="img">
+        <cdn-image cloudinaryId="img/explorepath" width="876" [responsive]="true" autoFormat="true"
+          alt="Partner Pathways decor image"></cdn-image>
+      </div>
+    </div>
+
+    <div class="column is-full-mobile is-half-tablet no-pad">
+            <h3 class="gang-bold">
+              {{intro.quizHeader}}
+            </h3>
+          </div>
+      
+          <div class="column is-full-mobile is-half-tablet no-pad blurb">
+              {{intro.quizBlurb}}
+          </div>
+
+    <div class="column is-full center">
+
+      <app-button label="take the readiness quiz" route="/quiz"></app-button>
+
+    </div>
 
   </div>
 

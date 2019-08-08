@@ -8,13 +8,17 @@ $tablet: 768px;
 
 body {
     font-family: 'Manrope-Regular';
-    font-size: 24px;
+    font-size: $base-font-size + 0px;
 
     @include mobile-only {
-        font-size: 14px;
+        font-size: $base-font-size-mobile + 0px;
     }
     margin: 0;
     overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
 }
 
 // Fonts
@@ -33,6 +37,11 @@ p.lg {
 .gang-bold {
     font-family: 'GangsterGrotesk-Bold';
 } 
+
+.center {
+    display: flex;
+    justify-content: center;
+}
 
 #menu-overlay {
     position: absolute;

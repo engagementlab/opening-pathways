@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
       this.intro = intro[0];
 
-      this._dataSvc.getDataForUrl('/api/narrative/get').subscribe((response) => {
+      this._dataSvc.getDataForUrl('/api/narrative/featured').subscribe((response) => {
         
         this.narratives = response;
         this.hasContent = true;

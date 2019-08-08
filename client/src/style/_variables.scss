@@ -4,7 +4,7 @@ $cdn-product: 'opening-pathways';
 
 // FONT CONFIG
 $base-font-size: 24;
-$base-font-size-mobile: 18;
+$base-font-size-mobile: 14;
 
 @font-face {
     font-family: 'GangsterGrotesk-Regular';
@@ -40,6 +40,8 @@ $base-font-size-mobile: 18;
 }
 
 /* Color palette */
+$burnt-yellow: #e1a708;
+$very-light-pink: #bbbbbb;
 
 $mq-breakpoints: (mobile: 320px,
 mobileLg: 375px,

@@ -35,6 +35,7 @@ router.get('/api/quiz/get', routeIncludes, routes.api.quiz.get);
 
 router.get('/api/narrative/get', routeIncludes, routes.api.narrative.all);
 router.get('/api/narrative/get/:id', routeIncludes, routes.api.narrative.get);
+router.get('/api/narrative/featured', routeIncludes, routes.api.narrative.featured);
 router.all('/api/narrative/create', routeIncludes, routes.api.narrative.create);
 
 module.exports = router;

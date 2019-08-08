@@ -11,10 +11,14 @@
 const keystone = global.keystone,
 	  Narrative = keystone.list('Narrative');
 
-var buildData = async (res, id) => {
+var buildData = async (res, id, featured) => {
 
-	let narrativeFields = 'name title body slug submitDate -_id';
+	let narrativeFields = 'name title blurb body slug submitDate -_id';
 	let query = !id ? {accepted: true, published: true} : {slug: id};
+
+	if(featured)
+		query.featured = true;
+		
 	let data = null;
 	
 	if(id)
@@ -39,6 +43,15 @@ var buildData = async (res, id) => {
 exports.all = function (req, res) {
 
 	return buildData(res);
+
+}
+
+/*
+* Get published narratives
+*/
+exports.featured = function (req, res) {
+
+	return buildData(res, null, true);
 
 }
 
