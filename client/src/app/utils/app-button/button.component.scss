@@ -5,7 +5,7 @@
   position: relative;
 
   display:table;
-  @include pxtoem(18, 24);
+  @include pxtoem(12, 24);
 
   margin:0 auto;
   padding: 0px 56px;
@@ -13,6 +13,7 @@
   text-align: center;
 
   min-height: 100px;
+  height: 100px;
   
   cursor: pointer;
   text-decoration:none;
@@ -35,7 +36,7 @@
     padding: 0px 28px;
 
     div {
-      margin-top: 11px;
+      margin-top: 16px;
     }
   }
 

@@ -10,28 +10,14 @@
         *ngIf="!isPhone"></cdn-image>
     </div>
 
-    <div class="column is-full-mobile is-5-tablet no-pad">
+    <div class="column is-full-mobile is-half-tablet no-pad">
       <h1 class="man-bold no-margin" data-text="Opening Pathways">Opening Pathways</h1>
-      <!-- 
-      <svg class="man-bold" width="100%" viewBox="0 0 100 40" *ngIf="isPhone"><text dx="0" dy="0"
-          fill="transparent" stroke="black" stroke-width=".5px">
-          <tspan x="0" dy=".8em">opening</tspan>
-          <tspan dy="1.2em" x="0">pathways</tspan>
-        </text>
-      </svg>
-      <svg class="man-bold" width="100%" viewBox="0 0 130 70" *ngIf="!isPhone"><text dx="0" dy="0"
-          fill="transparent" stroke="black" stroke-width=".5px">
-          <tspan x="0" dy=".8em">opening</tspan>
-          <tspan dy="35px" x="0">pathways</tspan>
-        </text>
-      </svg> -->
-
       <h3>{{intro.tagline}}</h3>
     </div>
 
   </div>
 
-  <div class="columns column is-mobile is-multiline no-margin">
+  <div class="columns column is-mobile is-multiline no-margin is-centered">
 
     <div class="column is-full no-pad">
       <h2 class="gang-bold" [attr.data-text]="intro.introHeader">
@@ -39,7 +25,7 @@
       </h2>
     </div>
 
-    <div class="column is-full-mobile is-half-tablet no-pad">
+    <div class="column is-full-mobile is-8-tablet is-half-desktop no-pad">
       <p class="lg">
         {{intro.introText}}
       </p>
@@ -47,10 +33,26 @@
 
   </div>
 
-  <h5 class="gang">Partner Narratives</h5>
-  <div class="columns column is-mobile is-multiline no-margin" *ngIf="narratives !== undefined">
+  <div id="narratives" class="columns column is-mobile is-multiline no-margin" *ngIf="narratives !== undefined">
 
-    <div class="column is-full-mobile is-half-tablet narrative no-pad" *ngFor="let nar of narratives;">
+    <h5 class="column is-full gang">Partner Narratives</h5>
+
+    <div class="column is-full center">
+
+      <svg class="decor" width="135" height="15" fill="none" viewBox="0 0 135 15">
+        <path fill="url(#a)"
+          d="M135 0c0 8.292-6.708 15-15 15-15 0-11.25-11.25-26.25-11.25S82.5 15 67.5 15 56.25 3.75 41.25 3.75 30 15 15 15C6.708 15 0 8.292 0 0h135z" />
+        <defs>
+          <linearGradient id="a" x2="135" y1="7.5" y2="7.5" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#CDA624" />
+            <stop offset="1" stop-color="#F4CCC7" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+    </div>
+
+    <div class="column is-full-mobile narrative" *ngFor="let nar of narratives;">
 
       <p>{{nar.title}}<p>
           <hr />
@@ -67,8 +69,25 @@
     </div>
   </div>
 
-  <h5 class="gang">Explore your partner pathway</h5>
   <div id="partner" class="columns column is-mobile is-multiline no-margin">
+    <div class="column is-full center">
+      <h5 class="gang">Explore your partner pathway</h5>
+    </div>
+
+    <div class="column is-full center">
+
+      <svg class="decor" width="135" height="15" fill="none" viewBox="0 0 135 15">
+        <path fill="url(#b)"
+          d="M135 0c0 8.292-6.708 15-15 15-15 0-11.25-11.25-26.25-11.25S82.5 15 67.5 15 56.25 3.75 41.25 3.75 30 15 15 15C6.708 15 0 8.292 0 0h135z" />
+        <defs>
+          <linearGradient id="b" x2="135" y1="7.5" y2="7.5" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#ACB8AF" />
+            <stop offset="1" stop-color="#8390AB" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+    </div>
 
     <div class="column is-full center">
       <div id="img">
@@ -78,14 +97,14 @@
     </div>
 
     <div class="column is-full-mobile is-half-tablet no-pad">
-            <h3 class="gang-bold">
-              {{intro.quizHeader}}
-            </h3>
-          </div>
-      
-          <div class="column is-full-mobile is-half-tablet no-pad blurb">
-              {{intro.quizBlurb}}
-          </div>
+      <h3>
+        {{intro.quizHeader}}
+      </h3>
+    </div>
+
+    <div class="column is-full-mobile is-half-tablet no-pad blurb">
+      {{intro.quizBlurb}}
+    </div>
 
     <div class="column is-full center">
 
