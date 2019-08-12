@@ -1,0 +1,87 @@
+@import "~src/style/_variables";
+
+.narrative {
+
+  p {
+    @include pxtoem(24, 48);
+  }
+
+&:nth-child(odd) {
+  flex-direction: row-reverse;
+    .right {
+      @include not-phones {
+      margin-right: 16.6%;
+      text-align: left;
+      }
+    }
+}
+
+&:nth-child(even) {
+  .right {
+    @include not-phones {
+      margin-left: 16.6%
+    } 
+  }
+}
+
+
+.blurb {
+  @include pxtoem(12, 24);
+}
+
+.right {
+  color: $very-light-pink;
+
+  hr {
+    border: 1px solid #ddd;
+
+    margin-top: 55%;
+    margin-bottom: 55%;
+
+    @include tablet-portrait {
+      margin-top: 23%;
+    }
+
+    @include mq($from: tablet) {
+      margin-top: 23%;
+      margin-bottom: 5%;
+    }
+
+    @include desktop {
+      margin-top: 15%;
+      margin-bottom: 31%;
+    }
+  }
+
+  .date {
+    margin-top: 2%;
+
+    @include phones {
+      span {
+        display: block;
+      }
+    }
+  }
+
+    a {
+      @include pxtoem(12, 24);
+
+      display: block;
+      color: $burnt-yellow;
+      line-height: 1.5;
+      text-transform: uppercase;
+
+      margin-top: 50%;
+
+      @include mq($from: tablet) {
+        margin-top: 19%;
+      }
+    }
+
+    @include desktop {
+      text-align: end;
+    }
+
+}
+
+}

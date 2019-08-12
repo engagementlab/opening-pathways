@@ -64,17 +64,6 @@
 
 h2 {
   @include pxtoem(46, 100);
-
-  paint-order: stroke fill;
-  -webkit-text-fill-color: white;
-
-  &:before {
-    content: attr(data-text);
-    position: absolute;
-    -webkit-text-stroke: 2px black;
-    z-index: -2;
-    font-size: 1em;
-  }
 }
 
 h3 {
@@ -106,10 +95,6 @@ h5 {
 
 .blurb {
   @include pxtoem(12, 24);
-}
-
-.lg {
-  text-align: center;
 }
 
 #narratives {

@@ -1,6 +1,6 @@
 {
-  "name": "engagement-journalism-server",
-  "version": "0.0.1",
+  "name": "opening-pathways-server",
+  "version": "0.0.2",
   "main": "app.js",
   "license": "MIT",
   "description": "",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/engagementlab/make-foia-work.git"
+    "url": "git+https://github.com/engagementlab/opening-pathways.git"
   },
   "dependencies": {
     "@engagementlab/el-bootstrapper": "^0.0.6",
@@ -22,6 +22,7 @@
     "keystone-storage-adapter-azure": "^1.1.0",
     "lodash": "4.17.11",
     "mongoose": "^5.6.2",
+    "reading-time": "^1.2.0",
     "validator": "^10.9.0",
     "winston": "^3.2.1"
   }

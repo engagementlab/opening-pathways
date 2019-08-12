@@ -1,6 +1,5 @@
 <section *ngIf="hasContent">
 
-
   <div id="top" class="columns column is-mobile is-multiline no-margin">
 
     <div class="column is-full-mobile is-half-tablet no-pad">
@@ -20,7 +19,7 @@
   <div class="columns column is-mobile is-multiline no-margin is-centered">
 
     <div class="column is-full no-pad">
-      <h2 class="gang-bold" [attr.data-text]="intro.introHeader">
+      <h2 class="outline gang-bold" [attr.data-text]="intro.introHeader">
         {{intro.introHeader}}
       </h2>
     </div>
@@ -37,7 +36,7 @@
 
     <h5 class="column is-full gang">Partner Narratives</h5>
 
-    <div class="column is-full center">
+    <div class="column is-full center-content">
 
       <svg class="decor" width="135" height="15" fill="none" viewBox="0 0 135 15">
         <path fill="url(#a)"
@@ -62,7 +61,7 @@
           <a routerLink="/narratives/{{nar.slug}}">read more</a>
     </div>
 
-    <div class="column is-full center">
+    <div class="column is-full center-content">
 
       <app-button label="see all narratives" route="/narratives"></app-button>
 
@@ -70,11 +69,11 @@
   </div>
 
   <div id="partner" class="columns column is-mobile is-multiline no-margin">
-    <div class="column is-full center">
+    <div class="column is-full center-content">
       <h5 class="gang">Explore your partner pathway</h5>
     </div>
 
-    <div class="column is-full center">
+    <div class="column is-full center-content">
 
       <svg class="decor" width="135" height="15" fill="none" viewBox="0 0 135 15">
         <path fill="url(#b)"
@@ -89,7 +88,7 @@
 
     </div>
 
-    <div class="column is-full center">
+    <div class="column is-full center-content">
       <div id="img">
         <cdn-image cloudinaryId="img/explorepath" width="876" [responsive]="true" autoFormat="true"
           alt="Partner Pathways decor image"></cdn-image>
@@ -106,7 +105,7 @@
       {{intro.quizBlurb}}
     </div>
 
-    <div class="column is-full center">
+    <div class="column is-full center-content">
 
       <app-button label="take the readiness quiz" route="/quiz"></app-button>
 

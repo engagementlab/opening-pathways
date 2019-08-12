@@ -1,0 +1,28 @@
+@import "~src/style/_variables";
+
+#info {
+  @include pxtoem(18, 36);
+
+  .date {
+      margin-top: 7%;
+  }
+}
+
+#narrative {
+    
+    margin: 3%;
+
+    ::ng-deep p {
+        blockquote {
+    font-family: 'GangsterGrotesk-Regular';
+
+            @include pxtoem(24, 48);
+            color: $windows-blue;
+  line-height: 1.3;
+
+  margin-left: 0;
+  margin-right: 0;
+        }
+    }
+
+}

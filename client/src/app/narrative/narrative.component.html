@@ -1,9 +1,22 @@
+<section *ngIf="hasContent">
 
-<div id="narrative" *ngIf="hasContent">
+  <div class="column columns is-multiline is-mobile is-centered no-margin">
+    <h2 class="outline pg-header column is-11" [attr.data-text]="narrative.title">
+      {{narrative.title}}
+    </h2>
+    <div id="info" class="column is-10 is-half-desktop no-pad center">
 
-    <h2>{{narrative.title}}</h2>
-    <h3>{{narrative.name}}</h3>
-    <h4>{{narrative.submitDate | date}}</h4>
+      <div class="name man-bold">
+        {{narrative.name}}
+      </div>
+      <div class="date">
+        {{narrative.readingTime}} minute read &#8212; <span>{{narrative.submitDate | date: "MMM dd, yyyy"}}</span>
+      </div>
+    </div>
+  </div>
 
+  <div id="narrative">
     <p [innerHtml]="narrative.body"></p>
-</div>
+  </div>
+
+</section>

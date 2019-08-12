@@ -23,8 +23,13 @@ a {
 
 // Fonts
 p.lg {
-    font-size: 1.3em;
+  text-align: center;
+  font-size: 1.3em;
 }
+h2.pg-header {
+    @include pxtoem(36, 100);
+    font-family: 'GangsterGrotesk-Bold';
+  }
 .man-bold {
     font-family: 'Manrope-Bold';
 }
@@ -38,7 +43,27 @@ p.lg {
     font-family: 'GangsterGrotesk-Bold';
 } 
 
-.center {
+// Outlined font style
+.outline {
+
+  paint-order: stroke fill;
+  -webkit-text-fill-color: white;
+
+  &:before {
+    content: attr(data-text);
+    position: absolute;
+    -webkit-text-stroke: 4px black;
+    z-index: -2;
+    font-size: 1em;
+
+    @include phones {
+        -webkit-text-stroke-width: 2px;
+    }
+  }
+  
+}
+
+.center-content {
     display: flex;
     justify-content: center;
 }

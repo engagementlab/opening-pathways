@@ -13,7 +13,7 @@ const keystone = global.keystone,
 
 var buildData = async (res, id, featured) => {
 
-	let narrativeFields = 'name title blurb body slug submitDate -_id';
+	let narrativeFields = 'name title blurb body slug submitDate readingTime -_id';
 	let query = !id ? {accepted: true, published: true} : {slug: id};
 
 	if(featured)

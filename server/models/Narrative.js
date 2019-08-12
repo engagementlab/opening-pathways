@@ -37,7 +37,7 @@ Narrative.add({
 	name: { type: String, required: true, initial: true, noedit: true },
 	email: { type: String, required: true, initial: true, noedit: true },
 	title: { type: String, required: true, initial: true, noedit: true, unique: true },
-	body: { type: Types.Html, wysiwyg: true, required: true, initial: true },
+	body: { type: Types.Html, wysiwyg: true, required: true, initial: true, note: 'Blockquote button will format as pull-quote.' },
 	blurb: { type: Types.Textarea, dependsOn: {accepted:true}, note: 'Summary to show on home page, if featured.' },
 	submitDate: { type: Types.Datetime, noedit: true, required: true, initial: true },
 
@@ -45,15 +45,22 @@ Narrative.add({
 	published: { type: Boolean, dependsOn: {accepted:true}, note: 'If unchecked, will never appear.' },
 	featured: { type: Boolean, dependsOn: {published:true}, note: 'Show on home page?' },
 
-	acceptedDate: { type: Types.Datetime, noedit: true }
-
+	acceptedDate: { type: Types.Datetime, noedit: true },
+	readingTime: { type: String, label: 'Reading Time (mins)', noedit: true }
+	
 });
 
 // Update accepted date if accepted ticked
 Narrative.schema.pre('save', function (next) {
 	
-	if(this.accepted)
+	if(this.accepted) {
 		this.acceptedDate = Date.now();
+
+		// Calc read time
+		const readingTime = require('reading-time');
+		const stats = readingTime(this.body);
+		this.readingTime = Math.round(stats.minutes);
+	}
     
     next();
 
