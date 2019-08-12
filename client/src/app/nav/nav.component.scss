@@ -1,47 +1,103 @@
 @import "~src/style/_variables";
 
 nav {
-    position: relative;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
 }
 
 #logo {
-    display: block;
-    max-width: 185px;
-    
-    @include phones {
-        max-width: 100px;
-    }
+  display: block;
+  max-width: 185px;
+
+  @include phones {
+    max-width: 100px;
+  }
 }
 
 #menu-btn {
-    text-align: center;
-    @include phones {
-        text-align: right;
-    }
-    a {
-        color: black;
-        text-decoration: none;
+  text-align: center;
 
-        span {
-            margin-right: 19px;
-            svg {
-                line {
-                    @include scale(0);
-                }
-            }
+  @include phones {
+    text-align: right;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+
+    span {
+      margin-right: 19px;
+
+      svg {
+        line {
+          @include scale(0);
         }
+      }
     }
+  }
 
-    &.open {
-        a span svg line {
-            @include scale(1);
+  &.open {
+    a span svg line {
+      @include scale(1);
 
-        }
     }
+  }
 }
 
 #menu {
-    display: none;
-    z-index: 6;
+  display: none;
+  z-index: 6;
+
+  #sites {
+    display: flex;
+    justify-content: space-evenly;
+
+    @include not-phones {
+      flex-direction: column;
+    }
+
+    span {
+      @include pxtoem(18, 24);
+
+      @include not-phones {
+        display: block;
+      }
+    }
+  }
+
+  h4 {
+    @include pxtoem(12, 24);
+
+    @include phones {
+      margin-left: 10%;
+    }
+
+    a {
+      color: $burnt-yellow;
+    }
+  }
+
+  ol {
+
+    list-style: none;
+    counter-reset: nav-ct;
+
+    li {
+      counter-increment: nav-ct;
+      margin-bottom: 11%;
+
+      @include pxtoem(24, 36);
+
+      &::before {
+        font-size: .7em;
+        content: counter(nav-ct);
+        color: $burnt-yellow;
+      }
+
+      span {
+        margin-right: 5%;
+        color: $very-light-pink;
+      }
+    }
+  }
 }

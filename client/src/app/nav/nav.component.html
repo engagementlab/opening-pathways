@@ -21,27 +21,37 @@
       menu</a>
   </div>
 
-  <section id="menu" class="columns column is-full is-mobile">
+  <section id="menu" class="columns column is-full is-mobile is-multiline">
 
-    <div class="column is-5">
-      <h2>Partner Site</h2>
-      <h2>Patient Site</h2>
+    <div id="sites" class="column is-full-mobile is-4-tablet is-half-desktop">
+      <span>Partner Site</span>
+      <span>Patient Site</span>
 
-      <h4>openingpathways.org</h4>
+      <h4 class="hidden-mobile"><a href="https://openingpathways.org">openingpathways.org</a></h4>
+      
     </div>
 
-    <div class="column is-half">
+    <div class="column is-full-mobile">
       <ol>
-        <li>
+        <a routerLink="/narratives">
+          <li>
+            <span>&nbsp;-</span>
           Partner Narratives
         </li>
+      </a>
         <li>
+            <span>&nbsp;-</span>
           Partner Pathway
         </li>
         <li>
+            <span>&nbsp;-</span>
           Resources
         </li>
       </ol>
+    </div>
+
+    <div class="column is-full-mobile hidden-tablet-plus">
+        <h4><a href="https://openingpathways.org">openingpathways.org</a></h4>
     </div>
 
   </section>
