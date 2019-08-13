@@ -33,7 +33,8 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/trumbowyg/dist/trumbowyg.min.js"
+              "./node_modules/trumbowyg/dist/trumbowyg.min.js",
+              "./node_modules/gsap/umd/TimelineLite.js"
             ]
           },
           "configurations": {
