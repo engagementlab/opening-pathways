@@ -47,6 +47,7 @@ nav {
 
 #menu {
   display: none;
+  opacity: 0;
   z-index: 6;
 
   #sites {
@@ -62,6 +63,17 @@ nav {
 
       @include not-phones {
         display: block;
+      }
+
+      a {
+        color: $burnt-yellow;
+      }
+
+      &.active a {
+        color: black;
+        text-decoration: line-through;
+        text-decoration-color: $burnt-yellow;
+
       }
     }
   }

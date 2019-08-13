@@ -8,7 +8,7 @@
     "browser-testing": "ng serve --configuration=dev --port 8000 --host 0.0.0.0 --disableHostCheck true",
     "api": "cd ../server; nodemon",
     "build": "ng build --configuration=production --prod",
-    "build-qa": "ng build --configuration=qa --prod",
+    "build-qa": "ng build --configuration=qa-patient --prod; ng build --configuration=qa-partner --prod",
     "build-ci": "ng build --configuration=ci --prod",
     "test": "ng test",
     "lint": "ng lint",

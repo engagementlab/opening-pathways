@@ -63,15 +63,41 @@
                 }
               ]
             },
-            "qa": {
+            "qa-partner": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.qa.ts"
+                  "with": "src/environments/environment.qa.partner.ts"
                 }
               ],
               "optimization": true,
               "outputHashing": "all",
+              "outputPath": "dist/partner",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "qa-patient": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.qa.patient.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "outputPath": "dist/patient",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,

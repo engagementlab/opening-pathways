@@ -24,8 +24,8 @@
   <section id="menu" class="columns column is-full is-mobile is-multiline">
 
     <div id="sites" class="column is-full-mobile is-4-tablet is-half-desktop">
-      <span>Partner Site</span>
-      <span>Patient Site</span>
+      <span [class.active]="partnerSiteActive"><a href="https://patient.openingpathways.org">Partner Site</a></span>
+      <span [class.active]="!partnerSiteActive"><a href="https://patient.openingpathways.org">Patient Site</a></span>
 
       <h4 class="hidden-mobile"><a href="https://openingpathways.org">openingpathways.org</a></h4>
       

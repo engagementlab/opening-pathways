@@ -1,6 +1,6 @@
 export const environment = {
-  qa: false,
-  partner: true,
+  qa: true,
+  partner: false,
   patient: true,
   production: true
 };

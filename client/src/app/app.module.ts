@@ -28,6 +28,7 @@ import { NgxTrumbowygModule } from 'ngx-trumbowyg';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { CdnImageComponent } from './utils/cdn-image/cdn-image.component';
 import { NarrativeIndexComponent } from './narrative/index/index.component';
+import { HomePatientComponent } from './home-patient/home-patient.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -47,7 +48,8 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     NarrativeComponent,
     NavComponent,
     FooterComponent,
-    NarrativeIndexComponent
+    NarrativeIndexComponent,
+    HomePatientComponent
   ],
   imports: [
     BrowserModule,
