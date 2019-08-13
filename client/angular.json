@@ -34,7 +34,8 @@
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
               "./node_modules/trumbowyg/dist/trumbowyg.min.js",
-              "./node_modules/gsap/umd/TimelineLite.js"
+              "./node_modules/gsap/umd/TimelineLite.js",
+              "./node_modules/gsap/umd/TweenMax.js"
             ]
           },
           "configurations": {
@@ -102,6 +103,9 @@
           "configurations": {
             "production": {
               "browserTarget": "opening-pathways:build:production"
+            },
+            "qa": {
+              "browserTarget": "opening-pathways:build:qa"              
             }
           }
         },
