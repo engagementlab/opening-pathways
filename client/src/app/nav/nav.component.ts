@@ -13,6 +13,8 @@ import { environment } from '../../environments/environment';
 export class NavComponent implements OnInit, AfterViewInit {
 
   public partnerSiteActive: boolean;
+  public qaSiteActive: boolean;
+
   private tlOpen: TimelineLite; 
   private tlClose: TimelineLite; 
 
@@ -26,6 +28,7 @@ export class NavComponent implements OnInit, AfterViewInit {
     });
 
     this.partnerSiteActive = environment.partner;
+    this.qaSiteActive = environment.qa;
   
    }
 
