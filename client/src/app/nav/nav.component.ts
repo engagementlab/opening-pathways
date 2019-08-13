@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TimelineLite, Circ } from 'gsap';
+import { Router, NavigationStart } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +12,14 @@ export class NavComponent implements OnInit, AfterViewInit {
 
   private tl: TimelineLite; 
 
-  constructor() { }
+  constructor(private _router: Router) {
+  
+    _router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
+      // Close menu when nav starts
+      this.tl.reverse().timeScale(1.3);
+    });
+  
+   }
 
   ngOnInit() {
   }
