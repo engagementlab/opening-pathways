@@ -26,7 +26,7 @@ export class DataService {
 
   constructor(private http: HttpClient, private _router: Router) { 
 
-  	this.baseUrl = 'http://localhost:3000';
+  	this.baseUrl = (environment.production ? 'https://'+window.location.host : 'http://localhost:3000');
 
     _router.events.subscribe(event => {
       
