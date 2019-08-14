@@ -27,7 +27,7 @@
         </div>
 
         <!-- <div class="error"></div> -->
-        <strong *ngIf="formError"><br />Please select an option for each response.</strong>
+        <strong *ngIf="formError"><br />Please select/fill out required (*) responses.</strong>
 
         <app-button label="next" clickData="true" (clickEvent)="nextPage()" [arrow]="true" *ngIf="!lastPage"></app-button>
         <app-button label="submit" clickData="true" (clickEvent)="submitQuiz()" *ngIf="lastPage"></app-button>

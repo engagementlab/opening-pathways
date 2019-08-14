@@ -1,5 +1,5 @@
 <h4>
-  {{data.prompt}}
+  {{data.prompt}} <span class="required" *ngIf="data.required">*</span>
 </h4>
 
 <p [innerHtml]="data.note.html" *ngIf="data.note && data.note.html.length > 0"></p>

@@ -39,14 +39,16 @@ export class QuizComponent implements OnInit {
       this.quizPageKeys.forEach((p) => {
         this.quizPages[p].forEach((resp, i) => {
 
+          let validators = resp.required ? [null, [Validators.required]] : [null];
+
           if (resp.type === 'choice') {
-            fields[p + '_' + i] = [null, [Validators.required]];
+            fields[p + '_' + i] = validators;
 
             _.each(resp.responsesObj, (txt, fi) => {
               fields[p + '_' + i + '_' + fi + '_txt'] = [null];
             });
           } else {
-            fields[p + '_' + i] = [null, [Validators.required]];
+            fields[p + '_' + i] = validators;
           }
 
         });
