@@ -2,37 +2,48 @@
 
 nav {
   position: relative;
-  height: 67px;
-  width: 700px;
-
+  width: 96%;
+  margin-left: 2%;
+  margin-top: 20%;
+  
   ul {
     display: flex;
     position: relative;
     justify-content: space-between;
     list-style: none;
+    
+    margin-top: -1.5%;
 
-    margin: 0;
-    top: -10%;
-
+    background-image: linear-gradient(to right, $windows-blue, $greyish-teal 23%, $burnt-yellow 51%, $blush 76%, $light-peach);
+    background-size: 100% 3px;
+    background-position-y: 25%;
+    background-repeat: no-repeat;
+    
     div {
+
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+
       top: -1px;
       left: 0;
-      margin-top: -5px;
       padding: 0;
-      display: inline-table;
-      height: 10px;
-      width: 10px;
+      margin-top: -1%;
+
+      height: 15px;
+      width: 15px;
       border-radius: 50%;
-       border: 3px solid black;
-      
+      border: 1px solid $very-light-pink;
+      background-color: white;
+
       &:before {
-          display: block;
-          top: -5px;
-          left: -5px;
-          content: '';
-          height: 20px;
-          width: 20px;
-          border: 3px solid white;
+        display: block;
+        top: -5px;
+        left: -5px;
+        content: '';
+        height: 6px;
+        width: 6px;
+        border: 4px solid white;
         background: white;
         border-radius: 50%;
         @include transition(transform, .5s, ease-in-out);
@@ -40,7 +51,7 @@ nav {
 
       &.current {
         &:before {
-          background: black;
+          background: $very-light-pink;
         }
       }
 
@@ -61,24 +72,22 @@ nav {
     }
   }
 
-  .progress-bar {
-    position: relative;
-    display: block;
-    height: 8px;
-    width: 0%;
-    left: 1%;
-    margin: 0;
-    z-index: -1;
-    background: blue;
-  }
+  @include not-phones {
+    margin-top: 15%;
 
-  .border {
-    position: relative;
-    display: block;
-    z-index: -3;
-    height: 2px;
-    margin-top: -5px;
-    border-bottom: 2px solid black;
+    ul {
+      background-size: 100% 6px;
+
+      div {
+        height: 35px;
+        width: 35px;
+        
+        &:before {
+          height: 15px;
+          width: 15px;
+        }
+      }
+    } 
   }
 }
 
@@ -87,5 +96,18 @@ nav {
 
   &.active {
     display: block;
+  }
+
+  h5 {
+    margin-top: 0;
+  }
+
+  hr {
+    border: solid 1px #ddd;
+  }
+
+  app-button {
+    display: block;
+    margin-top: 15%;
   }
 }

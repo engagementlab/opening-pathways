@@ -1,6 +1,152 @@
-.error {
-    display: none;
+@import "~src/style/_variables";
+
+h4 {
+
+  @include pull-quote();
+  font-family: 'Manrope-Regular';
+  @include pxtoem(18, 36);
+
+  margin-top: 18%;
+  margin-bottom: 12%;
+
 }
+
+p {
+  ::ng-deep strong {
+    font-family: 'Manrope-Bold';
+  }
+}
+
+// All input fields
+input[type=text], textarea {
+
+  display: block;
+  border: solid 1px $very-light-pink;
+  padding: 7% 3%;
+  
+  width: 97%;
+  border-radius: 5px;
+
+  @include not-phones {
+      border-radius: 10px;
+      border-width: 2px;
+  }
+
+}
+
+textarea {
+  width: 93%;
+  border-color: $windows-blue;
+}
+
+.error {
+  display: none;
+}
+
 .responses {
+  columns: 1;
+
+  @include not-phones {
     columns: 2;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+
+    li {
+      break-inside: avoid-column;
+    }
+  }
+
+  .option {
+    padding-left: 0;
+    margin-bottom: 6%;
+
+
+    &:not(:first-child) {
+
+      margin-top: 6%;
+    }
+
+    .radio {
+
+      display: flex;
+      cursor: pointer;
+
+      &:hover {
+        color: $windows-blue;
+
+        input~.ctrl {
+          background-color: $windows-blue;
+
+        }
+      }
+
+      input[type=radio] {
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        margin: 0;
+
+        &:checked {
+          &~.ctrl {
+            background-color: $windows-blue;
+
+            &:after {
+              @include scale(1);
+            }
+          }
+          &~.txt {
+              input {
+                  border-color: $windows-blue;
+              }
+          }
+        }
+      }
+
+      .ctrl {
+
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+
+        top: 0;
+        left: 0;
+
+        height: 35px;
+        width: 35px;
+        min-width: 35px;
+
+        border: solid 1px $very-light-pink;
+        border-radius: 50px;
+
+        margin-right: 5%;
+
+        &:after {
+
+          content: "";
+
+          display: block;
+          background: white;
+          border-radius: 50px;
+          width: 15px;
+          height: 15px;
+
+          @include scale(0);
+          @include transition(transform, .1s, ease-out);
+
+        }
+      }
+
+      .txt {
+          display: block;
+          width: 90%;
+      }
+
+    }
+  }
 }

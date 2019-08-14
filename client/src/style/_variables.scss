@@ -41,8 +41,12 @@ $base-font-size-mobile: 14;
 
 /* Color palette */
 $burnt-yellow: #e1a708;
+$burnt-yellow: #e1a708;
 $very-light-pink: #bbbbbb;
 $windows-blue: #3984bc;
+$greyish-teal: #7ca395;
+$blush: #f2a191;
+$light-peach: #f4ccc7;;
 
 $mq-breakpoints: (mobile: 320px,
 mobileLg: 375px,
@@ -55,3 +59,17 @@ wide: 1300px);
 
 // Mixins 
 @import '../../node_modules/@engagementlab/el-scss/bundle';
+
+// Font styles
+@mixin pull-quote() {
+
+    font-family: 'GangsterGrotesk-Regular';
+
+    @include pxtoem(24, 48);
+    color: $windows-blue;
+    line-height: 1.3;
+
+    margin-left: 0;
+    margin-right: 0;
+    
+}

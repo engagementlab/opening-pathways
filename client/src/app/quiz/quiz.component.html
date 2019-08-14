@@ -1,38 +1,46 @@
-<nav>
-    <div id="progress" class="progress-bar"></div>
-    <div class="border"></div>
+<section *ngIf="hasContent">
+
+  <nav>
+    <!-- <div class="border"></div> -->
     <ul class="no-pad">
-        <div [class.current]="quizPage === i" *ngFor="let page of quizPageKeys; let i = index">
-            <li class="page-dot">
-             
-            </li>
-        </div>
+      <div [class.current]="quizPage === i" *ngFor="let page of quizPageKeys; let i = index">
+        <li class="page-dot">
+
+        </li>
+      </div>
     </ul>
-</nav>
-      
+  </nav>
 
-<div id="pages" *ngIf="!quizDone">
-    <form [formGroup]="quizForm" *ngIf="hasContent">
-        
-        <div class="page" [class.active]="i1 === 0" *ngFor="let page of quizPageKeys; let i1 = index;">
-            <h3>{{getPage(page)[0].pageName}}</h3>
-            <div class="prompt" *ngFor="let prompt of getPage(page); let i2 = index;">
-                <quiz-field [data]="prompt" [parentForm]="quizForm" [formCtrlName]="i1+1 + '_' + i2" [formCtrlNameText]="i1+1 + '_' + i2 + '_'"></quiz-field>
-            </div>
+  <div id="pages" class="columns column is-mobile is-multiline no-margin" *ngIf="!quizDone">
+    <h2 class="outline pg-header column is-full" data-text="Readiness Quiz">
+      Readiness Quiz
+    </h2>
+    
+    <form class="columns column is-full is-mobile is-multiline no-margin no-pad" [formGroup]="quizForm">
 
-            <!-- <div class="error"></div> -->
-            <strong *ngIf="formError"><br />Please select an option for each response.</strong>
-
-            <app-button label="next" clickData="true" (clickEvent)="nextPage()" *ngIf="!lastPage"></app-button>
-            <app-button label="submit" clickData="true" (clickEvent)="submitQuiz()" *ngIf="lastPage"></app-button>
-            
+      <div class="page" [class.active]="i1 === 0" *ngFor="let page of quizPageKeys; let i1 = index;">
+        <h5 class="gang">{{getPage(page)[0].pageName}}</h5>
+        <div class="prompt" *ngFor="let prompt of getPage(page); let i2 = index; let last = last;">
+          <quiz-field [data]="prompt" [parentForm]="quizForm" [formCtrlName]="i1+1 + '_' + i2"
+            [formCtrlNameText]="i1+1 + '_' + i2 + '_'"></quiz-field>
+          <hr *ngIf="!last" />
         </div>
-        
-    </form>
-</div>
 
-<div id="send" *ngIf="quizDone">
-    
+        <!-- <div class="error"></div> -->
+        <strong *ngIf="formError"><br />Please select an option for each response.</strong>
+
+        <app-button label="next" clickData="true" (clickEvent)="nextPage()" [arrow]="true" *ngIf="!lastPage"></app-button>
+        <app-button label="submit" clickData="true" (clickEvent)="submitQuiz()" *ngIf="lastPage"></app-button>
+
+      </div>
+
+    </form>
+  </div>
+
+  <div id="send" *ngIf="quizDone">
+
     <app-button label="download" clickData="true" (clickEvent)="exportPdf()"></app-button>
-    
-</div>
+
+  </div>
+
+</section>

@@ -63,7 +63,7 @@ export class QuizComponent implements OnInit {
           _.each(txtFields, (e, i) => {
             const txtCtrl = this.quizForm.get(e.id);
 
-            if (txtCtrl.validator) {
+            if (txtCtrl && txtCtrl.validator) {
               document.getElementById('error_' + e.id).style.display = 'none';
               txtCtrl.setValidators(null);
               txtCtrl.updateValueAndValidity();
@@ -106,6 +106,7 @@ export class QuizComponent implements OnInit {
       Object.keys(pageFields).forEach(key => {
         (document.getElementById('error_' + key) as HTMLElement).style.display = 'block'
       });
+      this.formError = true;
     }
 
     return pageFinished;
@@ -123,6 +124,8 @@ export class QuizComponent implements OnInit {
     let pageFinished = this.formCheck();
     if (!pageFinished) return;
     
+    this.formError = false;
+
     let pages = document.querySelectorAll('.page');
     (pages[this.quizPage] as HTMLElement).classList.remove('active')
 
@@ -130,6 +133,9 @@ export class QuizComponent implements OnInit {
     (pages[this.quizPage] as HTMLElement).classList.add('active')
 
     this.lastPage = this.quizPage === pages.length-1;
+
+    // Scroll up
+    window.scrollTo(0, 0);
 
   }
 

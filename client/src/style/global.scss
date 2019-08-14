@@ -7,21 +7,24 @@ $tablet: 768px;
 @import '_variables';
 
 body {
-    font-family: 'Manrope-Regular';
-    font-size: $base-font-size + 0px;
+  font-family: 'Manrope-Regular';
+  font-size: $base-font-size + 0px;
 
-    @include mobile-only {
-        font-size: $base-font-size-mobile + 0px;
-    }
-    margin: 0;
-    overflow-x: hidden;
+  @include mobile-only {
+    font-size: $base-font-size-mobile + 0px;
+  }
+
+  margin: 0;
+  overflow-x: hidden;
 }
 
 a {
-    text-decoration: none;
-    &:visited {
-        color: inherit;
-    }
+  text-decoration: none;
+  color: $burnt-yellow;
+  
+  &:visited {
+    color: inherit;
+  }
 }
 
 // Fonts
@@ -29,22 +32,41 @@ p.lg {
   text-align: center;
   font-size: 1.3em;
 }
+
 h2.pg-header {
-    @include pxtoem(36, 100);
-    font-family: 'GangsterGrotesk-Bold';
-  }
-.man-bold {
-    font-family: 'Manrope-Bold';
+  @include pxtoem(36, 100);
+  font-family: 'GangsterGrotesk-Bold';
 }
+
+h5 {
+  @include pxtoem(24, 48);
+
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: $very-light-pink;
+
+  text-align: center;
+
+  margin: 0;
+  margin-top: 34%;
+
+}
+
+.man-bold {
+  font-family: 'Manrope-Bold';
+}
+
 .man-med {
-    font-family: 'Manrope-Medium';
-} 
+  font-family: 'Manrope-Medium';
+}
+
 .gang {
-    font-family: 'GangsterGrotesk-Regular';
-} 
+  font-family: 'GangsterGrotesk-Regular';
+}
+
 .gang-bold {
-    font-family: 'GangsterGrotesk-Bold';
-} 
+  font-family: 'GangsterGrotesk-Bold';
+}
 
 // Outlined font style
 .outline {
@@ -60,24 +82,23 @@ h2.pg-header {
     font-size: 1em;
 
     @include phones {
-        -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-width: 2px;
     }
   }
-  
-}
 
+}
 .center-content {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #menu-overlay {
-    position: absolute;
-    
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
+  position: absolute;
 
-    background-color: white;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+
+  background-color: white;
 }

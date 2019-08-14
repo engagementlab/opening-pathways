@@ -23,10 +23,13 @@
   color: white;
   background-color: $burnt-yellow;
 
-  cursor: pointer;
-
   div {
+    display: flex;
     margin-top: 34px;
+
+    svg {
+      margin-left: 10%;
+    }
   }
 
   @include phones {

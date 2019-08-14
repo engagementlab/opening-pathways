@@ -70,20 +70,6 @@ h3 {
   @include pxtoem(24, 48);
 }
 
-h5 {
-  @include pxtoem(24, 48);
-
-  line-height: 1.5;
-  letter-spacing: normal;
-  color: $very-light-pink;
-
-  text-align: center;
-
-  margin: 0;
-  margin-top: 34%;
-
-}
-
 .decor {
   margin-top: 64px;
   
@@ -140,7 +126,6 @@ h5 {
   }
 
 }
-
 
 app-button {
   margin-top: 12%;
