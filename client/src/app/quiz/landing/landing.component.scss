@@ -1,0 +1,19 @@
+@import "~src/style/_variables";
+
+#top {
+
+  background-repeat: no-repeat;
+  background-position: top right;
+
+  background-image: cdn-image('img/quiz-bg', c_fill, w_355);
+
+  @include not-phones {
+    background-size: contain;
+    background-image: cdn-image('img/quiz-bg', c_fill, w_1017);
+  }
+
+}
+
+#bottom {
+    justify-content: space-evenly;
+}

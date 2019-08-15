@@ -1,0 +1,30 @@
+<section>
+
+  <div id="top" class="columns column is-mobile is-multiline is-centered no-margin">
+
+    <div class="column columns is-multiline is-mobile no-margin">
+      <h2 class="outline pg-header column is-full" data-text="Readiness Quiz">
+        Readiness Quiz
+      </h2>
+    </div>
+    <div class="column is-full no-pad">
+      <cdn-image cloudinaryId="img/quiz" width="905" [responsive]="true" autoFormat="true"
+        alt="Quiz decor illustration"></cdn-image>
+    </div>
+  <div class="column is-full-mobile is-10-tablet center">
+    <p class="lg">
+      Welcome to the Opening Pathways (for discovery, research, and innovation in health and healthcare) Readiness Quiz
+      for partnering with patients.
+    </p>
+    <p>This is an XX minute exercise.</p>
+  </div>
+  </div>
+
+
+  <div id="bottom" class="column is-full center-content">
+
+    <app-button label="i'm not ready" class="white" route="/"></app-button>
+    <app-button label="take the quiz" [arrow]="true" route="/quiz/take"></app-button>
+
+  </div>
+</section>
