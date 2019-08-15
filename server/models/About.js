@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Engagement Journalism API server
+ * Opening Pathways API server
  * 
  * About page Model
  * @module about

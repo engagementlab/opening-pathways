@@ -1,4 +1,10 @@
 {
 	"name": "Opening Pathways API server",
-	"database": "opening-pathways"
+	"database": "opening-pathways",
+	"admin_nav": {
+		"Home": ["Home"],
+		"narratives": ["narratives"], 
+		"Quiz": ["QuizField"],
+		"resources": ["Resource", "ResourceCategory"]
+	}
 }

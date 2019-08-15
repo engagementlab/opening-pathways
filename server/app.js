@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Engagement Journalism API server
+ * Opening Pathways API server
  * Developed by Engagement Lab, 2019
  * ==============
  * App start

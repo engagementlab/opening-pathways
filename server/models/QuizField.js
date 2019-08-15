@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Engagement Journalism API server
+ * Opening Pathways API server
  * 
  * QuizField page Model
  * @module QuizField

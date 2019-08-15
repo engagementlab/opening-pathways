@@ -21,6 +21,11 @@ body {
 a {
   text-decoration: none;
   color: $burnt-yellow;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: $burnt-yellow;
+  }
   
   &:visited {
     color: inherit;
