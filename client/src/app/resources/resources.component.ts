@@ -21,7 +21,7 @@ export class ResourcesComponent implements OnInit {
     this._dataSvc.getDataForUrl('/api/data/get/resources').subscribe((response) => {
       
       this.categories = _.uniq(_.map(response[0], (r) => { return r.category.name; } ));
-      this.resources = response[0];
+      this.resources = _.groupBy(response[0], (r) => { return r.category.name; } );
 
       this.hasContent = true;
       

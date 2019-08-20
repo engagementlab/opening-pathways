@@ -10,9 +10,12 @@
             </p>
             </div>
         </div>
+
+        <div class="column columns is-multiline is-mobile" *ngFor="let category of categories;">
+
+          <h4 class="column is-full">{{category}}</h4>
       
-        <div class="column columns is-mobile" *ngFor="let resource of resources;">
-          <div class="column is-8-mobile is-6-tablet is-5-desktop">
+          <div class="column is-8-mobile is-6-tablet is-5-desktop" *ngFor="let resource of resources[category];">
             <p>{{resource.name}}<p>
                 <div class="blurb">
                   {{resource.description}}
