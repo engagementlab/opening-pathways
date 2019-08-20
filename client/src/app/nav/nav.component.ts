@@ -21,14 +21,14 @@ export class NavComponent implements OnInit, AfterViewInit {
   private opened: boolean;
 
   constructor(private _router: Router) {
-  
-    _router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
-      // Close menu when nav starts
-      this.tlClose.play();
-    });
 
     this.partnerSiteActive = environment.partner;
     this.qaSiteActive = environment.qa;
+  
+    this._router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
+      // Close menu when nav starts
+      this.closeNav();
+    });
   
    }
 
@@ -52,6 +52,13 @@ export class NavComponent implements OnInit, AfterViewInit {
     this.tlClose.to(menu, .4, {autoAlpha:0, display:'none', ease:Circ.easeOut});
     this.tlClose.fromTo(document.getElementById('menu-overlay'), .4, {autoAlpha:1, display:'block'}, {autoAlpha:0, display:'none'}, '+=.01');
     this.tlClose.set(menuBtn, {className:'-=open'});
+
+  }
+
+  closeNav() {
+
+    this.tlClose.restart().play();
+    this.opened = false;
 
   }
    

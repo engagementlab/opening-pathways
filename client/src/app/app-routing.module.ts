@@ -10,6 +10,7 @@ import { NarrativeComponent } from './narrative/narrative.component';
 import { NarrativeIndexComponent } from './narrative/index/index.component';
 
 import { environment } from '../environments/environment';
+import { ResourcesComponent } from './resources/resources.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'narratives/:id',
     component: NarrativeComponent
+  },
+  {
+    path: 'resources',
+    component: ResourcesComponent
   },
   {
     path: 'submit',

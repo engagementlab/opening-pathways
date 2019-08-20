@@ -14,16 +14,20 @@ const keystone = global.keystone,
 var buildData = async (type, res) => {
 
     let homeFields = 'introHeader introText quizHeader quizBlurb tagline -_id';
-    // let aboutFields = 'image.public_id para1.html para2.html -_id';
+    let resourceFields = 'name description category link -_id';
 
     let home = keystone.list('Home').model;
-    // let about = keystone.list('About').model;
+    let resource = keystone.list('Resource').model;
     let data = null;
     let getRes = [];
 
     if (type === 'home') {
         // Get home
         data = home.findOne({}, homeFields);
+    }
+    else if (type === 'resources') {
+        // Get all resources and their category association
+        data = resource.find({}, resourceFields).populate('category', 'name order -_id');
     }
 
     try {

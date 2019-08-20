@@ -30,6 +30,7 @@ import cloudinaryConfiguration from './cdn.config';
 
 // npm
 import { NgxTrumbowygModule } from 'ngx-trumbowyg';
+import { ResourcesComponent } from './resources/resources.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -51,7 +52,8 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     NarrativeComponent,
     NavComponent,
     FooterComponent,
-    NarrativeIndexComponent
+    NarrativeIndexComponent,
+    ResourcesComponent
   ],
   imports: [
     BrowserModule,
