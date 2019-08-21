@@ -3,7 +3,7 @@
 	"database": "opening-pathways",
 	"admin_nav": {
 		"Home": ["Home"],
-		"narratives": ["narratives"], 
+		"narratives/stories": ["narratives", "stories"], 
 		"Quiz": ["QuizField"],
 		"resources": ["Resource", "ResourceCategory"]
 	}

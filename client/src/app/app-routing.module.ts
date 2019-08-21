@@ -11,6 +11,7 @@ import { NarrativeIndexComponent } from './narrative/index/index.component';
 
 import { environment } from '../environments/environment';
 import { ResourcesComponent } from './resources/resources.component';
+import { PathwayComponent } from './pathways/pathway/pathway.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routesPatient: Routes = [
   {
     path: '',
     component: HomePatientComponent
+  },
+  {
+    path: 'pathway/:id',
+    component: PathwayComponent
   }
 ];
 

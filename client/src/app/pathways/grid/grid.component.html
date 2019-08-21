@@ -1,0 +1,28 @@
+<section>
+
+  <div id="grid" class="column columns is-multiline is-mobile no-margin no-pad">
+
+    <div id="svg-bg"></div>
+
+    <div id="{{ind}}" class="name column is-5" *ngFor="let name of names; let odd = odd; let ind = index;">
+
+      <div class="bg"> 
+        <svg width="40" height="40" fill="none" viewBox="0 0 40 40" [class.odd]="odd">
+          <path fill="url(#a)"
+            d="M27.535 23.132L40 20.03l-12.465-3.163 6.573-10.977-10.976 6.574L19.969 0l-3.1 12.465-11.04-6.574 6.636 10.977L0 20.031l12.465 3.1-6.636 11.04 11.04-6.636L19.968 40l3.163-12.465 10.976 6.635-6.573-11.038z" />
+          <defs>
+            <linearGradient id="a" x1="-.025" x2="40" y1="20.013" y2="20.013" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#EFA276" />
+              <stop offset="1" stop-color="#6F9D9D" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+      </div>
+
+      {{name}}
+    </div>
+
+  </div>
+
+</section>

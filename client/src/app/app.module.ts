@@ -31,6 +31,8 @@ import cloudinaryConfiguration from './cdn.config';
 // npm
 import { NgxTrumbowygModule } from 'ngx-trumbowyg';
 import { ResourcesComponent } from './resources/resources.component';
+import { PathwayGridComponent } from './pathways/grid/grid.component';
+import { PathwayComponent } from './pathways/pathway/pathway.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -53,7 +55,9 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     NavComponent,
     FooterComponent,
     NarrativeIndexComponent,
-    ResourcesComponent
+    ResourcesComponent,
+    PathwayGridComponent,
+    PathwayComponent
   ],
   imports: [
     BrowserModule,
