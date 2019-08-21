@@ -1,22 +1,22 @@
 @import "~src/style/_variables";
 
 .btn {
-  
+
   position: relative;
 
-  display:table;
+  display: table;
   @include pxtoem(12, 24);
 
-  margin:0 auto;
+  margin: 0 auto;
   padding: 0px 56px;
-  
+
   text-align: center;
 
   min-height: 100px;
   height: 100px;
-  
+
   cursor: pointer;
-  text-decoration:none;
+  text-decoration: none;
 
   border-radius: 100px;
 
@@ -51,7 +51,7 @@
     bottom: 0;
     left: 0;
     border-radius: 100px;
-  
+
     box-shadow: 0 0 25px 0 rgba(225, 167, 8, 0.6);
 
     opacity: 0;
@@ -67,7 +67,7 @@
 
   // White bg 
   &.white {
-    
+
     border: solid 2px $burnt-yellow;
 
     background-color: white;
