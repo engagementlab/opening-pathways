@@ -35,7 +35,7 @@ Resource.add({
     name: { type: String, required: true, initial: true },
     description: { type: String, required: true, initial: true },
     category: { type: Types.Relationship, ref: 'ResourceCategory', required: true, initial: true },
-    link: { type: Types.Url, label: 'Link to resource', note: 'Must be a valid URL' }
+    link: { type: Types.Url, label: 'Link to resource', note: 'Optional. Must be a valid URL' }
 
 });
 
