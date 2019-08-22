@@ -1,15 +1,22 @@
+@import "~src/style/_variables";
+
 #svg-bg {
     position: absolute; 
     z-index: -1;
 }
 
-.name {
+.name, .href {
 
   display: flex;
   flex-direction: column;
 
   align-items: center;
   justify-content: center;
+
+}
+
+.name {
+    @include pxtoem(18, 24);
 
   .bg {
     width: 80px;
@@ -20,6 +27,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &::after {
+
+        position: absolute;
+        display: block;
+        content: '';
+    width: 80px;
+    height: 80px;
+    border: solid 1px #dddddd;
+    border-radius: 50%;
+
+    @include transition(transform, 500ms, cubic-bezier(0.175, 0.885, 0.320, 1.275));
+    }
   }
 
+  span {
+      padding-top: 10%;
+  }
+
+}
+
+.href {
+    cursor: pointer;
+
+    &:hover {
+        .bg {
+            background-color: rgba(244, 204, 199, 0.2);
+
+            &::after {
+                @include scale(1.5);
+            }
+        }
+    }
 }

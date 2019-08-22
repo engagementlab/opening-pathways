@@ -6,6 +6,7 @@
 
     <div id="{{ind}}" class="name column is-5" *ngFor="let name of names; let odd = odd; let ind = index;">
 
+    <div class="href">
       <div class="bg"> 
         <svg width="40" height="40" fill="none" viewBox="0 0 40 40" [class.odd]="odd">
           <path fill="url(#a)"
@@ -20,7 +21,10 @@
 
       </div>
 
-      {{name}}
+    <span>
+        {{name}}
+    </span>
+      </div>
     </div>
 
   </div>
