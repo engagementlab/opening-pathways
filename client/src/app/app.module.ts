@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
@@ -15,13 +17,18 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { HomeHeaderComponent } from './home/header/header.component';
 import { HomePatientComponent } from './home-patient/home-patient.component';
 import { FieldComponent } from './quiz/field/field.component';
 import { NarrativeComponent } from './narrative/narrative.component';
 import { NarrativeIndexComponent } from './narrative/index/index.component';
+import { PathwayGridComponent } from './pathways/grid/grid.component';
+import { GridIconComponent } from './pathways/grid/icon/icon.component';
+import { PathwayComponent } from './pathways/pathway/pathway.component';
 import { QuizLandingComponent } from './quiz/landing/landing.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { SubmitComponent } from './submit/submit.component';
+import { ResourcesComponent } from './resources/resources.component';
 
 // Cloudinary
 import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
@@ -30,9 +37,7 @@ import cloudinaryConfiguration from './cdn.config';
 
 // npm
 import { NgxTrumbowygModule } from 'ngx-trumbowyg';
-import { ResourcesComponent } from './resources/resources.component';
-import { PathwayGridComponent } from './pathways/grid/grid.component';
-import { PathwayComponent } from './pathways/pathway/pathway.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -57,10 +62,13 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     NarrativeIndexComponent,
     ResourcesComponent,
     PathwayGridComponent,
-    PathwayComponent
+    PathwayComponent,
+    HomeHeaderComponent,
+    GridIconComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -82,6 +90,7 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     HttpClientModule,
     HttpClientJsonpModule,
     CloudinaryModule.forRoot(cloudinary, config),
+    CarouselModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

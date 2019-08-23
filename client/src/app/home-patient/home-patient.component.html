@@ -1,1 +1,78 @@
-<h1>Patient Site coming soon.</h1>
+<section *ngIf="hasContent">
+
+
+  <div id="pathways">
+
+    <div class="pathway column is-full" *ngFor="let pathway of pathways; let i = index;">
+      <section class="container">
+
+        <header>
+          <nav>
+              <a routerLink="pathway/{{pathway.slug}}">pathway details</a>
+            <a (click)="owlElement.prev()">prev</a>
+            <a (click)="owlElement.next()">next</a>
+          </nav>
+          <h5>{{pathway.name}}</h5>
+        </header>
+
+        <owl-carousel-o class="slides" [options]="customOptions" (initialized)="sliderInit(i)" #owlElement>
+          <ng-template carouselSlide [width]="slideWidth" *ngFor="let name of names; let n = index;">
+
+            <div class="item">
+              <div class="name">{{name}}</div>
+
+              <grid-icon [index]="n"></grid-icon>
+
+              <div>
+                <a routerLink="/story/{{name">view</a>
+                </div>
+
+            </div>
+        </ng-template>
+      </owl-carousel-o>
+</section>
+    </div>
+
+  </div>
+
+  <section class="container">
+
+    <home-header [tagline]="intro.taglinePatient"></home-header>
+  </section>
+
+  <div class="columns column is-mobile is-multiline no-margin is-centered">
+
+    <div class="column is-full no-pad">
+      <h2 class="outline gang-bold" [attr.data-text]="intro.introHeaderPatient">
+        {{intro.introHeaderPatient}}
+      </h2>
+    </div>
+
+    <div class=" column is-full-mobile is-8-tablet is-half-desktop no-pad">
+                  <p class="lg">
+                    {{intro.introTextPatient}}
+                  </p>
+              </div>
+
+            </div>
+
+            <div id="pathways" class="columns column is-mobile is-multiline no-margin" *ngIf="names !== undefined">
+
+              <h5 class="column is-full gang">Patient Pathways</h5>
+
+              <div class="column is-full center-content">
+
+                <svg class="decor" width="135" height="15" fill="none" viewBox="0 0 135 15">
+                  <path fill="url(#a)"
+                    d="M135 0c0 8.292-6.708 15-15 15-15 0-11.25-11.25-26.25-11.25S82.5 15 67.5 15 56.25 3.75 41.25 3.75 30 15 15 15C6.708 15 0 8.292 0 0h135z" />
+                  <defs>
+                    <linearGradient id="a" x2="135" y1="7.5" y2="7.5" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#CDA624" />
+                      <stop offset="1" stop-color="#F4CCC7" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+
+              </div>
+            </div>
+      </section>

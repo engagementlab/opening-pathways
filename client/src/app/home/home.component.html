@@ -1,20 +1,6 @@
 <section *ngIf="hasContent">
 
-  <div id="top" class="columns column is-mobile is-multiline no-margin">
-
-    <div class="column is-full-mobile is-half-tablet no-pad">
-      <cdn-image cloudinaryId="img/home-mobile" width="355" [responsive]="true" alt="Opening Pathways decor image"
-        *ngIf="isPhone"></cdn-image>
-      <cdn-image cloudinaryId="img/home" width="500" [responsive]="true" alt="Opening Pathways decor image"
-        *ngIf="!isPhone"></cdn-image>
-    </div>
-
-    <div class="column is-full-mobile is-half-tablet no-pad">
-      <h1 class="man-bold no-margin" data-text="Opening Pathways">Opening Pathways</h1>
-      <h3>{{intro.tagline}}</h3>
-    </div>
-
-  </div>
+  <home-header></home-header>
 
   <div class="columns column is-mobile is-multiline no-margin is-centered">
 

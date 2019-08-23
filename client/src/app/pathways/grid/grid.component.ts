@@ -22,8 +22,9 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
     let parentX = parentRect['x'];
     let parentY = parentRect['y'];
       
-    let rightCols = document.querySelectorAll('.name svg.odd');
-    let leftCols = document.querySelectorAll('.name svg:not(.odd)');
+    let rightCols = document.querySelectorAll('.name .bg.right svg'); 
+    let midCols = document.querySelectorAll('.name .bg:not(.left):not(.right) svg');
+    let leftCols = document.querySelectorAll('.name .bg.left svg');
 
     let draw = SVG('svg-bg').size(parentRect['width'], parentRect['height']);
 
@@ -47,9 +48,10 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
     }
 
     drawVerts(leftCols);
+    drawVerts(midCols);
     drawVerts(rightCols);
 
-    leftCols.forEach((element, i) => {
+    /* leftCols.forEach((element, i) => {
 
       if(!rightCols[i]) return;
       let rightColRect = rightCols[i].getBoundingClientRect();
@@ -79,7 +81,58 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
  
       }
 
+    }); */
+
+    function drawDiagonal(side) {
+
+      
+      side.forEach((element, i) => {
+        console.log(midCols[i+1])
+
+        // Get middle column element at next row, if exists
+
+      if(!midCols[i+1]) return;
+      let midColRect = midCols[i+1].getBoundingClientRect();
+
+      let x = (element.getBoundingClientRect()['x'] - parentX) + 20 ;
+      let y = (element.getBoundingClientRect()['y'] - parentY) + 20;
+      let endX = (midColRect['x'] - parentX) + 20 ;
+      let endY = (midColRect['y'] - parentY) + 20 ;
+      
+      // Now draw diagonal line to sibling below and to side, if there is one
+      let hLine = draw.line(x, y, endX, endY);
+      hLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
+
+      });
+    }
+
+    midCols.forEach((element, i) => {
+
+      if(!leftCols[i] && !rightCols[i]) return;
+      let rect = element.getBoundingClientRect();
+      let leftColRect = leftCols[i].getBoundingClientRect();
+      
+      let x = (rect['x'] - parentX) + 20 ;
+      let y = (rect['y'] - parentY) + 20;
+
+      let endXLeft = (leftColRect['x'] - parentX) + 20 ;
+      
+      let leftLine = draw.line(x, y, endXLeft, y);
+      leftLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
+
+      if(!rightCols[i]) return;
+      
+      let rightColRect = rightCols[i].getBoundingClientRect();
+      let endXRight = (rightColRect['x'] - parentX) + 20 ;
+
+      let rightLine = draw.line(x, y, endXRight, y);
+      rightLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
+      
+
     });
+
+    drawDiagonal(leftCols);
+    drawDiagonal(rightCols);
 
   }
 

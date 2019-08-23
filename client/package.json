@@ -34,6 +34,8 @@
     "ismobilejs": "^0.5.2",
     "jquery": "^3.4.1",
     "jspdf": "^1.5.3",
+    "ngx-owl-carousel": "^2.0.7",
+    "ngx-owl-carousel-o": "^2.0.1",
     "ngx-trumbowyg": "^6.0.7",
     "rxjs": "~6.4.0",
     "svg.js": "^2.7.1",

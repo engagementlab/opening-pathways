@@ -32,18 +32,33 @@ var Home = new keystone.List('Home',
  * Model Fields
  * @main Home
  */
-Home.add({
+Home.add(
 	
-    name: { type: String, default: "Home Page Content", hidden: true, required: true, initial: true },
-    
-	tagline: { type: String, required: true, initial: true },
-	introHeader: { type: String, required: true, initial: true },
-	introText: { type: Types.Textarea, required: true, initial: true },
+	{
+		name: { type: String, default: "Home Page Content", hidden: true, required: true, initial: true }
+	},
 
-	quizHeader: { type: String, required: true, initial: true },
-	quizBlurb: { type: Types.Textarea, required: true, initial: true }
+	'Partner Site', {
+		tagline: { type: String, required: true, initial: true },
+		introHeader: { type: String, required: true, initial: true },
+		introText: { type: Types.Textarea, required: true, initial: true },
 
-});
+		quizHeader: { type: String, required: true, initial: true },
+		quizBlurb: { type: Types.Textarea, required: true, initial: true },
+	},
+	
+	'Patient Site', {
+
+		taglinePatient: { type: String, required: true, initial: true },		
+		introHeaderPatient: { type: String, required: true, initial: true, label: 'Intro Header' },
+		introTextPatient: { type: Types.Textarea, required: true, initial: true, label: 'Intro Text' },
+
+		submitHeader: { type: String, required: true, initial: true },
+		submitBlurb: { type: Types.Textarea, required: true, initial: true }
+
+	}
+
+);
 
 /**
  * Model Registration

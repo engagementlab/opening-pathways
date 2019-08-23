@@ -2,7 +2,7 @@
 
 <div id="menu-overlay"></div>
 
-<section class="container desktop">
+<section [class.container]="!pageBleed">
     <router-outlet></router-outlet>
 </section>
 

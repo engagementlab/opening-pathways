@@ -38,4 +38,11 @@ router.get('/api/narrative/get/:id', routeIncludes, routes.api.narrative.get);
 router.get('/api/narrative/featured', routeIncludes, routes.api.narrative.featured);
 router.all('/api/narrative/create', routeIncludes, routes.api.narrative.create);
 
+router.get('/api/story/get', routeIncludes, routes.api.story.all);
+router.get('/api/story/get/:id', routeIncludes, routes.api.story.get);
+router.get('/api/story/featured', routeIncludes, routes.api.story.featured);
+router.post('/api/story/create', routeIncludes, routes.api.story.create);
+
+router.get('/api/pathway/all', routeIncludes, routes.api.pathway.all);
+
 module.exports = router;

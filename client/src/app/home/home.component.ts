@@ -13,14 +13,13 @@ export class HomeComponent implements OnInit {
 
   public hasContent: boolean;
   public isPhone: boolean;
-  public isPartnerLayout: boolean;
+  
   public intro: any[];
   public narratives: any[];
 
   constructor(private _dataSvc: DataService) {
 
     this.isPhone = ismobile.phone;
-    this.isPartnerLayout = environment.partner;
 
   }
 

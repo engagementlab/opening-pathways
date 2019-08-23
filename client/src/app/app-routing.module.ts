@@ -47,7 +47,8 @@ const routes: Routes = [
 const routesPatient: Routes = [
   {
     path: '',
-    component: HomePatientComponent
+    component: HomePatientComponent,
+    data: { bleed: true }
   },
   {
     path: 'pathway/:id',

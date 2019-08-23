@@ -1,0 +1,39 @@
+@import "../home/home.component.scss";
+
+
+#pathways {
+
+
+  //   background-repeat: no-repeat;
+  //   background-position-y: top;
+  //   background-position-x: 80%;
+
+  //   background-image: cdn-image('img/home-patient-pathway-bg', c_fill, w_262);
+
+  //   @include not-phones {
+  //     background-position-x: right;
+  //     background-image: cdn-image('img/home-patient-pathway-bg', c_fill, w_794);
+  //   }
+  
+  .pathway {
+    header {
+      nav {
+        text-align: right;
+      }
+
+        h5 {
+          text-align: left;
+          margin-top: 0;
+          color: black;
+        }
+    }
+
+    &:nth-child(odd) {
+      background-color: rgba(244, 204, 199, 0.2);
+    }
+    .item {
+        text-align: center;
+    }
+  }
+
+}

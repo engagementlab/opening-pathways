@@ -13,15 +13,18 @@ const keystone = global.keystone,
 
 var buildData = async (type, res) => {
 
-    let homeFields = 'introHeader introText quizHeader quizBlurb tagline -_id';
-    let resourceFields = 'name description category link -_id';
+    let homeFields = type === 'home' ? 
+        'introHeader introText quizHeader quizBlurb tagline -_id' : 
+        'introHeaderPatient introTextPatient submitHeader submitBlurb taglinePatient -_id';
+
+        let resourceFields = 'name description category link -_id';
 
     let home = keystone.list('Home').model;
     let resource = keystone.list('Resource').model;
     let data = null;
     let getRes = [];
 
-    if (type === 'home') {
+    if (type === 'home' || type === 'home-patient') {
         // Get home
         data = home.findOne({}, homeFields);
     }
