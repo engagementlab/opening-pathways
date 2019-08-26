@@ -1,1 +1,27 @@
-<pathway-grid [names]="names"></pathway-grid>
+<section *ngIf="hasContent">
+
+    <div class="column columns is-multiline is-mobile is-centered no-margin">
+      <h2 class="outline pg-header column is-full" [attr.data-text]="content.name">
+        {{content.name}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="8" fill="none" viewBox="0 0 70 8" class="decor">
+            <path fill="url(#a)" d="M70 0a7.782 7.782 0 0 1-7.778 7.778c-7.778 0-5.819-5.82-13.596-5.82-7.778 0-5.848 5.82-13.626 5.82s-5.848-5.82-13.625-5.82c-7.778 0-5.82 5.82-13.597 5.82A7.782 7.782 0 0 1 0 0h70z"/>
+            <defs>
+                <linearGradient id="a" x2="70" y1="3.889" y2="3.889" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#F3B7AC"/>
+                    <stop offset="1" stop-color="#A4A55D"/>
+                </linearGradient>
+            </defs>
+        </svg>
+        
+      </h2>
+      <div class="column is-12-mobile is-10-tablet is-half-desktop no-pad">
+        <p class="lg">
+          We'll put a happy little sky in here. We artists are a different breed of people. We're a happy bunch. A little
+          happy sunlight shining through there. Poor old tree. A happy cloud.
+        </p>
+      </div>
+    </div>
+
+<pathway-grid [pathway]="content.slug" [names]="content.stories"></pathway-grid>
+
+</section>

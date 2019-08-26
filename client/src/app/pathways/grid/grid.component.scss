@@ -14,7 +14,7 @@ section {
 }
 
 .name,
-.href {
+.href a {
 
   display: flex;
   flex-direction: column;
@@ -72,6 +72,10 @@ section {
 
 .href {
   cursor: pointer;
+
+  a {
+    color: black;
+  }
 
   &:hover {
     .bg {

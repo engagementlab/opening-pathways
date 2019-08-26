@@ -1,0 +1,14 @@
+@import "~src/style/_variables";
+
+#story {
+  h5 {
+    margin-top: 5%;
+  }
+
+  p {
+    @include pxtoem(12, 36);
+    color: $very-light-pink;
+
+    text-transform: uppercase;
+  }
+}

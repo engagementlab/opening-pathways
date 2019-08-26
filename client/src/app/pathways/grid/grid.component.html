@@ -8,13 +8,15 @@
       *ngFor="let name of nameIndices; let odd = odd; let ind = index;">
 
       <div class="href">
-        <div class="bg" [class.odd]="odd" [class.left]="ind%3===0" [class.right]="ind%3===2">
-          <grid-icon [index]="name" [color]="name"></grid-icon>
-        </div>
-
-        <span>
-          {{names[name]}}
-        </span>
+        <a routerLink="/pathway/{{pathway}}/story/{{names[name].slug}}">
+          <div class="bg" [class.odd]="odd" [class.left]="ind%3===0" [class.right]="ind%3===2">
+            <grid-icon [index]="name" [color]="name"></grid-icon>
+          </div>
+          
+          <span>
+            {{names[name].name.first}} {{names[name].name.last}}
+          </span>
+        </a>
       </div>
     </div>
 

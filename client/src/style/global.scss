@@ -96,9 +96,15 @@ h5 {
   }
 
 }
+
 .center-content {
   display: flex;
   justify-content: center;
+}
+
+.decor {
+  display: block;
+  margin-top: 20px;
 }
 
 #menu-overlay {

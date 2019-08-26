@@ -12,7 +12,9 @@ import * as ismobile from 'ismobilejs';
 export class PathwayGridComponent implements OnInit, AfterViewInit {
 
   public nameIndices: Number[] = [];
-  @Input() names: string[];
+
+  @Input() pathway: string;
+  @Input() names: any[];
 
   constructor() { }
 

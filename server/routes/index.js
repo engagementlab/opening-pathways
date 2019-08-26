@@ -44,5 +44,6 @@ router.get('/api/story/featured', routeIncludes, routes.api.story.featured);
 router.post('/api/story/create', routeIncludes, routes.api.story.create);
 
 router.get('/api/pathway/all', routeIncludes, routes.api.pathway.all);
+router.get('/api/pathway/get/:id', routeIncludes, routes.api.pathway.get);
 
 module.exports = router;

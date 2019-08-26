@@ -22,7 +22,24 @@
 
   </section>
 
-  <div id="pathways">
+  <div id="pathways" class="columns column is-multiline is-mobile no-margin">
+
+    <h5 class="column is-full gang">Patient Pathways</h5>
+
+    <div class="column is-full center-content">
+
+      <svg class="decor" width="135" height="15" fill="none" viewBox="0 0 135 15">
+        <path fill="url(#a)"
+          d="M135 0c0 8.292-6.708 15-15 15-15 0-11.25-11.25-26.25-11.25S82.5 15 67.5 15 56.25 3.75 41.25 3.75 30 15 15 15C6.708 15 0 8.292 0 0h135z" />
+        <defs>
+          <linearGradient id="a" x2="135" y1="7.5" y2="7.5" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#CDA624" />
+            <stop offset="1" stop-color="#F4CCC7" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+    </div>
 
     <div class="pathway column is-full" *ngFor="let pathway of pathways; let i = index;">
       <section class="container">
@@ -54,8 +71,11 @@
 
       </section>
     </div>
+
+    <div id="btn" class="column is-full">
         <app-button label="see all pathways" route="/pathways"></app-button>
-            
+    </div>
+
   </div>
 
   <section class="container">

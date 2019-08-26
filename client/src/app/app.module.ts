@@ -25,6 +25,7 @@ import { NarrativeIndexComponent } from './narrative/index/index.component';
 import { PathwayGridComponent } from './pathways/grid/grid.component';
 import { GridIconComponent } from './pathways/grid/icon/icon.component';
 import { PathwayComponent } from './pathways/pathway/pathway.component';
+import { PathwayStoryComponent } from './pathways/pathway/story/story.component';
 import { QuizLandingComponent } from './quiz/landing/landing.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { SubmitComponent } from './submit/submit.component';
@@ -64,7 +65,8 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     PathwayGridComponent,
     PathwayComponent,
     HomeHeaderComponent,
-    GridIconComponent
+    GridIconComponent,
+    PathwayStoryComponent
   ],
   imports: [
     BrowserModule,

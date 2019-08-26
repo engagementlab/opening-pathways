@@ -13,7 +13,7 @@ const keystone = global.keystone,
 
 var buildData = async (res, id, featured) => {
 
-	let storyFields = 'name -_id';
+	let storyFields = 'name	pathway	why	how	deadCows vision	links.html -_id';
 	let query = !id ? {published: true} : {slug: id};
 
 	if(featured)
@@ -24,7 +24,7 @@ var buildData = async (res, id, featured) => {
 	if(id)
 		data = Story.model.findOne(query, storyFields);
 	else 
-		data = Story.model.find(query, storyFields).sort({ submitDate: -1 });
+		data = Story.model.find(query, 'name slug -_id').sort({ submitDate: -1 });
 
 	try {
 		let result = await data.lean().exec();
@@ -38,7 +38,7 @@ var buildData = async (res, id, featured) => {
 };
 
 /*
-* Get published storys
+* Get published stories
 */
 exports.all = function (req, res) {
 
@@ -47,7 +47,7 @@ exports.all = function (req, res) {
 }
 
 /*
-* Get featured storys
+* Get featured stories
 */
 exports.featured = function (req, res) {
 

@@ -34,6 +34,7 @@ var Pathway = new keystone.List('Pathway',
 Pathway.add({
 	
     name: { type: String, required: true, initial: true },
+    description: { type: Types.Textarea, required: true, initial: true },
     stories: { type: Types.Relationship, ref: 'Story', many: true }
 
 });

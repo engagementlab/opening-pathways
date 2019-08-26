@@ -24,7 +24,7 @@ var Story = new keystone.List('Story',
 {
 	label: 'Stories',
 	autokey: { path: 'slug', from: 'name' },
-	// nocreate: true
+	nocreate: true
 });
 
 /**
@@ -49,6 +49,10 @@ Story.add({
 	submitDate: { type: Types.Datetime, noedit: true, required: true, initial: true },
 	
 });
+
+Story.relationship({
+    path: 'pathways', ref: 'Pathway', refPath: 'stories'
+})
 
 /**
  * Model Registration
