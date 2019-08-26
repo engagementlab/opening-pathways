@@ -5,15 +5,15 @@
     <div id="svg-bg"></div>
 
     <div id="{{ind}}" class="name column is-half-mobile is-4-tablet no-pad"
-      *ngFor="let name of names; let odd = odd; let ind = index;">
+      *ngFor="let name of nameIndices; let odd = odd; let ind = index;">
 
       <div class="href">
         <div class="bg" [class.odd]="odd" [class.left]="ind%3===0" [class.right]="ind%3===2">
-          <grid-icon [index]="ind"></grid-icon>
+          <grid-icon [index]="name" [color]="name"></grid-icon>
         </div>
 
         <span>
-          {{name}}
+          {{names[name]}}
         </span>
       </div>
     </div>
