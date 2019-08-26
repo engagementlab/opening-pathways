@@ -1,0 +1,8 @@
+@import "~src/style/_variables";
+
+@include phones {
+    svg {
+        max-width: 40px;
+        max-height: 40px;
+    }
+}

@@ -4,6 +4,7 @@ import { DataService } from '../utils/data.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 import * as SVG from 'svg.js';
+import * as _ from 'underscore';
 import * as ismobile from 'ismobilejs';
 
 @Component({
@@ -19,6 +20,7 @@ export class HomePatientComponent implements OnInit {
 
   // TEMP
   public names: string[] = ['Emerson Roberson','Clementine Boyer','Blaine Soto','Madeline Wilkins','Daquan Mann','Wylie Wiggins','Camden Myers','Mari Hopkins','Jasper Short','Shana Bullock','Steel Reilly'];
+  public colorIndices: Number[] = [];
 
   public customOptions: OwlOptions;
   public slideWidth = 440;
@@ -48,6 +50,14 @@ export class HomePatientComponent implements OnInit {
 
   ngOnInit() {
 
+    let i = 0;
+    this.names.forEach(name => {
+      this.colorIndices.push(i);
+      i++;
+    });
+    
+    this.colorIndices = _.shuffle(this.colorIndices);
+
     this._dataSvc.getDataForUrl('/api/data/get/home-patient').subscribe((intro) => {
 
       this.intro = intro[0];
@@ -70,6 +80,7 @@ export class HomePatientComponent implements OnInit {
       let stage = document.querySelectorAll('.pathway .owl-stage')[sliderIndex];
       let names = stage.querySelectorAll('.item svg');
 
+      let offset = document.querySelector('.item svg').clientWidth/2;
       let parentRect = stage.getBoundingClientRect();
       let parentX = parentRect['x'];
       let parentY = parentRect['y'];
@@ -88,7 +99,7 @@ export class HomePatientComponent implements OnInit {
         if (names[n + 1] === undefined) return;
 
         let x = (name.getBoundingClientRect()['x'] - parentX);
-        let y = (name.getBoundingClientRect()['y'] - parentY) + 30;
+        let y = (name.getBoundingClientRect()['y'] - parentY) + offset;
         let endX = (names[n + 1].getBoundingClientRect()['x'] - parentX);
 
         let hLine = draw.line(x, y, endX, y);
