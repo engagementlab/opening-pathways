@@ -39,6 +39,7 @@ import cloudinaryConfiguration from './cdn.config';
 // npm
 import { NgxTrumbowygModule } from 'ngx-trumbowyg';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -66,7 +67,8 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     PathwayComponent,
     HomeHeaderComponent,
     GridIconComponent,
-    PathwayStoryComponent
+    PathwayStoryComponent,
+    SubmitPatientComponent
   ],
   imports: [
     BrowserModule,

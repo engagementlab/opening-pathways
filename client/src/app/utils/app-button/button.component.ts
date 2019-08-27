@@ -19,7 +19,10 @@ export class ButtonComponent implements OnInit {
   @Input() href: string;
   @Input() class: string;
   @Input() ariaLabel: string;
+  
   @Input() arrow: boolean;
+  @Input() displayOnly: boolean;
+
   @Input() clickData: any;
 
   @Output() clickEvent = new EventEmitter<any>();

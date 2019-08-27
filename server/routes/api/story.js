@@ -13,7 +13,7 @@ const keystone = global.keystone,
 
 var buildData = async (res, id, featured) => {
 
-	let storyFields = 'name	pathway	why	how	deadCows vision	links.html -_id';
+	let storyFields = 'name	pathway	why what how deadCows vision links.html -_id';
 	let query = !id ? {published: true} : {slug: id};
 
 	if(featured)
@@ -81,4 +81,22 @@ exports.create = function(req, res) {
 		});
 		
 	});
+}
+
+/**
+ * Get all story submission fields for form
+ */
+exports.fields = async (req, res) => {
+ 
+	let StoryField = keystone.list('StoryField');
+	let data = StoryField.model.find({}, 'prompt note required order mapping -_id').sort({ order: 1 });
+
+	try {
+		let result = await data.lean().exec();
+		res.json(result);
+	} catch (e) {
+		res.status(500).json({
+			e
+		});
+	}
 }

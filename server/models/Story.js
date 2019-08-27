@@ -40,9 +40,9 @@ Story.add({
 	why: { type: Types.Textarea, required: true, initial: true },
 	what: { type: Types.Textarea, required: true, initial: true },
 	how: { type: Types.Textarea, required: true, initial: true },
-	deadCows: { type: Types.Textarea, required: true, initial: true },
+	deadCows: { type: Types.Markdown, required: true, initial: true },
 	vision: { type: Types.Textarea, required: true, initial: true },
-	links: { type: Types.Markdown, required: true, initial: true },
+	links: { type: Types.Markdown },
     
 	published: { type: Boolean, note: 'If unchecked, will never appear.' },
     

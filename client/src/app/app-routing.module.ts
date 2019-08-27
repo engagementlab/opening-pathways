@@ -18,6 +18,7 @@ import { PathwayStoryComponent } from './pathways/pathway/story/story.component'
 import { ResourcesComponent } from './resources/resources.component';
 
 import { SubmitComponent } from './submit/submit.component';
+import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,10 @@ const routesPatient: Routes = [
   {
     path: 'pathway/:pid/story/:id',
     component: PathwayStoryComponent
+  },
+  {
+    path: 'submit',
+    component: SubmitPatientComponent
   }
 ];
 

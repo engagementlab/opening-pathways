@@ -4,7 +4,7 @@
 	"admin_nav": {
 		"Home": ["Home"],
 		"submissions": ["narratives", "stories", "pathways"], 
-		"Quiz": ["QuizField"],
+		"forms": ["QuizField", "StoryField"],
 		"resources": ["Resource", "ResourceCategory"]
 	}
 }

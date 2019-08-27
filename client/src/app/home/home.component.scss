@@ -8,15 +8,6 @@ h3 {
   @include pxtoem(24, 48);
 }
 
-.decor {
-  margin-top: 64px;
-  
-  @include phones {
-    margin-top: 5%;
-    max-width: 72px;
-  }
-}
-
 .blurb {
   @include pxtoem(12, 24);
 }

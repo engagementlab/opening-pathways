@@ -3,12 +3,22 @@
 #story {
   h5 {
     margin-top: 5%;
+    margin-bottom: 14%;
   }
 
   p {
-    @include pxtoem(12, 36);
+    @include pxtoem(12, 24);
     color: $very-light-pink;
 
+    margin: 0;
     text-transform: uppercase;
+  }
+
+  ::ng-deep ol {
+      padding-left: 4%;
+  }
+
+  #links {
+    word-break: break-all;
   }
 }

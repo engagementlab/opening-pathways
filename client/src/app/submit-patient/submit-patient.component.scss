@@ -1,0 +1,24 @@
+@import "~src/style/_variables";
+
+p.lg {
+ text-align: left;
+}
+
+.error {
+  display: none;
+}
+
+#req {    
+  line-height: 1.7;
+  color: $greyish-teal;
+}
+
+#back, #submit {
+  display: flex;
+}
+#submit {
+  justify-content: flex-end;
+  button {
+    margin: inherit;
+  }
+}
