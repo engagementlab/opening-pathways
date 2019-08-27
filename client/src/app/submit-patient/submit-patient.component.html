@@ -1,6 +1,6 @@
 <section *ngIf="hasContent">
 
-  <div class="column columns is-multiline is-mobile is-centered no-margin">
+  <div id="upper" class="column columns is-multiline is-mobile is-centered no-margin">
     <h2 class="outline pg-header column is-full" data-text="Submit your story">
       Submit your story
       <svg xmlns="http://www.w3.org/2000/svg" width="135" height="15" fill="none" viewBox="0 0 135 15" class="decor">
@@ -16,31 +16,33 @@
     </h2>
   </div>
   <form [formGroup]="responseForm" (submit)="submitForm()">
-      
+
     <div class="fields column columns is-mobile is-multiline">
-<div id="req" class="column is-full">
+      <div id="req" class="column is-full">
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" fill="none" viewBox="0 0 17 16">
-            <path fill="#7CA395" d="M16.824 7.321L15.806 4.17 9.891 6.255 10.036 0H6.74l.146 6.255L1.018 4.17 0 7.32l5.964 1.794-3.782 4.946L4.848 16l3.54-5.09 3.54 5.09 2.666-1.94-3.782-4.945 6.012-1.794z"/>
+          <path fill="#7CA395"
+            d="M16.824 7.321L15.806 4.17 9.891 6.255 10.036 0H6.74l.146 6.255L1.018 4.17 0 7.32l5.964 1.794-3.782 4.946L4.848 16l3.54-5.09 3.54 5.09 2.666-1.94-3.782-4.945 6.012-1.794z" />
         </svg>
         <span>&nbsp;indicates a required field.</span>
-</div>
+      </div>
       <div class="column is-11-mobile is-half-desktop">
         <input formControlName="firstName" id="firstName" placeholder="First Name" required class="required" />
-        <div id="error_firstName" class="error">Please fill field.</div>       
-    </div>
-    <div class="column is-11-mobile">
+        <div id="error_firstName" class="error">Please fill field.</div>
+      </div>
+      <div class="column is-11-mobile">
         <input formControlName="lastName" id="lastName" placeholder="Last Name" required class="required" />
-        <div id="error_lastName" class="error">Please fill field.</div>       
-    </div>
-    
-    <div class="column is-11-mobile is-full-tablet">
+        <div id="error_lastName" class="error">Please fill field.</div>
+      </div>
+
+      <div class="column is-11-mobile is-full-tablet">
         <input formControlName="email" id="email" placeholder="Email" required class="required" />
-        <div id="error_email" class="error">Please fill with valid email.</div>       
+        <div id="error_email" class="error">Please fill with valid email.</div>
       </div>
 
       <div class="prompt column is-11-mobile is-full-tablet" *ngFor="let prompt of fields;">
         <p class="lg">{{prompt.prompt}}</p>
-        <textarea id="{{prompt.mapping}}" rows="10" [formControlName]="prompt.mapping" [class.required]="prompt.required"></textarea>
+        <textarea id="{{prompt.mapping}}" rows="10" [formControlName]="prompt.mapping"
+          [class.required]="prompt.required"></textarea>
         <div [id]="'error_' + prompt.mapping" class="error" *ngIf="prompt.required">Please fill field.</div>
       </div>
 
@@ -49,12 +51,12 @@
       </div>
 
       <div id="back" class="column is-half-mobile is-half-tablet">
-            <app-button label="back" class="white" route="/"></app-button>
-          </div>
+        <app-button label="back" class="white" route="/"></app-button>
+      </div>
       <div id="submit" class="column">
 
         <button type="submit">
-            submit
+          submit
         </button>
       </div>
 

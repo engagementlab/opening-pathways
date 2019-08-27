@@ -54,15 +54,15 @@
         </header>
 
         <owl-carousel-o class="slides" [options]="customOptions" (initialized)="sliderInit(i)" #owlElement>
-          <ng-template carouselSlide [width]="slideWidth" *ngFor="let name of names; let n = index;">
+          <ng-template carouselSlide [width]="slideWidth" *ngFor="let story of pathway.stories; let n = index;">
 
             <div class="item">
-              <div class="name">{{name}}</div>
+              <div class="name">{{story.name.first}} {{story.name.last}}</div>
 
               <grid-icon [index]="n" [color]="colorIndices[n]"></grid-icon>
 
               <div>
-                <a routerLink="/story/{{name">view</a>
+                <a routerLink="/pathway/{{pathway.slug}}/story/{{story.slug}}">view</a>
               </div>
             
             </div>

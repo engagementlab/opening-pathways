@@ -78,6 +78,10 @@ export class SubmitPatientComponent implements OnInit {
     
     let pageFinished = this.formCheck();
     if (!pageFinished) return;
+
+    let body = this.responseForm.value;
+    body['name.first'] = this.responseForm.get('firstName').value;
+    body['name.last'] = this.responseForm.get('lastName').value;
     
     this._dataSvc.sendDataToUrl('/api/story/create', this.responseForm.value).subscribe(response => { 
       console.log(response);

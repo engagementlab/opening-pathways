@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PathwatStoryComponent } from './story.component';
+import { PathwayStoryComponent } from './story.component';
 
 describe('StoryComponent', () => {
-  let component: PathwatStoryComponent;
-  let fixture: ComponentFixture<PathwatStoryComponent>;
+  let component: PathwayStoryComponent;
+  let fixture: ComponentFixture<PathwayStoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PathwatStoryComponent ]
+      declarations: [ PathwayStoryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PathwatStoryComponent);
+    fixture = TestBed.createComponent(PathwayStoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

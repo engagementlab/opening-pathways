@@ -11,6 +11,41 @@
 const keystone = global.keystone,
 	  Story = keystone.list('Story');
 
+var getAdjacent = async (results, res) => {
+
+	let fields = 'name slug -_id';
+	// Get one next/prev story from selected story's submit date
+	let nextStory = Story.model.findOne({published: true, submitDate: {
+		$gt: results.submitDate
+	}}, fields).limit(1);
+	let prevStory = Story.model.findOne({published: true, submitDate: {
+		$lt: results.submitDate
+	}}, fields).sort({submitDate: -1}).limit(1);
+
+
+	// Poplulate next/prev and output response
+	// Bluebird.props({next: nextStory, prev: prevStory}).then(nextPrevResults => {
+	// 	return res.status(200).json({
+	// 		status: 200,
+	// 		data: output
+	// 	});
+	// }).catch(err => {
+	// 	console.log(err);
+	// });
+
+	try {
+		let result = await nextStory.lean().exec();
+		let output = Object.assign(result, {story: result});
+
+		res.json(output);
+	} catch (e) {
+		res.status(500).json({
+			e
+		});
+	}
+
+}
+
 var buildData = async (res, id, featured) => {
 
 	let storyFields = 'name	pathway	why what how deadCows vision links.html -_id';
@@ -27,8 +62,13 @@ var buildData = async (res, id, featured) => {
 		data = Story.model.find(query, 'name slug -_id').sort({ submitDate: -1 });
 
 	try {
+
 		let result = await data.lean().exec();
-		res.json(result);
+		if(id)
+			getAdjacent(result, res)
+		else
+			res.json(result);
+
 	} catch (e) {
 		res.status(500).json({
 			e

@@ -63,7 +63,7 @@ h5 {
 
 input, textarea {
   
-  @include pxtoem(24, 36);
+  @include pxtoem(18, 36);
   font-family: 'Manrope-Regular';
 
   width: 90%;
@@ -134,7 +134,7 @@ button {
 
 .decor {
   display: block;
-  margin-top: 20px;
+  margin-top: 40px;
 
   @include phones {
     margin-top: 5%;

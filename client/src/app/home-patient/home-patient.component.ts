@@ -43,7 +43,7 @@ export class HomePatientComponent implements OnInit {
 
     if(ismobile.tablet)
       this.slideWidth = 360;
-      else if(ismobile.phone)
+    else if(ismobile.phone)
       this.slideWidth = 220;
     
   }

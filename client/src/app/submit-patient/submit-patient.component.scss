@@ -8,6 +8,23 @@ p.lg {
   display: none;
 }
 
+#upper {
+
+  background-repeat: no-repeat;
+  background-position-y: top;
+  background-position-x: 70%;
+
+  background-image: cdn-image('img/submit-patient-bg', c_fill, w_262);
+
+  min-height: 235px;
+  
+  @include not-phones {
+    background-image: cdn-image('img/submit-patient-bg', c_fill, w_567);
+    min-height: 490px;
+  }
+
+}
+
 #req {    
   line-height: 1.7;
   color: $greyish-teal;
