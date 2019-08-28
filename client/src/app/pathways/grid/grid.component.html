@@ -1,4 +1,6 @@
-<section>
+<section id="grid-overlay" [class.overlay]="overlay">
+
+  <div id="close" class="column" *ngIf="overlay"><a (click)="overlayHide()">close</a></div>
 
   <div id="grid" class="column columns is-multiline is-mobile no-margin no-pad">
 
@@ -12,7 +14,7 @@
           <div class="bg" [class.odd]="odd" [class.left]="ind%3===0" [class.right]="ind%3===2">
             <grid-icon [index]="name" [color]="name"></grid-icon>
           </div>
-          
+
           <span>
             {{names[name].name.first}} {{names[name].name.last}}
           </span>

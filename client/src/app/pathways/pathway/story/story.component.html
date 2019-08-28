@@ -1,8 +1,15 @@
 <section *ngIf="hasContent">
 
+  <pathway-grid #grid [pathway]="pathwaySlug" [overlay]="true" [names]="stories"></pathway-grid>
+
   <div class="column columns is-multiline is-mobile is-centered no-margin">
-    <h2 class="outline pg-header column is-full" [attr.data-text]="pathway.name">
-      {{pathway.name}}
+
+    <div id="all" class="column is-full">
+        <a (click)="openStories()">See All Stories</a>
+      </div>
+      
+    <h2 class="outline pg-header column is-full" [attr.data-text]="pathwayName">
+      {{pathwayName}}
       <svg xmlns="http://www.w3.org/2000/svg" width="135" height="15" fill="none" viewBox="0 0 135 15" class="decor">
         <path fill="url(#a)" d="M135 0c0 8.278-6.722 15-15 15-15 0-11.222-11.222-26.222-11.222C78.778 3.778 82.5 15 67.5 15c-15 0-11.278-11.222-26.278-11.222C26.222 3.778 30 15 15 15 6.722 15 0 8.278 0 0h135z"/>
         <defs>
@@ -15,6 +22,29 @@
     </h2>
 
     <div id="story" class="columns column is-multiline is-mobile no-margin no-pad">
+
+        <div class="column is-half-mobile prev-next hidden-tablet-plus">
+            <span *ngIf="prev"><a routerLink="/pathway/{{pathwaySlug}}/story/{{prev.slug}}">{{prev.name.first}} {{prev.name.last}}</a></span>
+          </div>
+          <div class="column prev-next next hidden-tablet-plus">
+              <span *ngIf="next"><a routerLink="/pathway/{{pathwaySlug}}/story/{{next.slug}}">{{next.name.first}} {{next.name.last}}</a></span>
+            </div>
+
+        <div class="column is-4-tablet prev-next hidden-mobile">
+            <span *ngIf="prev"><a routerLink="/pathway/{{pathwaySlug}}/story/{{prev.slug}}">{{prev.name.first}} {{prev.name.last}}</a></span>
+          </div>
+      <div id="art" class="center-content column is-full-mobile">
+          <svg viewBox="0 0 136 135" width="136" height="135" fill="none">
+              <path stroke="#DDD" d="M.002 67l134.999-.579M68.004 0v135M33.858 33.146l68.167 68.168M101.858 33.854L33.69 102.021"></path>
+              <circle cx="67.504" cy="67.5" r="30" stroke="#DDD"></circle>
+              <circle cx="67.254" cy="67.75" r="48.75" stroke="#DDD"></circle>
+            </svg>
+            <grid-icon [index]="iconIndex" [color]="iconColor"></grid-icon>
+
+      </div>
+      <div class="column prev-next next hidden-mobile">
+          <span *ngIf="next"><a routerLink="/pathway/{{pathwaySlug}}/story/{{next.slug}}">{{next.name.first}} {{next.name.last}}</a></span>
+        </div>
       <h5 class="column is-full gang">{{content.name.first}} {{content.name.last}}</h5>
 
       <div class="column is-full-mobile is-5-tablet">

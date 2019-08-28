@@ -58,5 +58,5 @@ Story.relationship({
  * Model Registration
  */
 Story.defaultSort = '-createdAt';
-Story.defaultColumns = 'name, submitDate, accepted';
+Story.defaultColumns = 'name, submitDate, published';
 Story.register();

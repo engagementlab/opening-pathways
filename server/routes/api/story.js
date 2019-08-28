@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 /**
  * Developed by Engagement Lab, 2019
  * ==============
@@ -9,46 +9,41 @@
  * ==========
  */
 const keystone = global.keystone,
-	  Story = keystone.list('Story');
+	  Story = keystone.list('Story'),
+	  Pathway = keystone.list('Pathway'),
+      _l = require('lodash') ;
 
-var getAdjacent = async (results, res) => {
+var getAdjacent = async (results, res, pathwayId) => {
 
 	let fields = 'name slug -_id';
+
+	// Get all stories in this story's pathway
+	let allStoriesQ = Pathway.model.findOne({slug: pathwayId}, 'name stories -_id')
+	
 	// Get one next/prev story from selected story's submit date
-	let nextStory = Story.model.findOne({published: true, submitDate: {
-		$gt: results.submitDate
-	}}, fields).limit(1);
-	let prevStory = Story.model.findOne({published: true, submitDate: {
-		$lt: results.submitDate
-	}}, fields).sort({submitDate: -1}).limit(1);
-
-
-	// Poplulate next/prev and output response
-	// Bluebird.props({next: nextStory, prev: prevStory}).then(nextPrevResults => {
-	// 	return res.status(200).json({
-	// 		status: 200,
-	// 		data: output
-	// 	});
-	// }).catch(err => {
-	// 	console.log(err);
-	// });
-
+	let nextPrevStory = allStoriesQ.populate({
+		path: 'stories', 
+		select: 'name slug submitDate -_id',
+		match: {submitDate : {$ne: results.submitDate}, published: true}
+	}).sort({submitDate: -1});
+		
 	try {
-		let result = await nextStory.lean().exec();
-		let output = Object.assign(result, {story: result});
-
+		
+		let nextPrevStoryExec = await nextPrevStory.lean().exec();
+ 
+		let output = {story: results, all: nextPrevStoryExec};
 		res.json(output);
+
 	} catch (e) {
-		res.status(500).json({
-			e
-		});
+		console.error(e)
+		res.status(500).send({error:e});
 	}
 
 }
 
-var buildData = async (res, id, featured) => {
+var buildData = async (res, id, pathwayId, featured) => {
 
-	let storyFields = 'name	pathway	why what how deadCows vision links.html -_id';
+	let storyFields = 'name	pathway	why what how deadCows vision links.html submitDate -_id';
 	let query = !id ? {published: true} : {slug: id};
 
 	if(featured)
@@ -64,8 +59,9 @@ var buildData = async (res, id, featured) => {
 	try {
 
 		let result = await data.lean().exec();
-		if(id)
-			getAdjacent(result, res)
+		// console.log(result)
+		if(id && pathwayId)
+			getAdjacent(result, res, pathwayId)
 		else
 			res.json(result);
 
@@ -88,10 +84,19 @@ exports.all = function (req, res) {
 
 /*
 * Get featured stories
-*/
 exports.featured = function (req, res) {
-
+	
 	return buildData(res, null, true);
+	
+}
+*/
+
+/*
+* Get story by slug id
+*/
+exports.get = function (req, res) {
+
+	return buildData(res, req.params.id);
 
 }
 
@@ -101,6 +106,15 @@ exports.featured = function (req, res) {
 exports.get = function (req, res) {
 
 	return buildData(res, req.params.id);
+
+}
+
+/*
+* Get story by slug id and retrive adjacent stories via its pathway
+*/
+exports.pathway = function (req, res) {
+
+	return buildData(res, req.params.id, req.params.pathway);
 
 }
 

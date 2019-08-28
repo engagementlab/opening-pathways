@@ -3,6 +3,7 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import * as SVG from 'svg.js';
 import * as _ from 'underscore';
 import * as ismobile from 'ismobilejs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'pathway-grid',
@@ -12,11 +13,26 @@ import * as ismobile from 'ismobilejs';
 export class PathwayGridComponent implements OnInit, AfterViewInit {
 
   public nameIndices: Number[] = [];
+  public openOverlay: Subject<boolean> = new Subject<boolean>();
 
   @Input() pathway: string;
   @Input() names: any[];
+  @Input() overlay: boolean;
 
-  constructor() { }
+  private svgStage: SVG.Doc;
+
+  constructor() {
+
+    this.openOverlay.subscribe(val => {
+      
+      if(val)
+        this.overlayShow();
+      else
+        this.overlayHide();
+
+    });
+
+  }
 
   ngOnInit() {
 
@@ -32,6 +48,15 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
+    if(!this.overlay)
+      this.drawLines();
+
+  }
+
+  drawLines() {
+
+    if(this.svgStage !== undefined ) return;
+  
     let offset = document.querySelector('.name .bg svg').clientWidth/2;
     let parentRect = document.getElementById('grid').getBoundingClientRect();
     let parentX = parentRect['x'];
@@ -44,40 +69,41 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
     let leftCols = document.querySelectorAll(leftSelect);
     let midCols = document.querySelectorAll('.name .bg:not(.left):not(.right) svg');
 
-    let draw = SVG('svg-bg').size(parentRect['width'], parentRect['height']);
+    this.svgStage = SVG('svg-bg').size(parentRect['width'], parentRect['height']);
 
     if(ismobile.phone) {
-    leftCols.forEach((element, i) => {
+      leftCols.forEach((element, i) => {
 
-      if(!rightCols[i]) return;
-      let rightColRect = rightCols[i].getBoundingClientRect();
+        if(!rightCols[i]) return;
+        let rightColRect = rightCols[i].getBoundingClientRect();
 
-      let x = (element.getBoundingClientRect()['x'] - parentX) + offset ;
-      let y = (element.getBoundingClientRect()['y'] - parentY) + offset;
-      let startX = (rightColRect['x'] - parentX) + offset ;
-      
-      let hLine = draw.line(startX, y, x, y);
-      hLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
+        let x = (element.getBoundingClientRect()['x'] - parentX) + offset ;
+        let y = (element.getBoundingClientRect()['y'] - parentY) + offset;
+        let startX = (rightColRect['x'] - parentX) + offset ;
 
-      // Now draw diagonal line to sibling below and to side, if there is one
-      let drawRight = i % 2 > 0;
-      let siblingBelow = drawRight ? leftCols[i+1] : rightCols[i+1]
+        // Draw line from right to left
+        let hLine = this.svgStage.line(startX, y, x, y);
+        hLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
 
-      if(siblingBelow) {
+        // Now draw diagonal line to sibling below and to side, if there is one
+        let drawRight = i % 2 > 0;
+        let siblingBelow = drawRight ? leftCols[i+1] : rightCols[i+1]
 
-        // Decide where line ends based on direction
-        let siblingBelowRect = siblingBelow.getBoundingClientRect();
-        
-        let startXD = drawRight ? startX : x; 
-        let endXD = !drawRight ? startX : x; 
-        let endY = (siblingBelowRect['y'] - parentY) + offset;
-        
-        let dLine = draw.line(startXD, y, endXD, endY);
-        dLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
- 
-      }
+        if(siblingBelow) {
 
-    });
+          // Decide where line ends based on direction
+          let siblingBelowRect = siblingBelow.getBoundingClientRect();
+          
+          let startXD = drawRight ? startX : x; 
+          let endXD = !drawRight ? startX : x; 
+          let endY = (siblingBelowRect['y'] - parentY) + offset;
+          
+          let dLine = this.svgStage.line(startXD, y, endXD, endY);
+          dLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
+  
+        }
+
+      });
     }
 
     if(ismobile.phone) return;
@@ -94,7 +120,7 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
         let y = (nameEl.getBoundingClientRect()['y'] - parentY) + offset;
         let endY = bottomColRect['y'] - parentY;
         
-        let hLine = draw.line(x, y, x, endY);
+        let hLine = this.svgStage.line(x, y, x, endY);
         hLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
         
       });
@@ -115,7 +141,7 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
       let endY = (midColRect['y'] - parentY) + offset ;
       
       // Now draw diagonal line to sibling below and to side, if there is one
-      let hLine = draw.line(x, y, endX, endY);
+      let hLine = this.svgStage.line(x, y, endX, endY);
       hLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
 
       });
@@ -132,7 +158,7 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
 
       let endXLeft = (leftColRect['x'] - parentX) + offset ;
       
-      let leftLine = draw.line(x, y, endXLeft, y);
+      let leftLine = this.svgStage.line(x, y, endXLeft, y);
       leftLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
 
       if(!rightCols[i]) return;
@@ -140,7 +166,7 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
       let rightColRect = rightCols[i].getBoundingClientRect();
       let endXRight = (rightColRect['x'] - parentX) + offset ;
 
-      let rightLine = draw.line(x, y, endXRight, y);
+      let rightLine = this.svgStage.line(x, y, endXRight, y);
       rightLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
       
 
@@ -153,6 +179,18 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
     drawDiagonal(leftCols);
     drawDiagonal(rightCols);
 
+  }
+
+  overlayShow() {
+
+    document.getElementById('grid-overlay').style.display = 'block';
+
+    // Re-draw lines now that grid shows
+    this.drawLines();
+
+  }
+  public overlayHide() {
+    document.getElementById('grid-overlay').style.display = 'none';
   }
 
 }

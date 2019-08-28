@@ -1,5 +1,10 @@
 @import "~src/style/_variables";
 
+
+#all {
+  text-align: right;
+}
+
 #story {
   h5 {
     margin-top: 5%;
@@ -16,6 +21,27 @@
 
   ::ng-deep ol {
       padding-left: 4%;
+  }
+
+  .prev-next {
+    margin-bottom: 10%;
+
+    a {
+      color: $very-light-pink;
+    }
+    &.next {
+      text-align: right;
+    }
+  }
+
+  #art {
+    align-items: center;
+    margin-bottom: 5%;
+    
+    svg {
+      position: absolute;
+      z-index: -1;
+    }
   }
 
   #links {
