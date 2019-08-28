@@ -23,8 +23,7 @@ var Types = keystone.Field.Types;
 var Story = new keystone.List('Story', 
 {
 	label: 'Stories',
-	autokey: { path: 'slug', from: 'name' },
-	nocreate: true
+	autokey: { path: 'slug', from: 'name' }
 });
 
 /**

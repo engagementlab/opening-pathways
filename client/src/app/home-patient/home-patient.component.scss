@@ -32,20 +32,82 @@
   }
 
   .pathway {
+    a {
+      cursor: pointer;
+      color: $burnt-yellow;
+    }
+
     header {
+      margin-top: 4%;
+
       nav {
         text-align: right;
+        text-transform: uppercase;
+
+        a {
+          margin-right: 1%;
+        }
+
+        .arrow {
+
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 60px;
+          height: 60px;
+          border: solid 2px $burnt-yellow;
+          border-radius: 50px;
+
+          &.end {
+            border-width: 1px;
+            cursor: default;
+
+            svg {
+              path {
+                stroke-width: 1px;
+              }
+            }
+          }
+        }
       }
 
       h5 {
         text-align: left;
         margin-top: 0;
+        margin-bottom: 5%;
         color: black;
       }
     }
 
-    .item {
+    section {
+      margin-bottom: 5%;
+    }
+
+    .slide-item {
       text-align: center;
+
+      grid-icon {
+        display: block;
+        margin-top: 7%;
+        margin-bottom: 7%;
+      }
+
+      a {
+        color: black;
+
+        &:hover {
+          text-decoration: none;
+
+          span {
+            text-decoration: underline;
+          }
+        }
+
+        span {
+          color: $burnt-yellow;
+          text-transform: uppercase;
+        }
+      }
     }
 
     &:nth-child(odd) {
@@ -57,7 +119,7 @@
 
 #submit {
   app-button {
-    @include not-phones  {
+    @include not-phones {
       margin: 0;
     }
   }

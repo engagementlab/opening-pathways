@@ -43,7 +43,8 @@
     </div>
 
     <div class="column is-full-mobile">
-      <ol>
+      <!-- PARTNER SITE NAV -->
+      <ol *ngIf="partnerSiteActive">
         <a routerLink="/narratives">
           <li>
             <span>&nbsp;-</span>
@@ -60,6 +61,19 @@
             Resources
           </li>
         </a>
+      </ol>
+      <!-- PATIENT SITE NAV -->
+      <ol *ngIf="!partnerSiteActive">
+        <a routerLink="/submit">
+          <li>
+            <span>&nbsp;-</span>
+            Submit Story
+          </li>
+        </a>
+        <li>
+          <span>&nbsp;-</span>
+          Pathways
+        </li>
       </ol>
     </div>
 

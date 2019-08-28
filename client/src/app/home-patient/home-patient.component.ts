@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../utils/data.service';
 
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
 
 import * as SVG from 'svg.js';
 import * as _ from 'underscore';
@@ -74,13 +74,13 @@ export class HomePatientComponent implements OnInit {
 
   sliderInit(sliderIndex: number) {
 
-    // Draw SVG lines between all story names
+    // Draw SVG lines between all story names in slider
     setTimeout(() => {
 
       let stage = document.querySelectorAll('.pathway .owl-stage')[sliderIndex];
-      let names = stage.querySelectorAll('.item svg');
+      let names = stage.querySelectorAll('.slide-item svg');
 
-      let offset = document.querySelector('.item svg').clientWidth/2;
+      let offset = document.querySelector('.slide-item svg').clientWidth/2;
       let parentRect = stage.getBoundingClientRect();
       let parentX = parentRect['x'];
       let parentY = parentRect['y'];
@@ -95,7 +95,8 @@ export class HomePatientComponent implements OnInit {
       let draw = SVG('svg-bg-' + sliderIndex).size(parentRect['width'], parentRect['height']);
 
       names.forEach((name, n) => {
-
+        
+        // Draw line to right-most sibling item, if there is one
         if (names[n + 1] === undefined) return;
 
         let x = (name.getBoundingClientRect()['x'] - parentX);
@@ -113,6 +114,10 @@ export class HomePatientComponent implements OnInit {
     
     }, 50);
 
+  }
+
+  slideChange(slideInfo: SlidesOutputData, sliderIndex: number) {
+    console.log(slideInfo.startPosition)
   }
 
 }
