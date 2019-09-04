@@ -29,6 +29,7 @@ import { PathwayStoryComponent } from './pathways/pathway/story/story.component'
 import { QuizLandingComponent } from './quiz/landing/landing.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { SubmitComponent } from './submit/submit.component';
+import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
 import { ResourcesComponent } from './resources/resources.component';
 
 // Cloudinary
@@ -37,9 +38,8 @@ import { CloudinaryConfiguration, CloudinaryModule } from '@cloudinary/angular-5
 import cloudinaryConfiguration from './cdn.config';
 
 // npm
-import { NgxTrumbowygModule } from 'ngx-trumbowyg';
+import { QuillModule } from 'ngx-quill';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -76,25 +76,12 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxTrumbowygModule.withConfig({
-      svgPath: '/assets/icons.svg',
-      removeformatPasted: true,
-      autogrow: true,
-      btns: [
-          ['formatting'],
-          ['strong', 'em'],
-          ['link'],
-      ],
-      btnsDef: {
-        formatting: {
-          dropdown: ['quote'],
-          ico: 'quote'
-      }
-    }}),
     HttpClientModule,
     HttpClientJsonpModule,
     CloudinaryModule.forRoot(cloudinary, config),
-    CarouselModule
+    CarouselModule,
+    QuillModule.forRoot()
+  
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

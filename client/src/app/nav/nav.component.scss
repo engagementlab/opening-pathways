@@ -3,6 +3,18 @@
 nav {
   position: relative;
   z-index: 10;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+
+  background-color: white;
+
+  &.open {
+    position: fixed;
+    // height: 100%;
+  }
 }
 
 #logo {
@@ -49,6 +61,12 @@ nav {
   display: none;
   opacity: 0;
   z-index: 6;
+
+  background-color: white;
+
+  &.open {
+    height: 100%;
+  }
 
   #sites {
     display: flex;

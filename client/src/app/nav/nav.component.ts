@@ -37,6 +37,7 @@ export class NavComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
+    let nav = document.getElementById('nav');
     let menu = document.getElementById('menu');
     let menuBtn = document.getElementById('menu-btn');
 
@@ -45,13 +46,16 @@ export class NavComponent implements OnInit, AfterViewInit {
 
     let tl = this.tlOpen;
 
-    tl.set(menuBtn, {className:'+=open'});
-    tl.to(menu, .7, {autoAlpha:1, display:'flex', ease:Circ.easeOut});
+    tl.set([nav, menuBtn], {className:'+=open'});
+    
+    tl.to(nav, .7, {height:'100%', ease:Circ.easeOut});
+    tl.to(menu, .7, {autoAlpha:1, display:'flex', ease:Circ.easeOut}, '-=.5');
+
     tl.fromTo(document.getElementById('menu-overlay'), .5, {autoAlpha:0, display:'none'}, {autoAlpha:1, display:'block'}, '-=.7');
     
     this.tlClose.to(menu, .4, {autoAlpha:0, display:'none', ease:Circ.easeOut});
     this.tlClose.fromTo(document.getElementById('menu-overlay'), .4, {autoAlpha:1, display:'block'}, {autoAlpha:0, display:'none'}, '+=.01');
-    this.tlClose.set(menuBtn, {className:'-=open'});
+    this.tlClose.set([nav, menuBtn], {className:'-=open'});
 
   }
 

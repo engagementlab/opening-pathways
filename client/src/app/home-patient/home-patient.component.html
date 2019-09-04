@@ -47,7 +47,7 @@
         <header>
           <nav>
             <a class="details" routerLink="pathway/{{pathway.slug}}">pathway details</a>
-            <a class="arrow prev" (click)="owlElement.prev()">
+            <a class="arrow prev end" (click)="owlElement.prev()">
               <svg style="transform:rotate(-180deg)" width="42" height="42" fill="none" viewBox="0 0 42 42">
                 <path stroke="#e1a708" stroke-width="2" d="M20.283.717L40.566 21 20.283 41.283M0 20.751h40.541" />
               </svg>
@@ -61,10 +61,10 @@
           <h5>{{pathway.name}}</h5>
         </header>
 
-        <owl-carousel-o class="slides" [options]="customOptions" (initialized)="sliderInit(i)" (change)="slideChange($event, i)" #owlElement>
-          <ng-template carouselSlide [width]="slideWidth" *ngFor="let story of pathway.stories; let n = index;">
+        <owl-carousel-o class="slides" [options]="customOptions" (initialized)="sliderInit(i)" (translated)="slideChange($event, i)" #owlElement>
+          <ng-template carouselSlide [id]="'slide-' + story.slug" [width]="slideWidth" *ngFor="let story of pathway.stories; let n = index;">
 
-            <div class="slide-item">
+            <div class="slide-item" [attr.data-ref]="'slide-' + story.slug">
               <a routerLink="/pathway/{{pathway.slug}}/story/{{story.slug}}">
                 <div class="name">{{story.name.first}} {{story.name.last}}</div>
 

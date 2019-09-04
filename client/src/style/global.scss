@@ -30,7 +30,7 @@ a {
     text-decoration: underline;
     text-decoration-color: $burnt-yellow;
   }
-  
+
   &:visited {
     color: inherit;
   }
@@ -61,8 +61,9 @@ h5 {
 
 }
 
-input, textarea {
-  
+input,
+textarea {
+
   @include pxtoem(18, 36);
   font-family: 'Manrope-Regular';
 
@@ -87,7 +88,7 @@ input, textarea {
 
 }
 
-button {  
+button {
   @include button-style();
 }
 
@@ -109,6 +110,10 @@ button {
 
 // Outlined font style
 .outline {
+
+  display: block;
+  position: relative;
+  width: 100%;
 
   paint-order: stroke fill;
   -webkit-text-fill-color: white;
@@ -151,4 +156,55 @@ button {
   z-index: 5;
 
   background-color: white;
+}
+
+// Quill overrrides
+.ql-toolbar {
+  
+  display: flex;
+  justify-content: flex-end;
+
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  
+  border: solid 1px $very-light-pink !important;
+  border-bottom: none !important;
+
+}
+.ql-formats button {
+  
+  min-height: 0px;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50px !important;
+  border: solid 1px $very-light-pink !important;
+
+  &::after {
+    box-shadow: none;
+  }
+  &:hover {
+    .ql-stroke {
+      stroke: $burnt-yellow !important;
+    }
+    .ql-fill {      
+      fill: $burnt-yellow !important;
+    }
+  }
+
+  .ql-stroke {
+    stroke: black;
+    stroke-linecap: unset;
+    stroke-width: 1px;
+  }
+
+  .ql-fill {
+    fill: black;
+  }
+
+  &.ql-bold {
+    .ql-stroke {
+      stroke-width: 2px !important;
+    }
+  }
+
 }

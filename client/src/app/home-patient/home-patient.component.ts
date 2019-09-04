@@ -117,7 +117,7 @@ export class HomePatientComponent implements OnInit {
   }
 
   slideChange(slideInfo: SlidesOutputData, sliderIndex: number) {
-    console.log(slideInfo.startPosition)
+    console.log(slideInfo, slideInfo.slides[slideInfo.slides.length-1])
   }
 
 }

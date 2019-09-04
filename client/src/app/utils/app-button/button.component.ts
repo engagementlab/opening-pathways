@@ -21,6 +21,7 @@ export class ButtonComponent implements OnInit {
   @Input() ariaLabel: string;
   
   @Input() arrow: boolean;
+  @Input() back: boolean;
   @Input() displayOnly: boolean;
 
   @Input() clickData: any;
