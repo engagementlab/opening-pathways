@@ -159,52 +159,96 @@ button {
 }
 
 // Quill overrrides
-.ql-toolbar {
+.ql-container {
+
+  border: solid 2px $very-light-pink !important;
   
+  border-top: none !important;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+  font-family: 'Manrope-Regular';
+  font-size: $base-font-size + 0px;
+
+  @include mobile-only {
+    font-size: $base-font-size-mobile + 0px;
+  }
+ 
+}
+
+.ql-editor {
+
+  @include pxtoem(18, 36);
+  min-height: 450px;
+
+  a {
+    color: $burnt-yellow;
+  }
+  strong {
+    font-family: 'Manrope-Bold';
+  }
+
+}
+.ql-toolbar {
+
   display: flex;
   justify-content: flex-end;
 
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  
-  border: solid 1px $very-light-pink !important;
+
+  border: solid 2px $very-light-pink !important;
   border-bottom: none !important;
 
 }
-.ql-formats button {
-  
-  min-height: 0px;
-  width: 60px !important;
-  height: 60px !important;
-  border-radius: 50px !important;
-  border: solid 1px $very-light-pink !important;
 
-  &::after {
-    box-shadow: none;
-  }
-  &:hover {
+.ql-formats {
+
+  margin-right: 0 !important;
+  min-width: 262px;
+
+  button {
+
+    margin-right: 2%;
+
+    min-height: 0px;
+
+    width: 60px !important;
+    height: 60px !important;
+
+    border-radius: 50px !important;
+    border: solid 1px $very-light-pink !important;
+
+    &::after {
+      box-shadow: none;
+    }
+
+    &:hover {
+      .ql-stroke {
+        stroke: $burnt-yellow !important;
+      }
+
+      .ql-fill {
+        fill: $burnt-yellow !important;
+      }
+    }
+
     .ql-stroke {
-      stroke: $burnt-yellow !important;
+      stroke: black;
+      stroke-linecap: unset;
+      stroke-width: 1px;
     }
-    .ql-fill {      
-      fill: $burnt-yellow !important;
+
+    .ql-fill {
+      fill: black;
     }
-  }
 
-  .ql-stroke {
-    stroke: black;
-    stroke-linecap: unset;
-    stroke-width: 1px;
-  }
-
-  .ql-fill {
-    fill: black;
-  }
-
-  &.ql-bold {
-    .ql-stroke {
-      stroke-width: 2px !important;
+    &.ql-bold {
+      .ql-stroke {
+        stroke-width: 2px !important;
+      }
     }
+
   }
 
 }

@@ -19,6 +19,17 @@
 
 }
 
+#body {
+
+    height: fit-content;
+    min-height: 400px;
+
+}
+
 form p {
   @include pxtoem(18, 36);
+}
+
+h5 {
+    margin-top: 3%;
 }

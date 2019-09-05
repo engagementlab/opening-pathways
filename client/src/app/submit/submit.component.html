@@ -1,72 +1,86 @@
 <section>
 
-
   <div id="top" class="column columns is-multiline is-mobile is-centered no-margin">
-    <h2 class="outline pg-header column is-full" data-text="Submit your narrative">
-      Submit your narrative
+    <h2 class="outline pg-header column is-full" [attr.data-text]="success ? 'Thanks' : 'Submit your narrative'">
+      <span *ngIf="success; else new">Thanks!</span>
+      <ng-template #new>Submit your narrative</ng-template>
+
       <svg xmlns="http://www.w3.org/2000/svg" width="135" height="15" fill="none" viewBox="0 0 135 15" class="decor">
         <path fill="url(#a)"
           d="M135 0c0 8.278-6.722 15-15 15-15 0-11.222-11.222-26.222-11.222C78.778 3.778 82.5 15 67.5 15c-15 0-11.278-11.222-26.278-11.222C26.222 3.778 30 15 15 15 6.722 15 0 8.278 0 0h135z" />
-          <defs>
-            <linearGradient id="a" x2="70" y1="3.889" y2="3.889" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#F3B7AC"/>
-                <stop offset="1" stop-color="#A4A55D"/>
-            </linearGradient>
+        <defs>
+          <linearGradient id="a" x2="70" y1="3.889" y2="3.889" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#F3B7AC" />
+            <stop offset="1" stop-color="#A4A55D" />
+          </linearGradient>
         </defs>
       </svg>
     </h2>
+    <h5 class="gang column is-full" *ngIf="success">We’ve recieved your narrative.</h5>
+
+    <div class="column is-12-mobile is-10-tablet is-half-desktop no-pad" *ngIf="success">
+      <p class="lg">
+        We will review it as soon as we can. <br /> In the meantime, check out some other narratives.
+      </p>
+    </div>
+
+    <div class="column is-full" *ngIf="success">
+      <app-button label="see all narratives" route="/narratives"></app-button>
+    </div>
   </div>
 
-    <form [formGroup]="responseForm" (submit)="submitForm()">
-      <div class="fields column columns is-mobile is-multiline">
+  <form [formGroup]="responseForm" (submit)="submitForm()" *ngIf="!success">
+    <div class="fields column columns is-mobile is-multiline">
 
-        <div class="column is-full-mobile is-half-desktop">
-          <input formControlName="name" id="name" placeholder="Name" required />
-          <div *ngIf="submitted && f.name.invalid">Required.</div>
-        </div>
+      <div class="column is-full-mobile is-half-desktop">
+        <input formControlName="name" id="name" placeholder="Name" required />
+        <div *ngIf="submitted && f.name.invalid">Required.</div>
+      </div>
 
-        <div class="column is-full-mobile">
-          <input formControlName="email" id="email" placeholder="Email" class="full" required />
-          <div *ngIf="submitted && f.email.invalid">
-            <span *ngIf="f.email.errors.required">Required.</span>
-            <span *ngIf="f.email.errors.email">Please enter a valid email address.</span>
-          </div>
-        </div>
-
-        <div class="column is-full">
-          <p>Narrative Title</p>  
-          <input formControlName="title" id="title" required />
-          <div *ngIf="submitted && f.title.invalid">Required.</div>
-          
-          <p>Narrative Body</p>  
-          <!-- <textarea ngxTrumbowygEditor formControlName="body"></textarea> -->
-          <quill-editor>
-              <div quill-editor-toolbar>
-                <span class="ql-formats">
-                  <button class="ql-bold" [title]="'Bold'"></button>
-                  <button class="ql-italic" [title]="'Italic'"></button>
-                  <button class="ql-blockquote" [title]="'Quote'"></button>
-                  <button class="ql-link" [title]="'Link'"></button>
-                </span>
-              </div>
-            </quill-editor>
+      <div class="column is-full-mobile">
+        <input formControlName="email" id="email" placeholder="Email" class="full" required />
+        <div *ngIf="submitted && f.email.invalid">
+          <span *ngIf="f.email.errors.required">Required.</span>
+          <span *ngIf="f.email.errors.email">Please enter a valid email address.</span>
         </div>
       </div>
 
-      <div class="column columns is-multiline">
-          <div class="column is-full">
-              <p *ngIf="formError">Please resolve errors above.</p>
-            </div>
-      
-            <div id="back" class="column is-half-mobile is-half-tablet">
-              <app-button [back]="true" label="back" class="white" route="/narratives"></app-button>
-            </div>
-            <div id="submit" class="column">
-      
-              <button type="submit">
-                submit
-              </button>
-            </div>
-            </div>
-    </form>
+      <div id="body" class="column is-full">
+        <p>Narrative Title</p>
+        <input formControlName="title" id="title" required />
+        <div *ngIf="submitted && f.title.invalid">Required.</div>
+
+        <p>Narrative Body</p>
+        <quill-editor placeholder="" (onContentChanged)="bodyUpdated($event)">
+          <div quill-editor-toolbar>
+            <span class="ql-formats">
+              <button class="ql-bold" [title]="'Bold'"></button>
+              <button class="ql-italic" [title]="'Italic'"></button>
+              <button class="ql-blockquote" [title]="'Quote'"></button>
+              <button class="ql-link" [title]="'Link'"></button>
+            </span>
+          </div>
+        </quill-editor>
+        <div *ngIf="submitted && bodyError">Required.</div>
+      </div>
+    </div>
+
+    <div class="column columns is-multiline">
+      <div class="column is-full">
+        <p *ngIf="formError">Please resolve errors above.</p>
+        <p *ngIf="titleError">There is a submission with this title already. Please try another.</p>
+      </div>
+
+      <div id="back" class="column is-half-mobile is-half-tablet">
+        <app-button [back]="true" label="back" class="white" route="/narratives"></app-button>
+      </div>
+      <div id="submit" class="column">
+
+        <button type="submit">
+          submit
+        </button>
+      </div>
+    </div>
+  </form>
+
 </section>

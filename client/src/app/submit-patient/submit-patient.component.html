@@ -1,8 +1,10 @@
 <section *ngIf="hasContent">
 
   <div id="upper" class="column columns is-multiline is-mobile is-centered no-margin">
-    <h2 class="outline pg-header column is-full" data-text="Submit your story">
-      Submit your story
+    <h2 class="outline pg-header column is-full" [attr.data-text]="success ? 'Thanks' : 'Submit your story'">
+      <span *ngIf="success; else new">Thanks!</span>
+      <ng-template #new>Submit your story</ng-template>
+
       <svg xmlns="http://www.w3.org/2000/svg" width="135" height="15" fill="none" viewBox="0 0 135 15" class="decor">
         <path fill="url(#a)"
           d="M135 0c0 8.278-6.722 15-15 15-15 0-11.222-11.222-26.222-11.222C78.778 3.778 82.5 15 67.5 15c-15 0-11.278-11.222-26.278-11.222C26.222 3.778 30 15 15 15 6.722 15 0 8.278 0 0h135z" />
@@ -14,8 +16,22 @@
         </defs>
       </svg>
     </h2>
+     
+    <h5 class="gang column is-full" *ngIf="success">We’ve recieved your story.</h5>
+
+    <div class="column is-12-mobile is-10-tablet is-half-desktop no-pad" *ngIf="success">
+      <p class="lg">
+        We will review it as soon as we can. <br />
+        In the meantime, check out some stories from other patients.
+      </p>
+    </div>
+
+    <div class="column is-full" *ngIf="success">
+      <app-button label="patient pathways" route="/pathways"></app-button>
+    </div>
   </div>
-  <form [formGroup]="responseForm" (submit)="submitForm()">
+
+  <form [formGroup]="responseForm" (submit)="submitForm()" *ngIf="!success">
 
     <div class="fields column columns is-mobile is-multiline">
       <div id="req" class="column is-full">

@@ -74,7 +74,8 @@ exports.create = function(req, res) {
 
 	item.getUpdateHandler(req).process(data, function(err) {
 		
-		if (err) return res.apiError('error', err);
+		if (err)
+			return res.status(500).send({code: err.detail.code});
 		
 		res.apiResponse({
 			result: item

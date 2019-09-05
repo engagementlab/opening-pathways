@@ -15,8 +15,8 @@ export class SubmitPatientComponent implements OnInit {
   
   public hasContent: boolean;
   public submitted: boolean;
+  public success: boolean;
   public formError: boolean;
-
 
   public responseForm: FormGroup;
 
@@ -76,15 +76,16 @@ export class SubmitPatientComponent implements OnInit {
 
   public submitForm() {
     
-    let pageFinished = this.formCheck();
-    if (!pageFinished) return;
+    let finished = this.formCheck();
+    if (!finished) return;
 
     let body = this.responseForm.value;
     body['name.first'] = this.responseForm.get('firstName').value;
     body['name.last'] = this.responseForm.get('lastName').value;
     
+    // Send form data
     this._dataSvc.sendDataToUrl('/api/story/create', this.responseForm.value).subscribe(response => { 
-      console.log(response);
+      this.success = true;
     });
 
   }

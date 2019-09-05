@@ -28,12 +28,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/style/global.scss",
-              "./node_modules/trumbowyg/dist/ui/trumbowyg.min.css"
+              "src/style/global.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/trumbowyg/dist/trumbowyg.min.js",
               "./node_modules/gsap/umd/TimelineLite.js",
               "./node_modules/gsap/umd/TweenMax.js"
             ]
