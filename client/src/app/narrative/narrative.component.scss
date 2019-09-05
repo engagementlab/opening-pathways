@@ -1,5 +1,19 @@
 @import "~src/style/_variables";
 
+#top {
+
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  background-image: cdn-image('img/narrative-bg', c_fill, w_355);
+
+  @include not-phones {
+    min-height: 762px;
+    background-image: cdn-image('img/narrative-bg', c_fill, w_1097);
+  }
+
+}
+
 #info {
   @include pxtoem(18, 36);
 
