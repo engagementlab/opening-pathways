@@ -77,11 +77,16 @@ wide: 1300px);
   
   position: relative;
 
-  display: table;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
   @include pxtoem(12, 24);
 
   margin: 0 auto;
-  padding: 0px 56px;
+  padding: 0 56px 0 56px;
 
   text-align: center;
 
@@ -99,10 +104,15 @@ wide: 1300px);
 
   div {
     display: flex;
-    margin-top: 34px;
+    justify-content: space-around;
+    align-items: center;
+
+    span {
+      min-width: 7em;
+    }
 
     svg {
-      margin-left: 10%;
+      margin-left: 5%;
     }
   }
 
