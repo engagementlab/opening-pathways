@@ -5,4 +5,4 @@ source ~/.nvm/nvm.sh
 
 cd client;
 nvm use;
-npm start-testing;
+npm run start-testing;
