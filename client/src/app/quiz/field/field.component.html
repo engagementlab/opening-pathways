@@ -16,7 +16,7 @@
 
         <span class="ctrl"></span>
         <span class="txt">
-          {{response.txt}}
+          <span class="choice">{{response.txt}}</span>
           <input id="{{formCtrlName}}_{{i}}_txt" class="txt" type="text"
             [formControlName]="formCtrlNameText + i + '_txt'" *ngIf="response.field" />
           <div [id]="'error_' + formCtrlName + '_' + i + '_txt'" class="error" *ngIf="response.field">Please fill field.

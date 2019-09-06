@@ -1,12 +1,10 @@
+<!-- QUIZ -->
 <section *ngIf="hasContent">
 
   <nav>
-    <!-- <div class="border"></div> -->
     <ul class="no-pad">
       <div [class.current]="quizPage === i" *ngFor="let page of quizPageKeys; let i = index">
-        <li class="page-dot">
-
-        </li>
+        <li class="page-dot"></li>
       </div>
     </ul>
   </nav>
@@ -15,7 +13,7 @@
     <h2 class="outline pg-header column is-full" data-text="Readiness Quiz">
       Readiness Quiz
     </h2>
-    
+
     <form class="columns column is-full is-mobile is-multiline no-margin no-pad" [formGroup]="quizForm">
 
       <div class="page" [class.active]="i1 === 0" *ngFor="let page of quizPageKeys; let i1 = index;">
@@ -29,8 +27,10 @@
         <!-- <div class="error"></div> -->
         <strong *ngIf="formError"><br />Please select/fill out required (*) responses.</strong>
 
-        <app-button label="next" clickData="true" (clickEvent)="nextPage()" [arrow]="true" *ngIf="!lastPage"></app-button>
-        <app-button label="submit" clickData="true" (clickEvent)="submitQuiz()" *ngIf="lastPage"></app-button>
+        <app-button label="next" clickData="true" (clickEvent)="nextPage()" [arrow]="true" *ngIf="!lastPage">
+        </app-button>
+        <app-button label="submit quiz" clickData="true" (clickEvent)="submitQuiz()"></app-button>
+        <!-- <app-button label="submit quiz" route="/quiz/take/results"></app-button> -->
 
       </div>
 
@@ -39,7 +39,7 @@
 
   <div id="send" *ngIf="quizDone">
 
-    <app-button label="download" clickData="true" (clickEvent)="exportPdf()"></app-button>
+    <!-- <app-button label="submit quiz" clickData="true" (clickEvent)="printerView()"></app-button> -->
 
   </div>
 

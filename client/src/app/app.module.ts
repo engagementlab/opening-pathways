@@ -27,6 +27,7 @@ import { GridIconComponent } from './pathways/grid/icon/icon.component';
 import { PathwayComponent } from './pathways/pathway/pathway.component';
 import { PathwayStoryComponent } from './pathways/pathway/story/story.component';
 import { QuizLandingComponent } from './quiz/landing/landing.component';
+import { QuizResultsComponent } from './quiz/results/results.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { SubmitComponent } from './submit/submit.component';
 import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
@@ -54,6 +55,7 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     ButtonComponent,
     SubmitComponent,
     QuizComponent,
+    QuizResultsComponent,
     QuizLandingComponent,
     FieldComponent,
     HomeComponent,

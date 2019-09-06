@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { DataService } from '../utils/data.service';
-import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 
 import * as _ from 'underscore';
-import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-quiz',
@@ -21,6 +21,7 @@ export class QuizComponent implements OnInit {
 
   public quizPages: any;
   public quizPageKeys: any[];
+  public quizPromptsResponses: object;
 
   public quizPage: number = 0;
 
@@ -28,9 +29,11 @@ export class QuizComponent implements OnInit {
 
   ngOnInit() {
 
+    // Get all quiz data
     this._dataSvc.getDataForUrl('/api/quiz/get').subscribe((response) => {
 
       let fields = {};
+      this.quizPromptsResponses = {};
 
       this.quizPages = response;
       this.quizPageKeys = Object.keys(response);
@@ -39,11 +42,15 @@ export class QuizComponent implements OnInit {
       this.quizPageKeys.forEach((p) => {
         this.quizPages[p].forEach((resp, i) => {
 
+          this.quizPromptsResponses[p + '_' + i] = { prompt: resp.prompt, value: null };
+
+          // Place required on field, or none
           let validators = resp.required ? [null, [Validators.required]] : [null];
 
           if (resp.type === 'choice') {
             fields[p + '_' + i] = validators;
 
+            // No validators for text fields
             _.each(resp.responsesObj, (txt, fi) => {
               fields[p + '_' + i + '_' + fi + '_txt'] = [null];
             });
@@ -58,7 +65,12 @@ export class QuizComponent implements OnInit {
 
       Object.keys(this.quizForm.controls).forEach(index => {
 
+        // Watch all control changes
         this.quizForm.get(index).valueChanges.subscribe(prompt => {
+
+          // _.each(this.quizForm.value, (name, i) => { console.log('n: ' + name, 'i: ' + i) });
+
+          console.log(this.quizForm.get(index))
 
           // Clear all txt field validators first
           let txtFields = document.querySelectorAll('#responses_' + index + ' .txt')
@@ -73,7 +85,7 @@ export class QuizComponent implements OnInit {
 
           });
 
-          // Now add validator if corresponding option picked
+          // Now add validator to text entry if corresponding option picked
           if (document.getElementById(index + '_' + prompt + '_txt')) {
             const txtCtrl = this.quizForm.get(index + '_' + prompt + '_txt');
             txtCtrl.setValidators([Validators.required, Validators.minLength(2)]);
@@ -143,23 +155,38 @@ export class QuizComponent implements OnInit {
 
   public submitQuiz() {
     
+    _.each(this.quizForm.value, (val, id) => {
+      
+      if(val !== null) {
+        let key = id.substring(0, 3);
+        console.log(id)
+        let resContent = document.querySelector('label[for="'+ id + '_' + val +'"] .choice');
+
+        if(resContent) {
+          // TODO: APPEND TXT BOX IF DEFINED
+          let response = document.querySelector('label[for="'+ id + '_' + val +'"] .choice').textContent;
+
+          // if(id.indexOf('_txt') > 0 && this.quizPromptsResponses[key])
+          // this.quizPromptsResponses[key].value = response;
+        }
+        else {
+
+          if(document.getElementById(id + '_0')) {
+          let response = document.getElementById(id + '_0').textContent;
+          this.quizPromptsResponses[key].value = response;
+          }
+        }
+      }
+    
+    });
+
     let pageFinished = this.formCheck();
     if (!pageFinished) return;
 
-    this.quizDone = true;
-    
-    // this._dataSvc.sendDataToUrl('/api/quiz/create', this.quizForm.value).subscribe(response => { 
-    //   console.log(response);
-    // });
+    // this.quizDone = true;
 
-  }
-  
-  public exportPdf() {
-
-    let doc = new jsPDF();
-    let dt = Date.now();
-    doc.text(this.quizForm.value);
-    doc.save('results_' + dt + '.pdf');
+    // document.querySelector('label[for="'+ document.querySelectorAll('input[type=radio]:checked')[0].id + '"] .txt input')
+    // this.quizPromptsResponses
 
   }
 

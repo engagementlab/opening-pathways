@@ -19,6 +19,7 @@ import { ResourcesComponent } from './resources/resources.component';
 
 import { SubmitComponent } from './submit/submit.component';
 import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
+import { QuizResultsComponent } from './quiz/results/results.component';
 
 const routes: Routes = [
   {
@@ -40,7 +41,7 @@ const routes: Routes = [
   {
     path: 'submit',
     component: SubmitComponent
-  },
+  }, 
   {
     path: 'quiz',
     component: QuizLandingComponent
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path: 'quiz/take',
     component: QuizComponent
+  },
+  {
+    path: 'quiz/results',
+    component: QuizResultsComponent
   }
 ];
 
