@@ -3,11 +3,13 @@
 h4 {
 
   @include pull-quote();
-  font-family: 'Manrope-Regular';
   @include pxtoem(18, 36);
+  font-family: 'Manrope-Regular';
 
-  margin-top: 18%;
-  margin-bottom: 12%;
+  margin-top: 7%;
+  margin-bottom: 7%;
+
+  line-height: 1.6;
 
   .required {
     opacity: .5;
@@ -22,18 +24,19 @@ p {
 }
 
 // All input fields
-input[type=text], textarea {
+input[type=text],
+textarea {
 
   display: block;
   border: solid 1px $very-light-pink;
   padding: 7% 3%;
-  
+
   width: 97%;
   border-radius: 5px;
 
   @include not-phones {
-      border-radius: 10px;
-      border-width: 2px;
+    border-radius: 10px;
+    border-width: 2px;
   }
 
 }
@@ -104,10 +107,11 @@ textarea {
               @include scale(1);
             }
           }
+
           &~.txt {
-              input {
-                  border-color: $windows-blue;
-              }
+            input {
+              border-color: $windows-blue;
+            }
           }
         }
       }
@@ -147,8 +151,8 @@ textarea {
       }
 
       .txt {
-          display: block;
-          width: 90%;
+        display: block;
+        width: 90%;
       }
 
     }
