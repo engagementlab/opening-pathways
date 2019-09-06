@@ -1,6 +1,6 @@
 <section *ngIf="hasContent">
 
-  <div class="column columns is-multiline is-mobile is-centered no-margin" id="top">
+  <div class="columns is-multiline is-mobile is-centered no-margin" id="top">
     <h2 class="outline pg-header column is-full" data-text="Partner Narratives">
       Partner Narratives
     </h2>
@@ -11,9 +11,11 @@
         canvas. Just a little indication. I want everbody to be happy. That's what it's all about.
       </p>
     </div>
-    <div class="column is-full">
-      <app-button label="submit your own narrative" route="/submit"></app-button>
-    </div>
+    <div class="column columns is-full is-centered">
+      <div class="column is-one-third">
+        <app-button label="submit your own narrative" route="/submit"></app-button>
+      </div>
+      </div>
   </div>
 
   <div class="column columns is-mobile narrative" *ngFor="let nar of narratives;">
