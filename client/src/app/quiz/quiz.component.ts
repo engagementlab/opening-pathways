@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from '../utils/data.service';
 
 import * as _ from 'underscore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -25,7 +26,7 @@ export class QuizComponent implements OnInit {
 
   public quizPage: number = 0;
 
-  constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder) {}
+  constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder, private _router: Router) {}
 
   ngOnInit() {
 
@@ -42,7 +43,11 @@ export class QuizComponent implements OnInit {
       this.quizPageKeys.forEach((p) => {
         this.quizPages[p].forEach((resp, i) => {
 
-          this.quizPromptsResponses[p + '_' + i] = { prompt: resp.prompt, value: null };
+          this.quizPromptsResponses[p + '_' + i] = { page: p, prompt: resp.prompt, value: null };
+
+          // If first response on page, cache page name
+          if(i === 0)
+            this.quizPromptsResponses[p + '_' + i].pageName = resp.pageName;
 
           // Place required on field, or none
           let validators = resp.required ? [null, [Validators.required]] : [null];
@@ -67,10 +72,6 @@ export class QuizComponent implements OnInit {
 
         // Watch all control changes
         this.quizForm.get(index).valueChanges.subscribe(prompt => {
-
-          // _.each(this.quizForm.value, (name, i) => { console.log('n: ' + name, 'i: ' + i) });
-
-          console.log(this.quizForm.get(index))
 
           // Clear all txt field validators first
           let txtFields = document.querySelectorAll('#responses_' + index + ' .txt')
@@ -158,23 +159,35 @@ export class QuizComponent implements OnInit {
     _.each(this.quizForm.value, (val, id) => {
       
       if(val !== null) {
+
         let key = id.substring(0, 3);
-        console.log(id)
-        let resContent = document.querySelector('label[for="'+ id + '_' + val +'"] .choice');
+        let elQuery = 'label[for="'+ id + '_' + val +'"]';
+
+        // Check for multiple choice response, and if null query potential text area entry
+        let resContent = document.querySelector(elQuery + ' .choice');
+        if(!resContent)
+          resContent = document.querySelector('textarea[id="' + id + '_0"]');
 
         if(resContent) {
-          // TODO: APPEND TXT BOX IF DEFINED
-          let response = document.querySelector('label[for="'+ id + '_' + val +'"] .choice').textContent;
 
-          // if(id.indexOf('_txt') > 0 && this.quizPromptsResponses[key])
-          // this.quizPromptsResponses[key].value = response;
+          let response = resContent.textContent || val;
+     
+          // Append fill in response, if any found
+          let fillInField = resContent.parentNode.querySelector('input[type="text"]') as HTMLInputElement;
+          if(fillInField)
+            response = '<i>(' + response + ')</i> ' + fillInField.value;
+
+          if(this.quizPromptsResponses[key])
+            this.quizPromptsResponses[key].value = response;
+        
         }
         else {
 
           if(document.getElementById(id + '_0')) {
-          let response = document.getElementById(id + '_0').textContent;
-          this.quizPromptsResponses[key].value = response;
+            let response = document.getElementById(id + '_0').textContent;
+            this.quizPromptsResponses[key].value = response;
           }
+
         }
       }
     
@@ -182,11 +195,11 @@ export class QuizComponent implements OnInit {
 
     let pageFinished = this.formCheck();
     if (!pageFinished) return;
-
-    // this.quizDone = true;
-
-    // document.querySelector('label[for="'+ document.querySelectorAll('input[type=radio]:checked')[0].id + '"] .txt input')
-    // this.quizPromptsResponses
+    
+    // Send all results to data observer for consumption and redirect to results
+    this._dataSvc.quizResults = _.values(this.quizPromptsResponses);
+    debugger
+    this._router.navigateByUrl('/quiz/results');
 
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/utils/data.service';
 
 @Component({
   selector: 'app-results',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizResultsComponent implements OnInit {
 
-  constructor() { }
+  public content: any;
+  public hasContent: boolean;
+
+  constructor(private _dataSvc: DataService) {
+
+    this.content = _dataSvc.quizResults;
+
+  }
 
   ngOnInit() {
   }

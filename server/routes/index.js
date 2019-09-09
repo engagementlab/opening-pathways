@@ -32,6 +32,7 @@ router.all('/*', function(req, res, next) {
 
 router.get('/api/data/get/:type', routeIncludes, routes.api.data.get);
 router.get('/api/quiz/get', routeIncludes, routes.api.quiz.get);
+router.post('/api/quiz/save', routeIncludes, routes.api.quiz.save);
 
 router.get('/api/narrative/get', routeIncludes, routes.api.narrative.all);
 router.get('/api/narrative/get/:id', routeIncludes, routes.api.narrative.get);

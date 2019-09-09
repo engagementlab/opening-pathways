@@ -42,3 +42,34 @@ exports.get = function (req, res) {
     return buildData(res);
 
 }
+
+/**
+ * Save unique quiz results
+ */
+exports.save = function (req, res) {
+
+    const QuizResult = keystone.list('QuizResult').model;
+    QuizResult.count({}, (err, ct) => {
+
+        const data = {
+            responses: req.body,
+            submitDate: Date.now(),
+            key: ct
+        };
+        let item = new QuizResult(data)
+
+        item.getUpdateHandler(req).process(data, function (err) {
+
+            if (err)
+                return res.status(500).send({
+                    code: err.detail.code
+                });
+
+            res.apiResponse({
+                result: item.key
+            });
+
+        });
+    });
+
+}

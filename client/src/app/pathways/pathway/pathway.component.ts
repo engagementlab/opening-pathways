@@ -9,8 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PathwayComponent implements OnInit {
 
-  public names: string[] = ['Emerson Roberson','Clementine Boyer','Blaine Soto','Madeline Wilkins','Daquan Mann','Wylie Wiggins','Camden Myers','Mari Hopkins','Jasper Short','Shana Bullock','Steel Reilly','Steel Reilly'];
-
   public content: any;
   public hasContent: boolean;
   

@@ -20,5 +20,16 @@
         </h2>
 
     </div>
+
+    <h5>Your results</h5>
     
+    <div class="column is-full-mobile" *ngFor="let prompt of content;">
+
+        <h5 *ngIf="prompt.pageName">{{prompt.pageName}}</h5>
+            <p>{{prompt.prompt}}<p>
+               <div class="blurb">
+                  {{prompt.value}}
+                </div>
+
+          </div>
 </section>

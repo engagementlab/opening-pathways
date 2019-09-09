@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
+import { HttpClient } from '@angular/common/http';
 import { Subject, Observable, throwError, BehaviorSubject } from 'rxjs';
 
 import { environment } from '../../environments/environment';
@@ -21,6 +20,8 @@ export class DataService {
 
   public userId: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   public currentProjectId: string;
+
+  public quizResults: any;
 
   private baseUrl: string;
 
