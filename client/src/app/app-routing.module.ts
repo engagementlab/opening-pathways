@@ -51,7 +51,7 @@ const routes: Routes = [
     component: QuizComponent
   },
   {
-    path: 'quiz/results',
+    path: 'quiz/results/:id',
     component: QuizResultsComponent
   }
 ];

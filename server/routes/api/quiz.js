@@ -49,6 +49,8 @@ exports.get = function (req, res) {
 exports.save = function (req, res) {
 
     const QuizResult = keystone.list('QuizResult').model;
+
+    // Result key is just increment of record ct
     QuizResult.count({}, (err, ct) => {
 
         const data = {
@@ -56,6 +58,7 @@ exports.save = function (req, res) {
             submitDate: Date.now(),
             key: ct
         };
+
         let item = new QuizResult(data)
 
         item.getUpdateHandler(req).process(data, function (err) {

@@ -196,11 +196,17 @@ export class QuizComponent implements OnInit {
     let pageFinished = this.formCheck();
     if (!pageFinished) return;
     
-    // Send all results to data observer for consumption and redirect to results
+    // Send all results to data observer and backend for consumption and redirect to results
     this._dataSvc.quizResults = _.values(this.quizPromptsResponses);
-    debugger
-    this._router.navigateByUrl('/quiz/results');
-
+    
+    this._dataSvc.sendDataToUrl('/api/quiz/save', this._dataSvc.quizResults)
+    .subscribe(response => {
+      // Submit success
+      this._router.navigateByUrl('/quiz/results/' + response.result);
+    }, e => {
+      // TODO: show err
+    });
+    
   }
 
 }
