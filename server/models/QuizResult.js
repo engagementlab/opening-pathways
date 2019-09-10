@@ -13,8 +13,7 @@
  */
 
 const keystone = global.keystone,
-      Types = keystone.Field.Types,
-      autoIncrement = require('mongoose-auto-increment');
+      Types = keystone.Field.Types;
 
 /**
  * QuizResult model
@@ -42,12 +41,6 @@ QuizResult.schema.add({
     key: { type: Number },
     responses: { type: Object }
 });
-
-// QuizResult.schema.pre('save', function(next) {
-
-//     const doc = this,
-
-// });
 
 /**
  * Model Registration
