@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from 'src/app/utils/data.service';
 
+import * as printJS from 'print-js';
+
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
@@ -38,6 +40,21 @@ export class QuizResultsComponent implements OnInit {
         });
 
       }
+  }
+
+  public printResults() {
+
+    printJS({
+      printable: 'results',
+      type: 'html',
+      header: 'Opening Pathways - Partner Quiz', 
+      documentTitle: 'Opening Pathways - Quiz Results',
+
+      headerStyle: 'font-size: 2em',
+      ignoreElements: ['header', 'btn'],
+      css: 'https://res.cloudinary.com/engagement-lab-home/raw/upload/v1568148486/opening-pathways/printable.css'
+    });
+
   }
 
 

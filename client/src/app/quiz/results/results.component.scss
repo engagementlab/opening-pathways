@@ -46,7 +46,8 @@ h5 {
 
   .page {
     @include pxtoem(24, 36);
-    margin-bottom: 40px;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 
   .prompt {

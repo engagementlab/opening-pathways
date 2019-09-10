@@ -1,0 +1,26 @@
+/* THIS CSS IS FOR PRINTABLE QUIZ RESULTS. */
+/* IT LIVES ON CDN, NOT IN BUILD CODE. */
+@font-face {
+    font-family: 'Manrope-Regular';
+    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-regular.otf');
+}
+
+body {
+  font-family: 'Manrope-Regular';
+}
+
+#btn {
+    display: none;
+}
+
+.columns {
+    display: block!important;
+}
+
+.page {
+    font-size: 2em;
+}
+
+.prompt {
+    text-transform: uppercase;
+}

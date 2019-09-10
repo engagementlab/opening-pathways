@@ -19,27 +19,40 @@
 
   </div>
 
+  
   <div id="results">
-
-    <h5>Your results</h5>
+    <h5 id="header">Your results</h5>
     <div class="column columns is-multiline is-mobile">
 
-        <div class="column is-full center-content">
-            <app-button label="print" clickData="true" (clickEvent)="printerView()"></app-button>
-        </div>
+      <div id="btn" class="column is-full center-content">
+        <app-button label="print" clickData="true" (clickEvent)="printResults()"></app-button>
+      </div>
 
-      <div class="column is-full" *ngFor="let prompt of content;">
-  
+      <div class="result column is-full" *ngFor="let prompt of content;">
+
         <div class="page" *ngIf="prompt.pageName">{{prompt.pageName}}</div>
         <p class="prompt" *ngIf="prompt.value">{{prompt.prompt}}<p>
-  
+
             <div [innerHtml]="prompt.value" *ngIf="prompt.value">
             </div>
-  
+
       </div>
 
     </div>
 
   </div>
+
+  <!-- <div id="print">
+
+        <div *ngFor="let prompt of content;">
+  
+                <div class="page" *ngIf="prompt.pageName">{{prompt.pageName}}</div>
+                <p class="prompt" *ngIf="prompt.value">{{prompt.prompt}}<p>
+          
+                    <div [innerHtml]="prompt.value" *ngIf="prompt.value">
+                    </div>
+          
+              </div>
+  </div> -->
 
 </section>
