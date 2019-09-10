@@ -16,6 +16,7 @@ export class NarrativeComponent implements OnInit {
   constructor(private _dataSvc: DataService, private _route: ActivatedRoute) { }
 
   ngOnInit() {
+
     this._route.params.subscribe((p) => {
 
       this._dataSvc.getDataForUrl('/api/narrative/get/' + p['id']).subscribe((response) => {
@@ -24,6 +25,7 @@ export class NarrativeComponent implements OnInit {
       this.hasContent = true;
       
     });
+    
   });
   }
 

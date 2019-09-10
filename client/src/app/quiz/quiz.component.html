@@ -27,20 +27,21 @@
         <!-- <div class="error"></div> -->
         <strong *ngIf="formError"><br />Please select/fill out required (*) responses.</strong>
 
-        <app-button label="next" clickData="true" (clickEvent)="nextPage()" [arrow]="true" *ngIf="!lastPage">
-        </app-button>
-        <app-button label="submit quiz" clickData="true" (clickEvent)="submitQuiz()"></app-button>
-        <!-- <app-button label="submit quiz" route="/quiz/take/results"></app-button> -->
+        <div class="center-content">
 
+          <app-button label="next" clickData="true" (clickEvent)="nextPage()" [arrow]="true" *ngIf="!lastPage">
+          </app-button>
+          <app-button label="submit quiz" clickData="true" (clickEvent)="submitQuiz()" *ngIf="lastPage"></app-button>
+
+          
+        </div>
+
+        <div class="center-content" *ngIf="submitError">
+          <p>Sorry, there was an error while submitting your results.<br />Please try again.</p>
+        </div>
       </div>
 
     </form>
-  </div>
-
-  <div id="send" *ngIf="quizDone">
-
-    <!-- <app-button label="submit quiz" clickData="true" (clickEvent)="printerView()"></app-button> -->
-
   </div>
 
 </section>

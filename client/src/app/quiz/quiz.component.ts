@@ -15,6 +15,7 @@ export class QuizComponent implements OnInit {
 
   public hasContent: boolean;
   public formError: boolean;
+  public submitError: boolean;
   public lastPage: boolean;
   public quizDone: boolean;
 
@@ -195,8 +196,21 @@ export class QuizComponent implements OnInit {
 
     let pageFinished = this.formCheck();
     if (!pageFinished) return;
+
+    // For each page, if all responses are empty, remove page entirely
+    this.quizPageKeys.forEach((p) => {
+
+      // If no responses for this page, remove page from responses object
+      let pagePrompts = _.where(this.quizPromptsResponses, {page: p});
+      let pageEmpty = _.every(pagePrompts, (prompt) => { return prompt.value === null });
+
+      // Remove all this page's prompts from results
+      if(pageEmpty)
+        this.quizPromptsResponses = _.reject(this.quizPromptsResponses, (prompt) => { return prompt.page == p; });
     
-    // Send all results to data observer and backend for consumption and redirect to results
+    });
+
+    // Send all results as array to data observer and backend, and redirect to results
     this._dataSvc.quizResults = _.values(this.quizPromptsResponses);
     
     this._dataSvc.sendDataToUrl('/api/quiz/save', this._dataSvc.quizResults)
@@ -204,7 +218,7 @@ export class QuizComponent implements OnInit {
       // Submit success
       this._router.navigateByUrl('/quiz/results/' + response.result);
     }, e => {
-      // TODO: show err
+      this.submitError = true;
     });
     
   }

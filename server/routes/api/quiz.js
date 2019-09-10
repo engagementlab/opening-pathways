@@ -73,6 +73,26 @@ exports.save = function (req, res) {
             });
 
         });
+
     });
+
+}
+
+/*
+ * Get quiz results by ID
+ */
+exports.getResults = async function (req, res) {
+
+    const QuizResult = keystone.list('QuizResult').model
+    let data = QuizResult.findOne({key: req.params.key});
+
+    try {
+        let result = await data.lean().exec();
+        res.json(result);
+    } catch (e) {
+        res.status(500).json({
+            e
+        });
+    }
 
 }

@@ -1,35 +1,45 @@
-
-
 <!-- RESULTS -->
 <section>
 
-    <div class="column columns is-multiline is-mobile is-centered no-margin" id="top">
-        <h2 class="outline pg-header column is-11" data-text="Thanks!">
-        Thanks!
+  <div class="column columns is-multiline is-mobile is-centered no-margin" id="top">
+    <h2 class="outline pg-header column is-11" data-text="Thanks!">
+      Thanks!
+    </h2>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="135" height="15" fill="none" viewBox="0 0 135 15" class="decor">
-            <path fill="url(#a)"
-            d="M135 0c0 8.278-6.722 15-15 15-15 0-11.222-11.222-26.222-11.222C78.778 3.778 82.5 15 67.5 15c-15 0-11.278-11.222-26.278-11.222C26.222 3.778 30 15 15 15 6.722 15 0 8.278 0 0h135z" />
-            <defs>
-            <linearGradient id="a" x2="70" y1="3.889" y2="3.889" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#c5c2bb" />
-                <stop offset="1" stop-color="#a895a2" />
-            </linearGradient>
-            </defs>
-        </svg>
-        </h2>
+    <h5 class="column is-full">You’ve completed the Readiness Quiz.</h5>
+
+    <div class="column is-12-mobile is-10-tablet is-half-desktop no-pad">
+      <p class="lg">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien velit, aliquet eget commodo nec, auctor
+        a
+        sapien. Nam eu neque vulputate diam rhoncus faucibus. Curabitur quis varius libero. Lorem.
+      </p>
+    </div>
+
+
+  </div>
+
+  <div id="results">
+
+    <h5>Your results</h5>
+    <div class="column columns is-multiline is-mobile">
+
+        <div class="column is-full center-content">
+            <app-button label="print" clickData="true" (clickEvent)="printerView()"></app-button>
+        </div>
+
+      <div class="column is-full" *ngFor="let prompt of content;">
+  
+        <div class="page" *ngIf="prompt.pageName">{{prompt.pageName}}</div>
+        <p class="prompt" *ngIf="prompt.value">{{prompt.prompt}}<p>
+  
+            <div [innerHtml]="prompt.value" *ngIf="prompt.value">
+            </div>
+  
+      </div>
 
     </div>
 
-    <h5>Your results</h5>
-    
-    <div class="column is-full-mobile" *ngFor="let prompt of content;">
+  </div>
 
-        <h5 *ngIf="prompt.pageName">{{prompt.pageName}}</h5>
-            <p>{{prompt.prompt}}<p>
-               <div class="blurb">
-                  {{prompt.value}}
-                </div>
-
-          </div>
 </section>
