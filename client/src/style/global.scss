@@ -120,8 +120,12 @@ button {
   -webkit-text-fill-color: white;
 
   &:before {
-    content: attr(data-text);
+    
     position: absolute;
+    display: block;
+    
+    content: attr(data-text);
+
     -webkit-text-stroke: 4px black;
     z-index: -2;
     font-size: 1em;
@@ -129,6 +133,7 @@ button {
     @include phones {
       -webkit-text-stroke-width: 2px;
     }
+  
   }
 
 }

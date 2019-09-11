@@ -27,10 +27,6 @@
     }
   }
 
-  #btn {
-    padding-top: 12%;
-  }
-
   .pathway {
     a {
       cursor: pointer;
@@ -57,6 +53,11 @@
           height: 60px;
           border: solid 2px $burnt-yellow;
           border-radius: 50px;
+
+          @include phones {
+            max-width: 40px;
+            max-height: 40px;
+          }
 
           &.end {
             border-width: 1px;
@@ -117,7 +118,46 @@
 
 }
 
+#quote {
+
+  margin-top: 20%;
+
+  svg {
+    margin-bottom: 7%;
+
+    @include phones {
+      max-height: 64px;
+    }
+  }
+
+  h3 {
+    color: $blush;
+    line-height: 1.7;
+    text-align: center;
+
+    margin-top: 0;
+    margin: 3%;
+
+    &.gang {
+      color: $pale;
+      margin-top: 3%;
+    }
+  }
+
+  h2 {
+    @include pxtoem(32, 64);
+    text-align: center;
+
+    &:before {
+      -webkit-text-stroke-color: $blush;
+    }
+  }
+}
+
 #submit {
+
+  margin-top: 17%;
+
   app-button {
     @include not-phones {
       margin: 0;
