@@ -38,7 +38,7 @@ QuizResult.add({
 });
 
 QuizResult.schema.add({
-    key: { type: Number },
+    key: { type: String },
     responses: { type: Object }
 });
 

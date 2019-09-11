@@ -48,30 +48,26 @@ exports.get = function (req, res) {
  */
 exports.save = function (req, res) {
 
-    const QuizResult = keystone.list('QuizResult').model;
+    const QuizResult = keystone.list('QuizResult').model,
+    // Result key is small hash
+    randomstring = require("randomstring"),
+    data = {
+        responses: req.body,
+        submitDate: Date.now(),
+        key: randomstring.generate({length: 5, charset: 'alphanumeric'})
+    };
 
-    // Result key is just increment of record ct
-    QuizResult.count({}, (err, ct) => {
+    let item = new QuizResult(data)
 
-        const data = {
-            responses: req.body,
-            submitDate: Date.now(),
-            key: ct
-        };
+    item.getUpdateHandler(req).process(data, function (err) {
 
-        let item = new QuizResult(data)
-
-        item.getUpdateHandler(req).process(data, function (err) {
-
-            if (err)
-                return res.status(500).send({
-                    code: err.detail.code
-                });
-
-            res.apiResponse({
-                result: item.key
+        if (err)
+            return res.status(500).send({
+                code: err.detail.code
             });
 
+        res.apiResponse({
+            result: item.key
         });
 
     });

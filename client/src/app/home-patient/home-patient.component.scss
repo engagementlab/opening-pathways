@@ -37,7 +37,9 @@
       margin-top: 4%;
 
       nav {
-        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
         text-transform: uppercase;
 
         a {
@@ -57,6 +59,22 @@
           @include phones {
             max-width: 40px;
             max-height: 40px;
+
+            svg {
+              @include scale(.5);
+            }
+
+            &.prev {
+              svg {
+                @include transform(rotate(-180deg) scale(.5));
+              }
+            }
+          }
+
+          &.prev {
+            svg {
+              @include rotate(-180);
+            }
           }
 
           &.end {
