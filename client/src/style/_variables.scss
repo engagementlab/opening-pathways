@@ -113,7 +113,9 @@ wide: 1300px);
     }
 
     svg {
-      margin-left: 5%;
+      width: 42px;
+      height: 42px;
+      margin-left: 1em;
     }
   }
 
@@ -124,7 +126,13 @@ wide: 1300px);
     padding: 0px 28px;
 
     div {
-      margin-top: 16px;
+      svg {
+        height: 22px;
+        width: 22px;
+        margin: 0;
+        margin-left: 1em;
+        // margin: 0 0 0 10%;
+      }
     }
   }
 
