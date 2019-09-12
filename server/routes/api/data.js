@@ -8,8 +8,7 @@
  *
  * ==========
  */
-const keystone = global.keystone,
-      _l = require('lodash');
+const keystone = global.keystone;
 
 var buildData = async (type, res) => {
 
@@ -17,10 +16,12 @@ var buildData = async (type, res) => {
         'introHeader introText quizHeader quizBlurb tagline -_id' : 
         'introHeaderPatient introTextPatient submitHeader submitBlurb taglinePatient -_id';
 
-        let resourceFields = 'name description category link -_id';
+    let resourceFields = 'name description category link -_id';
 
     let home = keystone.list('Home').model;
     let resource = keystone.list('Resource').model;
+    let privacy = keystone.list('Privacy').model;
+
     let data = null;
     let getRes = [];
 
@@ -31,6 +32,10 @@ var buildData = async (type, res) => {
     else if (type === 'resources') {
         // Get all resources and their category association
         data = resource.find({}, resourceFields).populate('category', 'name order -_id');
+    }
+    else if (type === 'privacy' || type === 'tos') {
+        // Get tos/privacy
+        data = privacy.findOne({}, type + ' -_id');
     }
 
     try {
