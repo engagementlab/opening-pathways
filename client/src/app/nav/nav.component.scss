@@ -70,7 +70,7 @@ nav {
 
   #sites {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 
     @include not-phones {
       flex-direction: column;
