@@ -56,6 +56,8 @@
           border: solid 2px $burnt-yellow;
           border-radius: 50px;
 
+          @include transition(opacity, .4s, ease-in-out);
+
           @include phones {
             max-width: 40px;
             max-height: 40px;
@@ -77,15 +79,9 @@
             }
           }
 
-          &.end {
-            border-width: 1px;
+          &.disable {
+            opacity: .6;
             cursor: default;
-
-            svg {
-              path {
-                stroke-width: 1px;
-              }
-            }
           }
         }
       }
