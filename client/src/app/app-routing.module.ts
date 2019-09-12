@@ -13,14 +13,17 @@ import { NarrativeComponent } from './narrative/narrative.component';
 import { NarrativeIndexComponent } from './narrative/index/index.component';
 
 import { PathwayComponent } from './pathways/pathway/pathway.component';
+import { PathwayIndexComponent } from './pathways/index.component';
 import { PathwayStoryComponent } from './pathways/pathway/story/story.component';
 
 import { ResourcesComponent } from './resources/resources.component';
 
 import { SubmitComponent } from './submit/submit.component';
 import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
-import { QuizResultsComponent } from './quiz/results/results.component';
+
 import { TermsComponent } from './terms/terms.component';
+
+import { QuizResultsComponent } from './quiz/results/results.component';
 
 const routes: Routes = [
   {
@@ -71,6 +74,11 @@ const routesPatient: Routes = [
   {
     path: '',
     component: HomePatientComponent,
+    data: { bleed: true }
+  },
+  {
+    path: 'pathways',
+    component: PathwayIndexComponent,
     data: { bleed: true }
   },
   {

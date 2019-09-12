@@ -1,1 +1,84 @@
-<p>index works!</p>
+<section *ngIf="hasContent">
+
+  <section class="container">
+    <div class="column columns is-multiline is-mobile is-centered no-margin">
+      <h2 class="outline pg-header column is-full" data-text="Patient Pathways">
+        Patient Pathways
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="135" height="15" fill="none" viewBox="0 0 135 15" class="decor">
+          <path fill="url(#a)"
+            d="M135 0c0 8.278-6.722 15-15 15-15 0-11.222-11.222-26.222-11.222C78.778 3.778 82.5 15 67.5 15c-15 0-11.278-11.222-26.278-11.222C26.222 3.778 30 15 15 15 6.722 15 0 8.278 0 0h135z" />
+          <defs>
+            <linearGradient id="a" x2="70" y1="3.889" y2="3.889" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#CDA624" />
+              <stop offset="1" stop-color="#F4CCC7" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </h2>
+
+      <div class="column is-12-mobile is-10-tablet is-7-desktop no-pad">
+        <p class="lg">
+          This is a happy place, little squirrels live here and play. In life you need colors. Van Dyke Brown is a very
+          nice brown, it's almost like a chocolate brown.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div id="pathways" class="columns column is-multiline is-mobile no-margin">
+    <div class="pathway column is-full" *ngFor="let pathway of pathways; let i = index;">
+      <section class="container" *ngIf="pathway.stories !== undefined && pathway.stories.length > 0">
+
+        <header>
+          <nav>
+            <a class="arrow prev disable" (click)="owlElement.prev()">
+              <svg width="42" height="42" fill="none" viewBox="0 0 42 42">
+                <path stroke="#e1a708" stroke-width="2" d="M20.283.717L40.566 21 20.283 41.283M0 20.751h40.541" />
+              </svg>
+            </a>
+            <div class="center-content">
+              <svg xmlns="http://www.w3.org/2000/svg" width="363" height="363" fill="none" viewBox="0 0 363 363">
+                <path stroke="#DDD" stroke-width="2"
+                  d="M1.002 1.416h360.582v360.582H1.002zM.997 180.706l360.579-1.548M182.294 1.416v360.582M1.71.708l360.135 360.135M362.292 2.125L2.157 362.26" />
+                <circle cx="181.293" cy="181.707" r="80.129" stroke="#DDD" stroke-width="2" />
+                <circle cx="181.96" cy="182.375" r="130.21" stroke="#DDD" stroke-width="2" />
+                <circle cx="181.292" cy="181.707" r="180.291" stroke="#DDD" stroke-width="2" />
+              </svg>
+
+              {{pathway.name}}
+            </div>
+            <a class="arrow next" (click)="owlElement.next()">
+              <svg width="42" height="42" fill="none" viewBox="0 0 42 42">
+                <path stroke="#e1a708" stroke-width="2" d="M20.283.717L40.566 21 20.283 41.283M0 20.751h40.541" />
+              </svg>
+            </a>
+          </nav>
+        </header>
+
+        <owl-carousel-o class="slides" [options]="customOptions" (initialized)="sliderInit(i)"
+          (translated)="slideChange($event, i)" #owlElement>
+          <ng-template carouselSlide [id]="'slide-' + story.slug" [width]="slideWidth"
+            *ngFor="let story of pathway.stories; let n = index;">
+
+            <div class="slide-item" [attr.data-ref]="'slide-' + story.slug">
+              <a routerLink="/pathway/{{pathway.slug}}/story/{{story.slug}}">
+                <div class="name">{{story.name.first}} {{story.name.last}}</div>
+
+                <grid-icon [index]="n" [color]="colorIndices[i][n]"></grid-icon>
+
+                <p>{{story.blurb}}</p>
+                <div>
+                  <span>view</span>
+                </div>
+
+              </a>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+
+      </section>
+    </div>
+  </div>
+
+</section>

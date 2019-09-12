@@ -1,0 +1,33 @@
+@import "~src/style/_variables";
+
+.pathway {
+
+
+    &:nth-child(odd) {
+        background-color: rgba(244, 204, 199, 0.2);
+      }
+    nav {
+        min-height: 360px;
+        @include phones { 
+            min-height: 160px;
+        }
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div {
+            align-items: center;
+            @include pxtoem(24, 48);
+
+            svg {
+                position: absolute;
+                z-index: -1;
+
+                @include phones { 
+                    max-height: 160px;
+                }
+            }
+        }
+    }
+}

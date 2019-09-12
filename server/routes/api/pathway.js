@@ -16,10 +16,15 @@ var buildData = async (res, id, limit) => {
     let storyFields = 'name slug'
     let data;
 
+    
 	if(id)
         data = Pathway.model.findOne({slug: id}, storyFields + ' description -_id').populate('stories', storyFields + ' -_id');
-    else
+    else {
+        // Get blurbs when getting sll
+        if(!limit) storyFields += ' blurb';
+        console.log(storyFields)
         data = Pathway.model.find({}, storyFields + ' -_id').populate('stories', storyFields + ' -_id');
+    }
 
     if(limit)  
         data.limit(limit);

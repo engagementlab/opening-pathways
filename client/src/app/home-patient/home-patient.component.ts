@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../utils/data.service';
 
-import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 import * as ismobile from 'ismobilejs';
 import { Drawing } from '../utils/drawing';
@@ -88,7 +88,7 @@ export class HomePatientComponent implements OnInit {
 
   }
 
-  slideChange(slideInfo: SlidesOutputData, sliderIndex: number) {
+  slideChange(sliderIndex: number) {
 
     // Find out if at end/begin based on class of the built in nav we've hidden, 
     // since owl output infuriatingly does not return specifics on this
@@ -107,7 +107,7 @@ export class HomePatientComponent implements OnInit {
       next.classList.remove('disable');
     else
       next.classList.add('disable');
-      
+
     if(!start)
       prev.classList.remove('disable');
     else

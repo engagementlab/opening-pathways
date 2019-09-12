@@ -12,7 +12,7 @@
         </h2>
       </div>
 
-      <div class=" column is-full-mobile is-8-tablet is-half-desktop no-pad">
+      <div class=" column is-full-mobile is-8-tablet is-7-desktop no-pad">
         <p class="lg">
           {{intro.introTextPatient}}
         </p>
@@ -61,8 +61,10 @@
           <h5>{{pathway.name}}</h5>
         </header>
 
-        <owl-carousel-o class="slides" [options]="customOptions" (initialized)="sliderInit(i)" (translated)="slideChange($event, i)" #owlElement>
-          <ng-template carouselSlide [id]="'slide-' + story.slug" [width]="slideWidth" *ngFor="let story of pathway.stories; let n = index;">
+        <owl-carousel-o class="slides" [options]="customOptions" (initialized)="sliderInit(i)"
+          (translated)="slideChange($event, i)" #owlElement>
+          <ng-template carouselSlide [id]="'slide-' + story.slug" [width]="slideWidth"
+            *ngFor="let story of pathway.stories; let n = index;">
 
             <div class="slide-item" [attr.data-ref]="'slide-' + story.slug">
               <a routerLink="/pathway/{{pathway.slug}}/story/{{story.slug}}">
@@ -91,19 +93,23 @@
   <section id="quote" class="container">
 
     <div class="center-content">
-      
+
       <svg xmlns="http://www.w3.org/2000/svg" width="119" height="94" fill="none" viewBox="0 0 119 94">
-          <path fill="#F5D7D5" fill-rule="evenodd" d="M13.179 84.094c8.123 6.727 19.235 9.782 31.262 9.578l.988-.017V70.314l-1.045.042c-4.945.197-9.264-.512-12.345-2.995-3.042-2.452-5.103-6.824-5.103-14.494V39.8h17.689V0H0v52.867c0 14.128 5.029 24.479 13.179 31.227zm1.282-1.548C6.83 76.228 2.01 66.478 2.01 52.866V2.01h40.604v35.78h-17.69v15.077c0 8.008 2.16 13.084 5.853 16.06 3.403 2.742 7.912 3.535 12.64 3.466V91.67c-11.3.019-21.517-2.965-28.957-9.125zm72.24 1.55c8.173 6.724 19.283 9.78 31.311 9.576l.988-.017V70.314l-1.045.042c-4.945.197-9.264-.512-12.345-2.995-3.042-2.452-5.103-6.824-5.103-14.495V39.802h17.689V0H73.169v52.881c.205 14.126 5.335 24.47 13.533 31.215zM75.18 52.86V2.01h41.007v35.78h-17.69v15.077c0 8.008 2.161 13.084 5.853 16.06 3.403 2.742 7.912 3.535 12.641 3.466V91.67c-11.3.019-21.521-2.964-29.011-9.127-7.681-6.32-12.601-16.074-12.8-29.685z" clip-rule="evenodd"/>
+        <path fill="#F5D7D5" fill-rule="evenodd"
+          d="M13.179 84.094c8.123 6.727 19.235 9.782 31.262 9.578l.988-.017V70.314l-1.045.042c-4.945.197-9.264-.512-12.345-2.995-3.042-2.452-5.103-6.824-5.103-14.494V39.8h17.689V0H0v52.867c0 14.128 5.029 24.479 13.179 31.227zm1.282-1.548C6.83 76.228 2.01 66.478 2.01 52.866V2.01h40.604v35.78h-17.69v15.077c0 8.008 2.16 13.084 5.853 16.06 3.403 2.742 7.912 3.535 12.64 3.466V91.67c-11.3.019-21.517-2.965-28.957-9.125zm72.24 1.55c8.173 6.724 19.283 9.78 31.311 9.576l.988-.017V70.314l-1.045.042c-4.945.197-9.264-.512-12.345-2.995-3.042-2.452-5.103-6.824-5.103-14.495V39.802h17.689V0H73.169v52.881c.205 14.126 5.335 24.47 13.533 31.215zM75.18 52.86V2.01h41.007v35.78h-17.69v15.077c0 8.008 2.161 13.084 5.853 16.06 3.403 2.742 7.912 3.535 12.641 3.466V91.67c-11.3.019-21.521-2.964-29.011-9.127-7.681-6.32-12.601-16.074-12.8-29.685z"
+          clip-rule="evenodd" />
       </svg>
-      
+
     </div>
 
     <h3>
-      Only in poems and fairy tales are there two distinct paths and the expectation that you must choose. In life they are countless and mostly unmarked, unrecognizable as paths until you take them. You can travel one for a time, then cut over to another.
+      Only in poems and fairy tales are there two distinct paths and the expectation that you must choose. In life they
+      are countless and mostly unmarked, unrecognizable as paths until you take them. You can travel one for a time,
+      then cut over to another.
     </h3>
 
     <h2 class="outline center-content" data-text="Start anywhere. Keep moving.">
-      Start anywhere. Keep moving.  
+      Start anywhere. Keep moving.
     </h2>
 
     <h3 class="gang">Maggie Smith</h3>
@@ -118,7 +124,7 @@
         {{intro.submitHeader}}
       </h2>
 
-      <div class="column is-full-mobile is-half-tablet no-pad">
+      <div class="column is-full-mobile is-7-tablet no-pad">
         <p class="lg">
           {{intro.submitBlurb}}
         </p>
