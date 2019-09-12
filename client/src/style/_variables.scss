@@ -124,7 +124,10 @@ wide: 1300px);
     padding: 0px 28px;
 
     div {
-      margin-top: 16px;
+      // margin-top: 16px;
+      svg {
+        margin: 0 0 0 10%;
+      }
     }
   }
 
