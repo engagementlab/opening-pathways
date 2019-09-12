@@ -54,6 +54,16 @@ const routes: Routes = [
   {
     path: 'quiz/results/:key',
     component: QuizResultsComponent
+  },
+  {
+    path: 'privacy',
+    component: TermsComponent,
+    data: { tos: false }
+  },
+  {
+    path: 'terms',
+    component: TermsComponent,
+    data: { tos: true }
   }
 ];
 
@@ -74,10 +84,7 @@ const routesPatient: Routes = [
   {
     path: 'submit',
     component: SubmitPatientComponent
-  }
-];
-
-const routesCommon: Routes = [
+  },
   {
     path: 'privacy',
     component: TermsComponent,
@@ -90,8 +97,10 @@ const routesCommon: Routes = [
   }
 ];
 
+const mergedRoutes = environment.partner ? routes : routesPatient;
+
 @NgModule({
-  imports: [RouterModule.forRoot(environment.partner ? routes.concat(routesCommon) : routesPatient.concat(routesCommon))],
+  imports: [RouterModule.forRoot(mergedRoutes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
