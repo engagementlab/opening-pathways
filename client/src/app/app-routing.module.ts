@@ -20,6 +20,7 @@ import { ResourcesComponent } from './resources/resources.component';
 import { SubmitComponent } from './submit/submit.component';
 import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
 import { QuizResultsComponent } from './quiz/results/results.component';
+import { TermsComponent } from './terms/terms.component';
 
 const routes: Routes = [
   {
@@ -76,8 +77,21 @@ const routesPatient: Routes = [
   }
 ];
 
+const routesCommon: Routes = [
+  {
+    path: 'privacy',
+    component: TermsComponent,
+    data: { tos: false }
+  },
+  {
+    path: 'terms',
+    component: TermsComponent,
+    data: { tos: true }
+  }
+];
+
 @NgModule({
-  imports: [RouterModule.forRoot(environment.partner ? routes : routesPatient)],
+  imports: [RouterModule.forRoot(environment.partner ? routes.concat(routesCommon) : routesPatient.concat(routesCommon))],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

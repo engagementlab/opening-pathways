@@ -164,12 +164,12 @@
 
   h2 {
     @include pxtoem(32, 64);
-    text-align: center;
 
     &:before {
       -webkit-text-stroke-color: $blush;
     }
   }
+
 }
 
 #submit {
@@ -181,4 +181,5 @@
       margin: 0;
     }
   }
+
 }

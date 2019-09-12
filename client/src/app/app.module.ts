@@ -41,6 +41,7 @@ import cloudinaryConfiguration from './cdn.config';
 // npm
 import { QuillModule } from 'ngx-quill';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { TermsComponent } from './terms/terms.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -70,7 +71,8 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     HomeHeaderComponent,
     GridIconComponent,
     PathwayStoryComponent,
-    SubmitPatientComponent
+    SubmitPatientComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,

@@ -15,8 +15,6 @@ const keystone = global.keystone,
 
 var getAdjacent = async (results, res, pathwayId) => {
 
-	let fields = 'name slug -_id';
-
 	// Get all stories in this story's pathway
 	let allStoriesQ = Pathway.model.findOne({slug: pathwayId}, 'name stories -_id')
 	
