@@ -49,6 +49,7 @@ router.get('/api/story/fields', routeIncludes, routes.api.story.fields);
 router.post('/api/story/create', routeIncludes, routes.api.story.create);
 
 router.get('/api/pathway/all', routeIncludes, routes.api.pathway.all);
+router.get('/api/pathway/limit/:limit', routeIncludes, routes.api.pathway.limit);
 router.get('/api/pathway/get/:id', routeIncludes, routes.api.pathway.get);
 
 module.exports = router;

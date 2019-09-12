@@ -9,6 +9,7 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { ButtonComponent } from './utils/app-button/button.component';
 import { CdnImageComponent } from './utils/cdn-image/cdn-image.component';
 import { DataService } from './utils/data.service';
+import { Drawing } from './utils/drawing';
 import { SanitizeHtmlPipe } from './utils/sanitize-html.pipe';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,16 +23,18 @@ import { HomePatientComponent } from './home-patient/home-patient.component';
 import { FieldComponent } from './quiz/field/field.component';
 import { NarrativeComponent } from './narrative/narrative.component';
 import { NarrativeIndexComponent } from './narrative/index/index.component';
-import { PathwayGridComponent } from './pathways/grid/grid.component';
 import { GridIconComponent } from './pathways/grid/icon/icon.component';
+import { PathwayIndexComponent } from './pathways/index.component';
 import { PathwayComponent } from './pathways/pathway/pathway.component';
+import { PathwayGridComponent } from './pathways/grid/grid.component';
 import { PathwayStoryComponent } from './pathways/pathway/story/story.component';
 import { QuizLandingComponent } from './quiz/landing/landing.component';
 import { QuizResultsComponent } from './quiz/results/results.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { ResourcesComponent } from './resources/resources.component';
 import { SubmitComponent } from './submit/submit.component';
 import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
-import { ResourcesComponent } from './resources/resources.component';
+import { TermsComponent } from './terms/terms.component';
 
 // Cloudinary
 import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
@@ -41,7 +44,6 @@ import cloudinaryConfiguration from './cdn.config';
 // npm
 import { QuillModule } from 'ngx-quill';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { TermsComponent } from './terms/terms.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -72,7 +74,8 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     GridIconComponent,
     PathwayStoryComponent,
     SubmitPatientComponent,
-    TermsComponent
+    TermsComponent,
+    PathwayIndexComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,7 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     QuillModule.forRoot()
   
   ],
-  providers: [DataService],
+  providers: [DataService, Drawing],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
