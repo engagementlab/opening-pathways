@@ -75,7 +75,7 @@
 
           &.prev {
             svg {
-              @include rotate(-180);
+              @include transform(rotate(-180deg) scale(.5));
             }
           }
 
