@@ -28,6 +28,7 @@
   }
 
   .pathway {
+
     a {
       cursor: pointer;
       color: $burnt-yellow;
@@ -44,53 +45,26 @@
 
         a {
           margin-right: 1%;
+          @include phones {
+            margin-right: 3%;
+          }
         }
 
         .arrow {
 
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          width: 60px;
-          height: 60px;
-          border: solid 2px $burnt-yellow;
-          border-radius: 50px;
-
-          @include transition(opacity, .4s, ease-in-out);
-
-          @include phones {
-            max-width: 40px;
-            max-height: 40px;
-
-            svg {
-              @include scale(.5);
-            }
-
-            &.prev {
-              svg {
-                @include transform(rotate(-180deg) scale(.5));
-              }
-            }
-          }
-
-          &.prev {
-            svg {
-              @include rotate(-180);
-            }
-          }
-
-          &.disable {
-            opacity: .6;
-            cursor: default;
-          }
+          @include arrow-btn();
+       
         }
       }
 
       h5 {
+      font-family: 'Manrope-Regular';
+
         text-align: left;
         margin-top: 0;
         margin-bottom: 5%;
         color: black;
+        font-weight: 200;
       }
     }
 
@@ -122,6 +96,10 @@
           color: $burnt-yellow;
           text-transform: uppercase;
         }
+      }
+
+      .name {
+        font-size: 1.3em;
       }
     }
 

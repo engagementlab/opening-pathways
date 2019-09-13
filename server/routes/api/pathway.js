@@ -22,7 +22,6 @@ var buildData = async (res, id, limit) => {
     else {
         // Get blurbs when getting sll
         if(!limit) storyFields += ' blurb';
-        console.log(storyFields)
         data = Pathway.model.find({}, storyFields + ' -_id').populate('stories', storyFields + ' -_id');
     }
 

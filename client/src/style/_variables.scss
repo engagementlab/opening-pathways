@@ -7,36 +7,41 @@ $base-font-size: 24;
 $base-font-size-mobile: 14;
 
 @font-face {
-    font-family: 'GangsterGrotesk-Regular';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/GangsterGrotesk-Regular.otf');
+  font-family: 'GangsterGrotesk-Regular';
+  src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/GangsterGrotesk-Regular.otf');
 }
+
 @font-face {
-    font-family: 'GangsterGrotesk-Bold';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/GangsterGrotesk-Bold.otf');
+  font-family: 'GangsterGrotesk-Bold';
+  src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/GangsterGrotesk-Bold.otf');
 }
+
 @font-face {
-    font-family: 'Manrope-Regular';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-regular.otf');
+  font-family: 'Manrope-Regular';
+  src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-regular.otf');
 }
+
 @font-face {
-    font-family: 'Manrope-Medium';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-medium.otf');
+  font-family: 'Manrope-Medium';
+  src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-medium.otf');
 }
+
 @font-face {
-    font-family: 'Manrope-Semibold';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-semibold.otf');
+  font-family: 'Manrope-Semibold';
+  src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-semibold.otf');
 }
+
 @font-face {
-    font-family: 'Manrope-Bold';
-    src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-bold.otf');
+  font-family: 'Manrope-Bold';
+  src: url('https://res.cloudinary.com/engagement-lab-home/raw/upload/fonts/manrope-bold.otf');
 }
 
 @mixin pxtoem($mobile, $desktop: $base-font-size) {
-    font-size: ($desktop / $base-font-size) + em;
+  font-size: ($desktop / $base-font-size) + em;
 
-    @include mq($until: tabletPortrait) {
-        font-size: ($mobile / $base-font-size-mobile) + em;
-    }
+  @include mq($until: tabletPortrait) {
+    font-size: ($mobile / $base-font-size-mobile) + em;
+  }
 }
 
 /* Color palette */
@@ -45,17 +50,17 @@ $very-light-pink: #bbbbbb;
 $windows-blue: #3984bc;
 $greyish-teal: #7ca395;
 $blush: #f2a191;
-$light-peach: #f4ccc7;;
+$light-peach: #f4ccc7;
 $pale: #f5d7d5;
 
 $mq-breakpoints: (mobile: 320px,
-mobileLg: 375px,
-mobileLandscape: 480px,
-tablet: 1024px,
-tabletPortrait: 768px,
-desktop: 980px,
-desktopAd: 810px,
-wide: 1300px);
+  mobileLg: 375px,
+  mobileLandscape: 480px,
+  tablet: 1024px,
+  tabletPortrait: 768px,
+  desktop: 980px,
+  desktopAd: 810px,
+  wide: 1300px);
 
 // Mixins 
 @import '../../node_modules/@engagementlab/el-scss/bundle';
@@ -63,19 +68,20 @@ wide: 1300px);
 // Font styles
 @mixin pull-quote() {
 
-    font-family: 'GangsterGrotesk-Regular';
+  font-family: 'GangsterGrotesk-Regular';
 
-    @include pxtoem(24, 48);
-    color: $windows-blue;
-    line-height: 1.3;
+  @include pxtoem(24, 48);
+  color: $windows-blue;
+  line-height: 1.3;
 
-    margin-left: 0;
-    margin-right: 0;
-    
+  margin-left: 0;
+  margin-right: 0;
+
 }
 
+// App button
 @mixin button-style() {
-  
+
   position: relative;
 
   display: flex;
@@ -158,4 +164,49 @@ wide: 1300px);
     }
   }
 
+}
+
+// Pathway slider arrow style
+@mixin arrow-btn {
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border: solid 2px $burnt-yellow;
+  border-radius: 50px;
+
+  @include transition(opacity, .4s, ease-in-out);
+
+  @include phones {
+    max-width: 40px;
+    max-height: 40px;
+
+    &.next {
+      svg {
+        @include scale(.5);
+      }
+    }
+
+    &.prev {
+      svg {
+        @include transform(rotate(-180deg) scale(.5));
+      }
+    }
+  }
+
+  @include not-phones {
+    &.prev {
+      svg {
+        @include rotate(-180);
+      }
+    }
+  }
+
+  &.disable {
+    opacity: .6;
+    cursor: default;
+  }
+  
 }

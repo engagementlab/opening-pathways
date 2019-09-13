@@ -62,7 +62,7 @@
         </header>
 
         <owl-carousel-o class="slides" [options]="customOptions" (initialized)="sliderInit(i)"
-          (translated)="slideChange($event, i)" #owlElement>
+          (translated)="slideChange(i)" #owlElement>
           <ng-template carouselSlide [id]="'slide-' + story.slug" [width]="slideWidth"
             *ngFor="let story of pathway.stories; let n = index;">
 

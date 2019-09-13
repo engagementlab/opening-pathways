@@ -42,9 +42,9 @@ Story.add({
 	deadCows: { type: Types.Markdown, required: true, initial: true },
 	vision: { type: Types.Textarea, required: true, initial: true },
 	links: { type: Types.Markdown },
-    
+
+	blurb: { type: String, note: 'Shows on pathways index.' },
 	published: { type: Boolean, note: 'If unchecked, will never appear.' },
-    
 	submitDate: { type: Types.Datetime, noedit: true, required: true, initial: true },
 	
 });
