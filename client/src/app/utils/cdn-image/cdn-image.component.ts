@@ -41,10 +41,11 @@ export class CdnImageComponent implements OnInit {
     this.imgId = (this.cloudinaryPrefix ? this.cloudinaryPrefix : 'opening-pathways/') + this.cloudinaryId;
     let useMobileWidth = (this.isPhone && this.phoneWidth);
 
+    // TODO: debug why useMobileWidth is always false.
     if(useMobileWidth)
-      this.widthCss = this._sanitizer.bypassSecurityTrustStyle('width:' + this.phoneWidth + 'px; max-width:' + this.phoneWidth+'px');
+      this.widthCss = this._sanitizer.bypassSecurityTrustStyle('max-width:' + this.phoneWidth+'px');
     else if(this.width)
-      this.widthCss = this._sanitizer.bypassSecurityTrustStyle('width:' + this.width + 'px; max-width:' + this.width+'px');
+      this.widthCss = this._sanitizer.bypassSecurityTrustStyle('max-width:' + this.width+'px');
 
   }
 
