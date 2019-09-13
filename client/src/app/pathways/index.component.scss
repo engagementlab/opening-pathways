@@ -5,7 +5,7 @@
 
     &:nth-child(odd) {
         background-color: rgba(244, 204, 199, 0.2);
-      }
+    }
     nav {
         min-height: 360px;
         @include phones { 
@@ -28,6 +28,19 @@
                     max-height: 160px;
                 }
             }
+        }
+
+        .arrow {
+            &.disable {
+                opacity: .6;
+                cursor: default;
+            }
+            
+            &.prev {
+                svg {
+                  @include transform(rotate(-180deg));
+                }
+              }
         }
     }
 }
