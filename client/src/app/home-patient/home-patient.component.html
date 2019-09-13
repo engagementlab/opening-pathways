@@ -22,7 +22,7 @@
 
   </section>
 
-  <div id="pathways" class="columns column is-multiline is-mobile no-margin">
+  <div id="pathways" class="columns column is-multiline is-mobile no-margin no-pad">
 
     <h5 class="column is-full gang">Patient Pathways</h5>
 
@@ -124,15 +124,17 @@
         {{intro.submitHeader}}
       </h2>
 
-      <div class="column is-full-mobile is-7-tablet no-pad">
-        <p class="lg">
-          {{intro.submitBlurb}}
-        </p>
-      </div>
+      <div class="columns is-vcentered">
 
-      <div class="column is-full-mobile is-5-tablet center-content">
+        <div class="column is-full-mobile is-7-tablet">
+          <p class="lg">
+            {{intro.submitBlurb}}
+          </p>
+        </div>
 
-        <app-button label="submit your story" route="/submit"></app-button>
+        <div class="column is-full-mobile is-5-tablet center-content">
+          <app-button label="submit your story" route="/submit"></app-button>
+        </div>
 
       </div>
 

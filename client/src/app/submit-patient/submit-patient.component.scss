@@ -36,8 +36,12 @@ p.lg {
 
 #submit {
   justify-content: flex-end;
+
   button {
+    @include button-style;
     margin: inherit;
+
+    width: 12em;
   }
 }
 
