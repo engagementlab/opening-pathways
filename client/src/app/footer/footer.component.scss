@@ -6,3 +6,9 @@ div {
     color: #BBB;
 
 }
+
+a {
+    &:visited {
+        color: #e1a708;
+    }
+}
