@@ -124,15 +124,17 @@
         {{intro.submitHeader}}
       </h2>
 
-      <div class="column is-full-mobile is-7-tablet no-pad">
-        <p class="lg">
-          {{intro.submitBlurb}}
-        </p>
-      </div>
+      <div class="columns is-vcentered">
 
-      <div class="column is-full-mobile is-5-tablet center-content">
+        <div class="column is-full-mobile is-7-tablet">
+          <p class="lg">
+            {{intro.submitBlurb}}
+          </p>
+        </div>
 
-        <app-button label="submit your story" route="/submit"></app-button>
+        <div class="column is-full-mobile is-5-tablet center-content">
+          <app-button label="submit your story" route="/submit"></app-button>
+        </div>
 
       </div>
 

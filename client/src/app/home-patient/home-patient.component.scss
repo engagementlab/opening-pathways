@@ -151,9 +151,14 @@
   margin-top: 17%;
 
   app-button {
+    margin-top: 0;
+    
     @include not-phones {
       margin: 0;
     }
   }
 
+  .lg {
+    text-align: left;
+  }
 }
