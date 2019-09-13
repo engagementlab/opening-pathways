@@ -2,44 +2,49 @@
 
 .pathway {
 
+margin-top: 10%;
 
   &:nth-child(odd) {
     background-color: rgba(244, 204, 199, 0.2);
   }
 
-  nav {
-    min-height: 360px;
+  header {
+      margin-bottom: 12%;
 
-    @include phones {
-      min-height: 160px;
-    }
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    div {
-      align-items: center;
-      text-align: center;
-
-      @include pxtoem(24, 48);
-
-      svg {
-        position: absolute;
-        z-index: -1;
+      nav {
+        min-height: 360px;
+    
+        @include phones {
+          min-height: 160px;
+        }
+    
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        div {
+          align-items: center;
+          text-align: center;
+    
+          @include pxtoem(24, 48);
+    
+          svg {
+            position: absolute;
+            z-index: -1;
+          }
+        }
+    
+        div,
+        svg {
+          max-width: 360px;
+          max-height: 360px;
+    
+          @include phones {
+            max-width: 160px;
+            max-height: 160px;
+          }
+        }
       }
-    }
-
-    div,
-    svg {
-      max-width: 360px;
-      max-height: 360px;
-
-      @include phones {
-        max-width: 160px;
-        max-height: 160px;
-      }
-    }
   }
 
   .arrow {
@@ -75,5 +80,10 @@
     .name {
       font-size: 1.3em;
     }
+  }
+
+  .btn {
+      margin-top: 10%;
+      margin-bottom: 10%;
   }
 }

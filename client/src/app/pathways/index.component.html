@@ -59,7 +59,7 @@
         </header>
 
         <owl-carousel-o class="slides" [options]="customOptions" (initialized)="sliderInit(i)"
-          (translated)="slideChange($event, i)" #owlElement>
+          (translated)="slideChange(i)" #owlElement>
           <ng-template carouselSlide [id]="'slide-' + story.slug" [width]="slideWidth"
             *ngFor="let story of pathway.stories; let n = index;">
 
@@ -78,6 +78,10 @@
             </div>
           </ng-template>
         </owl-carousel-o>
+
+        <div class="btn center-content">
+            <app-button label="pathway details" route="/pathway/{{pathway.slug}}"></app-button>
+        </div>
 
       </section>
     </div>
