@@ -1,11 +1,21 @@
-div {
+@import "~src/style/_variables";
 
+div.columns {
     margin-top: 29%;
-    
+
     font-size: .8em;
     color: #BBB;
 
+    margin-bottom: 1em;
+
+    div {
+        &:first-of-type {
+            margin-bottom: 0.5em;
+        }
+    }
 }
+
+
 
 a {
     &:visited {
