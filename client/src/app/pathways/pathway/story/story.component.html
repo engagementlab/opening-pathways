@@ -5,13 +5,14 @@
   <div class="column columns is-multiline is-mobile is-centered no-margin">
 
     <div id="all" class="column is-full">
-        <a (click)="openStories()">See All Stories</a>
-      </div>
-      
+      <a (click)="openStories()">See All Stories</a>
+    </div>
+
     <h2 class="outline pg-header column is-full" [attr.data-text]="pathwayName">
       {{pathwayName}}
       <svg xmlns="http://www.w3.org/2000/svg" width="135" height="15" fill="none" viewBox="0 0 135 15" class="decor">
-        <path fill="url(#a)" d="M135 0c0 8.278-6.722 15-15 15-15 0-11.222-11.222-26.222-11.222C78.778 3.778 82.5 15 67.5 15c-15 0-11.278-11.222-26.278-11.222C26.222 3.778 30 15 15 15 6.722 15 0 8.278 0 0h135z"/>
+        <path fill="url(#a)"
+          d="M135 0c0 8.278-6.722 15-15 15-15 0-11.222-11.222-26.222-11.222C78.778 3.778 82.5 15 67.5 15c-15 0-11.278-11.222-26.278-11.222C26.222 3.778 30 15 15 15 6.722 15 0 8.278 0 0h135z" />
         <defs>
           <linearGradient id="a" x2="70" y1="3.889" y2="3.889" gradientUnits="userSpaceOnUse">
             <stop stop-color="#f5d7d5" />
@@ -23,28 +24,72 @@
 
     <div id="story" class="columns column is-multiline is-mobile no-margin no-pad">
 
-        <div class="column is-half-mobile prev-next hidden-tablet-plus">
-            <span *ngIf="prev"><a routerLink="/pathway/{{pathwaySlug}}/story/{{prev.slug}}">{{prev.name.first}} {{prev.name.last}}</a></span>
-          </div>
-          <div class="column prev-next next hidden-tablet-plus">
-              <span *ngIf="next"><a routerLink="/pathway/{{pathwaySlug}}/story/{{next.slug}}">{{next.name.first}} {{next.name.last}}</a></span>
+      <div class="column is-half-mobile prev-next no-pad hidden-tablet-plus">
+        <span *ngIf="prev">
+          <a routerLink="/pathway/{{pathwaySlug}}/story/{{prev.slug}}">
+
+            <div class="arrow prev">
+              <svg width="42" height="42" fill="none" viewBox="0 0 42 42">
+                <path stroke="#e1a708" stroke-width="2" d="M20.283.717L40.566 21 20.283 41.283M0 20.751h40.541" />
+              </svg>
+            </div>
+            <div>
+              {{prev.name.first}} {{prev.name.last}}
             </div>
 
-        <div class="column is-4-tablet prev-next hidden-mobile">
-            <span *ngIf="prev"><a routerLink="/pathway/{{pathwaySlug}}/story/{{prev.slug}}">{{prev.name.first}} {{prev.name.last}}</a></span>
-          </div>
+          </a></span>
+      </div>
+      <div class="column prev-next next no-pad hidden-tablet-plus">
+        <span *ngIf="next"><a routerLink="/pathway/{{pathwaySlug}}/story/{{next.slug}}">
+
+            <div class="arrow next">
+              <svg width="42" height="42" fill="none" viewBox="0 0 42 42">
+                <path stroke="#e1a708" stroke-width="2" d="M20.283.717L40.566 21 20.283 41.283M0 20.751h40.541" />
+              </svg>
+            </div>
+            <div>
+              {{next.name.first}} {{next.name.last}}
+            </div>
+          </a></span>
+      </div>
+
+      <div class="column is-4-tablet prev-next hidden-mobile">
+        <span *ngIf="prev"><a routerLink="/pathway/{{pathwaySlug}}/story/{{prev.slug}}">
+            <div class="arrow prev">
+              <svg width="42" height="42" fill="none" viewBox="0 0 42 42">
+                <path stroke="#e1a708" stroke-width="2" d="M20.283.717L40.566 21 20.283 41.283M0 20.751h40.541" />
+              </svg>
+            </div>
+            <div>
+              {{prev.name.first}} {{prev.name.last}}
+            </div>
+          </a></span>
+      </div>
       <div id="art" class="center-content column is-full-mobile">
-          <svg viewBox="0 0 136 135" width="136" height="135" fill="none">
-              <path stroke="#DDD" d="M.002 67l134.999-.579M68.004 0v135M33.858 33.146l68.167 68.168M101.858 33.854L33.69 102.021"></path>
-              <circle cx="67.504" cy="67.5" r="30" stroke="#DDD"></circle>
-              <circle cx="67.254" cy="67.75" r="48.75" stroke="#DDD"></circle>
-            </svg>
-            <grid-icon [index]="iconIndex" [color]="iconColor"></grid-icon>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="271" height="270" fill="none" viewBox="0 0 271 270">
+          <path stroke="#DDD" stroke-width="2"
+            d="M.004 134l269.998-1.159M136.009 0v270M67.716 66.293L204.05 202.628M203.716 67.707L67.381 204.042" />
+          <circle cx="135.009" cy="135" r="60" stroke="#DDD" stroke-width="2" />
+          <circle cx="134.509" cy="135.5" r="97.5" stroke="#DDD" stroke-width="2" />
+        </svg>
+
+        <grid-icon [index]="iconIndex" [color]="iconColor"></grid-icon>
 
       </div>
       <div class="column prev-next next hidden-mobile">
-          <span *ngIf="next"><a routerLink="/pathway/{{pathwaySlug}}/story/{{next.slug}}">{{next.name.first}} {{next.name.last}}</a></span>
-        </div>
+        <span *ngIf="next"><a routerLink="/pathway/{{pathwaySlug}}/story/{{next.slug}}">
+          
+          <div class="arrow next">
+              <svg width="42" height="42" fill="none" viewBox="0 0 42 42">
+                <path stroke="#e1a708" stroke-width="2" d="M20.283.717L40.566 21 20.283 41.283M0 20.751h40.541" />
+              </svg>
+            </div>
+            <div>
+                {{next.name.first}} {{next.name.last}}
+                </div>
+          </a></span>
+      </div>
       <h5 class="column is-full gang">{{content.name.first}} {{content.name.last}}</h5>
 
       <div class="column is-full-mobile is-5-tablet">
@@ -75,9 +120,9 @@
       <div class="column is-full-mobile is-5-tablet">
         <p>Your vision of what comes next</p>
       </div>
-      <div class="column is-6-tablet">{{content.vision}}</div> 
+      <div class="column is-6-tablet">{{content.vision}}</div>
 
-      <div class="column is-full-mobile is-5-tablet" *ngIf="content.links">
+      <div class="column is-full-mobile is-5-tablet" *ngIf="content.links && content.links.html.length > 0">
         <p>Links</p>
       </div>
       <div id="links" class="column is-6-tablet" [innerHtml]="content.links.html" *ngIf="content.links"></div>

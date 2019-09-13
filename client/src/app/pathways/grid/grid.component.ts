@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 
+import { TweenLite } from 'gsap';
+
 import * as SVG from 'svg.js';
 import * as _ from 'underscore';
 import * as ismobile from 'ismobilejs';
@@ -23,6 +25,7 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
 
   constructor() {
 
+    // Open/hide modal overlay event listener
     this.openOverlay.subscribe(val => {
       
       if(val)
@@ -42,6 +45,7 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
       i++;
     });
     
+    // Shuffle indices for icons
     this.nameIndices = _.shuffle(this.nameIndices);
 
   }
@@ -183,14 +187,16 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
 
   overlayShow() {
 
-    document.getElementById('grid-overlay').style.display = 'block';
+    TweenLite.to(document.getElementById('grid-overlay'), .7, {opacity: 1, display: 'block'});
 
     // Re-draw lines now that grid shows
     this.drawLines();
 
   }
   public overlayHide() {
-    document.getElementById('grid-overlay').style.display = 'none';
+
+    TweenLite.to(document.getElementById('grid-overlay'), .7, {opacity: 0, display: 'none'});
+  
   }
 
 }

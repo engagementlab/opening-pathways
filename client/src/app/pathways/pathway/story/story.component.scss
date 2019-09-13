@@ -2,9 +2,14 @@
 
 #all {
   text-align: right;
+
+  a {
+    cursor: pointer;
+  }
 }
 
 #story {
+
   h5 {
     margin-top: 5%;
     margin-bottom: 14%;
@@ -19,7 +24,14 @@
   }
 
   ::ng-deep ol {
-      padding-left: 4%;
+    padding-left: 4%;
+  }
+
+  .arrow {
+
+    @include arrow-btn();
+    margin-bottom: 10%;
+
   }
 
   .prev-next {
@@ -28,6 +40,7 @@
     a {
       color: $very-light-pink;
     }
+
     &.next {
       text-align: right;
     }
@@ -36,14 +49,19 @@
   #art {
     align-items: center;
     margin-bottom: 5%;
-    
+
     svg {
       position: absolute;
       z-index: -1;
+
+      @include phones {
+        @include scale(.5);
+      }
     }
   }
 
   #links {
     word-break: break-all;
   }
+
 }

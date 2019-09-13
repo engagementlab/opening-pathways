@@ -45,7 +45,9 @@ export class PathwayStoryComponent implements OnInit {
 
         // Pluck only most adjacent stories by date
         let allPrev = _.filter(response.all.stories, (s) => { return s.submitDate < response.story.submitDate});
-        let prevStory = allPrev[allPrev.length-1];
+        let prevSorted = _.sortBy(allPrev, (p) => { return p.submitDate; }).reverse();
+        let prevStory = prevSorted[0];
+        
         let nextStory = _.filter(response.all.stories, (s) => { return s.submitDate > response.story.submitDate})[0];
     
         this.prev = prevStory;

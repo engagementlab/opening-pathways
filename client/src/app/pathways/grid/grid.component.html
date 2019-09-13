@@ -1,22 +1,30 @@
 <section id="grid-overlay" [class.overlay]="overlay">
 
-  <div id="close" class="column" *ngIf="overlay"><a (click)="overlayHide()">close</a></div>
+  <div id="close" class="column" *ngIf="overlay">
+
+    <a (click)="overlayHide()">
+      <svg width="46" height="47" fill="none" viewBox="0 0 46 47">
+        <path stroke="#E1A708" stroke-width="2" d="M.716.716l44.137 44.137M44.853 2.147L.716 46.284" />
+      </svg>
+    </a>
+  
+  </div>
 
   <div id="grid" class="column columns is-multiline is-mobile no-margin no-pad">
 
     <div id="svg-bg"></div>
 
     <div id="{{ind}}" class="name column is-half-mobile is-4-tablet no-pad"
-      *ngFor="let name of nameIndices; let odd = odd; let ind = index;">
-
+      *ngFor="let story of names; let odd = odd; let i = index;">
+      
       <div class="href">
-        <a routerLink="/pathway/{{pathway}}/story/{{names[name].slug}}">
-          <div class="bg" [class.odd]="odd" [class.left]="ind%3===0" [class.right]="ind%3===2">
-            <grid-icon [index]="name" [color]="name"></grid-icon>
+        <a routerLink="/pathway/{{pathway}}/story/{{story.slug}}">
+          <div class="bg" [class.odd]="odd" [class.left]="i%3===0" [class.right]="i%3===2">
+            <grid-icon [index]="i" [color]="nameIndices[i]"></grid-icon>
           </div>
 
           <span>
-            {{names[name].name.first}} {{names[name].name.last}}
+            {{story.name.first}} {{story.name.last}}
           </span>
         </a>
       </div>

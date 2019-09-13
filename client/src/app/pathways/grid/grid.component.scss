@@ -11,6 +11,8 @@ section {
     position: fixed;
     display: none;
 
+    opacity: 0;
+
     top: 0;
     left: 0;
 
@@ -20,6 +22,38 @@ section {
 
     z-index: 10;
     padding-top: 15%;
+  }
+}
+
+#close {
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100px;
+    height: 100px;
+
+    border: solid 2px $burnt-yellow;
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    @include phones {
+
+      width: 60px;
+      height: 60px;
+
+      svg {
+        @include scale(.5);
+      }
+    }
   }
 }
 
@@ -40,7 +74,7 @@ section {
 }
 
 .name {
-  
+
   @include pxtoem(18, 24);
   margin-top: 5%;
 
@@ -55,9 +89,15 @@ section {
     align-items: center;
     justify-content: center;
 
+    @include transition(background-color, 500ms, ease-in-out);
+
     @include not-phones {
       width: 180px;
       height: 180px;
+    }
+
+    grid-icon {
+      @include transition(transform, 500ms, cubic-bezier(0, 0.59, 0, 0.89));
     }
 
     &::after {
@@ -96,8 +136,12 @@ section {
     .bg {
       background-color: rgba(244, 204, 199, 0.2);
 
+      grid-icon {
+        @include rotate(360);
+      }
+
       &::after {
-        @include scale(1.5);
+        @include scale(1.2);
       }
     }
   }
