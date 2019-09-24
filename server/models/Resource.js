@@ -23,7 +23,8 @@ var Types = keystone.Field.Types;
 var Resource = new keystone.List('Resource', 
 	{
 		label: 'Resource',
-		singular: 'Resource'
+		singular: 'Resource',
+        autokey: { path: 'slug', from: 'name', unique: true }
 	});
 
 /**
@@ -33,9 +34,9 @@ var Resource = new keystone.List('Resource',
 Resource.add({
 	
     name: { type: String, required: true, initial: true },
-    description: { type: String, required: true, initial: true },
+    description: { type: String, label: 'Blurb', required: true, initial: true },
     category: { type: Types.Relationship, ref: 'ResourceCategory', required: true, initial: true },
-    link: { type: Types.Url, label: 'Link to resource', note: 'Optional. Must be a valid URL' }
+    body: { type: Types.Markdown, required: true, initial: true }
 
 });
 

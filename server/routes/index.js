@@ -30,7 +30,7 @@ router.all('/*', function(req, res, next) {
 
 });
 
-router.get('/api/data/get/:type', routeIncludes, routes.api.data.get);
+router.get('/api/data/get/:type/:key?', routeIncludes, routes.api.data.get);
 
 router.get('/api/quiz/get', routeIncludes, routes.api.quiz.get);
 router.get('/api/quiz/get/results/:key', routeIncludes, routes.api.quiz.getResults);
@@ -44,7 +44,6 @@ router.all('/api/narrative/create', routeIncludes, routes.api.narrative.create);
 router.get('/api/story/get', routeIncludes, routes.api.story.all);
 router.get('/api/story/get/:id', routeIncludes, routes.api.story.get);
 router.get('/api/story/get/:id/:pathway', routeIncludes, routes.api.story.pathway);
-// router.get('/api/story/featured', routeIncludes, routes.api.story.featured);
 router.get('/api/story/fields', routeIncludes, routes.api.story.fields);
 router.post('/api/story/create', routeIncludes, routes.api.story.create);
 

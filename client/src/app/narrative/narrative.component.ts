@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./narrative.component.scss']
 })
 export class NarrativeComponent implements OnInit {
-
  
   public hasContent: boolean;
   public narrative: any;

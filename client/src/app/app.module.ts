@@ -44,6 +44,7 @@ import cloudinaryConfiguration from './cdn.config';
 // npm
 import { QuillModule } from 'ngx-quill';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ResourceComponent } from './resources/resource/resource.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -68,6 +69,7 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     FooterComponent,
     NarrativeIndexComponent,
     ResourcesComponent,
+    ResourceComponent,
     PathwayGridComponent,
     PathwayComponent,
     HomeHeaderComponent,

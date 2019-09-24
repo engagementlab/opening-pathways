@@ -1,0 +1,24 @@
+<section *ngIf="hasContent">
+
+    <div class="column columns is-multiline is-mobile is-centered no-margin" id="top">
+      <h2 class="outline pg-header column is-11" [attr.data-text]="content.name">
+        {{content.name}}
+  
+        <svg xmlns="http://www.w3.org/2000/svg" width="135" height="15" fill="none" viewBox="0 0 135 15" class="decor">
+          <path fill="url(#a)"
+            d="M135 0c0 8.278-6.722 15-15 15-15 0-11.222-11.222-26.222-11.222C78.778 3.778 82.5 15 67.5 15c-15 0-11.278-11.222-26.278-11.222C26.222 3.778 30 15 15 15 6.722 15 0 8.278 0 0h135z" />
+          <defs>
+            <linearGradient id="a" x2="70" y1="3.889" y2="3.889" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#c5c2bb" />
+              <stop offset="1" stop-color="#a895a2" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </h2>
+    </div>
+  
+    <div id="body">
+      <p [innerHtml]="content.body.html"></p>
+    </div>
+  
+  </section>

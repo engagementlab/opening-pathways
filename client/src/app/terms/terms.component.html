@@ -1,7 +1,7 @@
 <section *ngIf="hasContent">
 
         <div class="column columns is-multiline is-mobile is-centered no-margin">
-          <h2 class="outline pg-header column is-full" data-text="">
+          <h2 class="outline pg-header column is-full" [attr.data-text]="tos ? 'Terms of Service' : 'Privacy Policy'">
             <span *ngIf="tos; else privacy">Terms of Service</span>
             <ng-template #privacy>Privacy Policy</ng-template>
           </h2>

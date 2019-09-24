@@ -17,6 +17,7 @@ import { PathwayIndexComponent } from './pathways/index.component';
 import { PathwayStoryComponent } from './pathways/pathway/story/story.component';
 
 import { ResourcesComponent } from './resources/resources.component';
+import { ResourceComponent } from './resources/resource/resource.component';
 
 import { SubmitComponent } from './submit/submit.component';
 import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'resources',
     component: ResourcesComponent
+  },
+  {
+    path: 'resource/:key',
+    component: ResourceComponent
   },
   {
     path: 'submit',

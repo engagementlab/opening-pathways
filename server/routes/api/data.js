@@ -10,13 +10,13 @@
  */
 const keystone = global.keystone;
 
-var buildData = async (type, res) => {
+var buildData = async (type, key, res) => {
 
     let homeFields = type === 'home' ? 
         'introHeader introText quizHeader quizBlurb tagline -_id' : 
         'introHeaderPatient introTextPatient submitHeader submitBlurb taglinePatient -_id';
 
-    let resourceFields = 'name description category link -_id';
+    let resourceFields = 'name description category slug';
 
     let home = keystone.list('Home').model;
     let resource = keystone.list('Resource').model;
@@ -31,7 +31,11 @@ var buildData = async (type, res) => {
     }
     else if (type === 'resources') {
         // Get all resources and their category association
-        data = resource.find({}, resourceFields).populate('category', 'name order -_id');
+        data = resource.find({}, resourceFields + ' -_id').populate('category', 'key name order -_id');
+    }
+    else if (type === 'resource') {
+        // Get resource by key
+        data = resource.findOne({slug: key}, resourceFields + ' body.html -_id');
     }
     else if (type === 'privacy' || type === 'tos') {
         // Get tos/privacy
@@ -54,6 +58,6 @@ var buildData = async (type, res) => {
  */
 exports.get = function (req, res) {
 
-    return buildData(req.params.type, res);
+    return buildData(req.params.type, req.params.key, res);
 
 }
