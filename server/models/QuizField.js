@@ -42,7 +42,8 @@ QuizField.add({
 	type: { type: Types.Select, options: 'choice, text', required: true, initial: true },
     note: { type: Types.Markdown },
     required: { type: Boolean },
-    responses: { type: Types.TextArray, dependsOn: {type: 'choice'}, note: 'Add " []" to end of a response (w/ preceding space) to show a fill-in field.' }
+    responses: { type: Types.TextArray, dependsOn: {type: 'choice'}, note: 'Add " []" to end of a response (w/ preceding space) to show a fill-in field.' },
+    checkboxes: { type: Boolean, note: 'Allow more than one choice selected.', dependsOn: {type: 'choice'} }
     
 });
 

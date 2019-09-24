@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TimelineLite, Circ } from 'gsap';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
@@ -19,15 +19,21 @@ export class NavComponent implements OnInit, AfterViewInit {
   private tlClose: TimelineLite; 
 
   private opened: boolean;
+  private currentUrl: string;
 
   constructor(private _router: Router) {
 
     this.partnerSiteActive = environment.partner;
     this.qaSiteActive = environment.qa;
   
-    this._router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
+    _router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
       // Close menu when nav starts
       this.closeNav();
+    });
+
+    // Get nav route when nav ends
+    _router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(e => {
+      this.currentUrl = _router.url;
     });
   
    }
@@ -56,6 +62,13 @@ export class NavComponent implements OnInit, AfterViewInit {
     this.tlClose.to(menu, .4, {autoAlpha:0, display:'none', ease:Circ.easeOut});
     this.tlClose.fromTo(document.getElementById('menu-overlay'), .4, {autoAlpha:1, display:'block'}, {autoAlpha:0, display:'none'}, '+=.01');
     this.tlClose.set([nav, menuBtn], {className:'-=open'});
+
+  }
+
+  // Is passed route active?
+  itemActive(route: string) {
+
+    return '/'+route == this.currentUrl;
 
   }
 

@@ -2,65 +2,46 @@
 
   <div class="container desktop columns is-mobile">
 
-  <div class="column is-half-mobile is-8-tablet is-8-desktop">
-    <a routerLink="/" id="logo">
-      <cdn-image cloudinaryId="img/logo" svg="true" alt="Opening Pathways logo image"></cdn-image>
-    </a>
-  </div>
+    <div class="column is-half-mobile is-8-tablet is-8-desktop">
+      <a routerLink="/" id="logo">
+        <cdn-image cloudinaryId="img/logo" svg="true" alt="Opening Pathways logo image"></cdn-image>
+      </a>
+    </div>
 
-  <div id="menu-btn" class="column">
-    <a (click)="openCloseNav()">
-      <span>
-        <svg viewBox="0 0 14 14" width="14" height="14">
-          <g>
-            <line style="stroke: rgb(0, 0, 0); stroke-width: 1px;" x1="0" y1="0" x2="14" y2="14"></line>
-          </g>
-          <g transform="matrix(0, -1, 1, 0, 0, 14)">
-            <line style="stroke: rgb(0, 0, 0); stroke-width: 1px;" x1="0" y1="0" x2="14" y2="14"></line>
-          </g>
-        </svg>
-      </span>
-      menu</a>
+    <div id="menu-btn" class="column">
+      <a (click)="openCloseNav()">
+        <span>
+          <svg viewBox="0 0 14 14" width="14" height="14">
+            <g>
+              <line style="stroke: rgb(0, 0, 0); stroke-width: 1px;" x1="0" y1="0" x2="14" y2="14"></line>
+            </g>
+            <g transform="matrix(0, -1, 1, 0, 0, 14)">
+              <line style="stroke: rgb(0, 0, 0); stroke-width: 1px;" x1="0" y1="0" x2="14" y2="14"></line>
+            </g>
+          </svg>
+        </span>
+        menu</a>
+    </div>
   </div>
-</div>
 
   <section id="menu" class="container desktop columns column is-full is-mobile is-multiline">
 
-    <div id="sites" class="column is-full-mobile is-4-tablet is-half-desktop">
-
-      <span [class.active]="partnerSiteActive">
-        <a href="https://partner.openingpathways.org" *ngIf="!qaSiteActive">Partner Site</a>
-      </span>
-      <span [class.active]="!partnerSiteActive">
-        <a href="https://patient.openingpathways.org" *ngIf="!qaSiteActive">Patient Site</a>
-      </span>
-      <span [class.active]="partnerSiteActive">
-        <a href="https://qa.partner.openingpathways.org" *ngIf="qaSiteActive">Partner Site (QA)</a>
-      </span>
-      <span [class.active]="!partnerSiteActive">
-        <a href="https://qa.patient.openingpathways.org" *ngIf="qaSiteActive">Patient Site (QA)</a>
-      </span>
-
-      <h4 class="hidden-mobile"><a href="https://openingpathways.org">openingpathways.org</a></h4>
-
-    </div>
-
-    <div class="column is-full-mobile">
+    <div class="column is-full-mobile is-half-tablet is-offset-half-tablet">
       <!-- PARTNER SITE NAV -->
       <ol *ngIf="partnerSiteActive">
-        <a routerLink="/narratives">
+        <a routerLink="/narratives" [class.active]="itemActive('narratives')">
           <li>
             <span>&nbsp;-</span>
             Partner Narratives
           </li>
         </a>
-        <a routerLink="/submit">
+        <a routerLink="/submit" [class.active]="itemActive('submit')">
           <li>
             <span>&nbsp;-</span>
             Submit your narrative
           </li>
         </a>
-        <a routerLink="/resources">
+        <a routerLink="/resources" [class.active]="itemActive('resources')">
           <li>
             <span>&nbsp;-</span>
             Resources
@@ -69,21 +50,19 @@
       </ol>
       <!-- PATIENT SITE NAV -->
       <ol *ngIf="!partnerSiteActive">
-        <a routerLink="/submit">
+        <a routerLink="/submit" [class.active]="itemActive('submit')">
           <li>
             <span>&nbsp;-</span>
             Submit Your Story
           </li>
         </a>
-        <li>
-          <span>&nbsp;-</span>
-          See All Pathways
-        </li>
+        <a routerLink="/pathways" [class.active]="itemActive('pathways')">
+          <li>
+            <span>&nbsp;-</span>
+            See All Pathways
+          </li>
+        </a>
       </ol>
-    </div>
-
-    <div class="column is-full-mobile hidden-tablet-plus">
-      <h4><a href="https://openingpathways.org">openingpathways.org</a></h4>
     </div>
 
   </section>

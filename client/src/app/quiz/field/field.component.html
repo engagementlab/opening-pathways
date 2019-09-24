@@ -12,9 +12,9 @@
     <li class="option" *ngFor="let response of data.responsesObj; let i = index;">
 
       <label class="radio" for="{{formCtrlName}}_{{i}}">
-        <input id="{{formCtrlName}}_{{i}}" value="{{i}}" [formControlName]="formCtrlName" type="radio" />
+        <input id="{{formCtrlName}}_{{i}}" value="{{i}}" [formControlName]="formCtrlName" [attr.type]="data.checkboxes ? 'checkbox' : 'radio'" />
 
-        <span class="ctrl"></span>
+        <span class="ctrl" [class.radio]="!data.checkboxes"></span>
         <span class="txt">
           <span class="choice">{{response.txt}}</span>
           <input id="{{formCtrlName}}_{{i}}_txt" class="txt" type="text"

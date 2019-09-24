@@ -115,6 +115,30 @@ textarea {
           }
         }
       }
+      
+      input[type=checkbox] {
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        margin: 0;
+
+        &:checked {
+          &~.ctrl {
+            background-color: $windows-blue;
+
+            &:after {
+              @include scale(1);
+            }
+          }
+
+          &~.txt {
+            input {
+              border-color: $windows-blue;
+            }
+          }
+        }
+      } 
 
       .ctrl {
 
@@ -130,7 +154,6 @@ textarea {
         min-width: 35px;
 
         border: solid 1px $very-light-pink;
-        border-radius: 50px;
 
         margin-right: 5%;
 
@@ -140,13 +163,20 @@ textarea {
 
           display: block;
           background: white;
-          border-radius: 50px;
           width: 15px;
           height: 15px;
 
           @include scale(0);
           @include transition(transform, .1s, ease-out);
 
+        }
+
+        &.radio {
+          border-radius: 50px;
+
+          &:after {
+            border-radius: 50px;
+          }
         }
       }
 

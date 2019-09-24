@@ -68,34 +68,6 @@ nav {
     height: 100%;
   }
 
-  #sites {
-    display: flex;
-    justify-content: space-around;
-
-    @include not-phones {
-      flex-direction: column;
-    }
-
-    span {
-      @include pxtoem(18, 24);
-
-      @include not-phones {
-        display: block;
-      }
-
-      a {
-        color: $burnt-yellow;
-      }
-
-      &.active a {
-        color: black;
-        text-decoration: line-through;
-        text-decoration-color: $burnt-yellow;
-
-      }
-    }
-  }
-
   h4 {
     @include pxtoem(12, 24);
 
@@ -112,6 +84,19 @@ nav {
 
     list-style: none;
     counter-reset: nav-ct;
+
+    a {
+      &.active {
+        cursor: default;
+        
+        &:hover {
+          text-decoration: none;
+        }
+        li {
+          opacity: .4;
+        }
+      }
+    }
 
     li {
       counter-increment: nav-ct;
