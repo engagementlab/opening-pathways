@@ -3,7 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from 'src/app/utils/data.service';
 
+import { TweenLite } from 'gsap';
+
 import * as printJS from 'print-js';
+import * as ClipboardJS from 'clipboard';
 
 @Component({
   selector: 'app-results',
@@ -14,6 +17,7 @@ export class QuizResultsComponent implements OnInit {
 
   public content: any;
   public hasContent: boolean;
+  public url: string;
 
   constructor(private _dataSvc: DataService, private _route: ActivatedRoute) { }
   
@@ -34,16 +38,26 @@ export class QuizResultsComponent implements OnInit {
     
             this.content = res.responses;
             this.hasContent = true;
-            
+
+            this.url = window.location.href;
+
             });
 
         });
 
       }
+
+      let urlTxt = new ClipboardJS('#url');
+      urlTxt.on('success', function(e) {
+        TweenLite.fromTo('#url', 1.5, {autoAlpha:0}, {autoAlpha:1});
+        e.clearSelection();
+      });
+  
   }
 
   public printResults() {
 
+    // Generate printable page
     printJS({
       printable: 'results',
       type: 'html',
@@ -56,6 +70,5 @@ export class QuizResultsComponent implements OnInit {
     });
 
   }
-
 
 }

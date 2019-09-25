@@ -27,8 +27,10 @@
       <div id="btn" class="column is-full center-content">
         <app-button label="print" clickData="true" (clickEvent)="printResults()"></app-button>
       </div>
-      <p>Save this unique URL to return to your results at any time.</p>
-
+      <div class="column is-full center gang">
+        <a id="url" [attr.data-clipboard-text]="url">Copy your unique URL</a> to return to your results at any time.
+      </div>
+      
       <div class="result column is-full" *ngFor="let prompt of content;">
 
         <div class="page" *ngIf="prompt.pageName">{{prompt.pageName}}</div>
