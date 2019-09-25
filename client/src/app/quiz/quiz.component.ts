@@ -88,6 +88,7 @@ export class QuizComponent implements OnInit {
       Object.keys(this.quizForm.controls).forEach(index => {
 
         let ctrl = this.quizForm.get(index);
+        // TODO: needed?
         // Watch all control changes for checkboxes
 /*         if(ctrl['controls']) {
           ctrl.valueChanges.subscribe(boxes => {
@@ -187,15 +188,25 @@ export class QuizComponent implements OnInit {
         
           // Cached val is an array
           this.quizPromptsResponses[key].value = [];
-        
-          // Cache all selected checkbox txt
-          val.filter(r => r === true).forEach((r, i) => {
 
-            elQuery = 'label[for="'+ id + '_' + i +'"]';
-            let resContent = document.querySelector(elQuery + ' .choice').textContent;
+          // Cache all selected checkbox txt
+          val.forEach((r, i) => {
+
+            // Only selected ones
+            if(!r) return;
+
+            let query = 'label[for="'+ id + '_' + i +'"]';
+            let selector = document.querySelector(query + ' .choice');
             
             // Add response content
-            this.quizPromptsResponses[key].value.push(resContent)
+            let response = selector.textContent;
+
+            // Append fill in response, if any found and not empty
+            let fillInField = selector.parentNode.querySelector('input[type="text"]') as HTMLInputElement;
+            if(fillInField && fillInField.value.length > 0)
+              response = '<i>(' + response + ')</i> ' + fillInField.value;
+
+            this.quizPromptsResponses[key].value.push(response);
         
           });
 
@@ -233,8 +244,6 @@ export class QuizComponent implements OnInit {
       }
     
     });
-
-    console.log(this.quizPromptsResponses)
 
   }
 

@@ -5,6 +5,9 @@ export class Drawing {
 
     constructor() { }
 
+    /* 
+      Draw pathway slider SVG lines
+    */
     public pathways(index) {
         
       let stage = document.querySelectorAll('.pathway .owl-stage')[index];
@@ -43,6 +46,7 @@ export class Drawing {
       });
     }
 
+    // Generate and shuffle color indices
     public shapeColors(length: Number) {
 
         let colorIndices = [];

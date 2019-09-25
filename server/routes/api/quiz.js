@@ -48,10 +48,18 @@ exports.get = function (req, res) {
  */
 exports.save = function (req, res) {
 
+
     const QuizResult = keystone.list('QuizResult').model,
-    // Result key is small hash
-    randomstring = require("randomstring"),
-    data = {
+          // Result key is small hash
+          randomstring = require("randomstring");
+    
+    // Replace commas w/ no spaces, from checked answers
+    _l.each(req.body, response => {
+        if(_l.isArray(response.value))
+            response.value = response.value.join(', ')
+    });
+
+    const data = {
         responses: req.body,
         submitDate: Date.now(),
         key: randomstring.generate({length: 5, charset: 'alphanumeric'})
