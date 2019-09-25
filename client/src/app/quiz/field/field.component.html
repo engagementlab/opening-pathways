@@ -8,20 +8,30 @@
 <div class="responses" id="responses_{{formCtrlName}}" [formGroup]="parentForm" *ngIf="data.responsesObj.length > 0">
 
   <ul>
-
     <li class="option" *ngFor="let response of data.responsesObj; let i = index;">
 
       <label class="radio" for="{{formCtrlName}}_{{i}}">
-        <input id="{{formCtrlName}}_{{i}}" value="{{i}}" [formControlName]="formCtrlName" [attr.type]="data.checkboxes ? 'checkbox' : 'radio'" />
-
-        <span class="ctrl" [class.radio]="!data.checkboxes"></span>
+        
+        <!-- Radio -->
+        <input *ngIf="!data.checkboxes" id="{{formCtrlName}}_{{i}}" value="{{i}}" [formControlName]="formCtrlName" type="radio" />
+        
+        <!-- Checkbox -->
+        <span class="box" formArrayName="{{formCtrlName}}" *ngIf="data.checkboxes">
+          <input *ngIf="data.checkboxes" id="{{formCtrlName}}_{{i}}" name="{{formCtrlName}}_{{i}}" value="{{i}}" [formControlName]="i" type="checkbox" />
+          <span class="ctrl"></span>
+        </span>
+        
+        <span class="ctrl radio" *ngIf="!data.checkboxes"></span>
+        
         <span class="txt">
           <span class="choice">{{response.txt}}</span>
           <input id="{{formCtrlName}}_{{i}}_txt" class="txt" type="text"
-            [formControlName]="formCtrlNameText + i + '_txt'" *ngIf="response.field" />
-          <div [id]="'error_' + formCtrlName + '_' + i + '_txt'" class="error" *ngIf="response.field">Please fill field.
-          </div>
+          [formControlName]="formCtrlNameText + i + '_txt'" *ngIf="response.field" />
+          
+          <!-- Error for field fill -->
+          <div [id]="'error_' + formCtrlName + '_' + i + '_txt'" class="error" *ngIf="response.field">Please fill field.</div>
         </span>
+        
       </label>
 
     </li>

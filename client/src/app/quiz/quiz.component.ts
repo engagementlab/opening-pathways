@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 
 import { DataService } from '../utils/data.service';
 
@@ -54,15 +54,31 @@ export class QuizComponent implements OnInit {
           let validators = resp.required ? [null, [Validators.required]] : [null];
 
           if (resp.type === 'choice') {
-            fields[p + '_' + i] = validators;
-
+            
+            // Array for checkboxes, if any
+            let chkGroup = [];
+            
+            
             // No validators for text fields
-            _.each(resp.responsesObj, (txt, fi) => {
-              fields[p + '_' + i + '_' + fi + '_txt'] = [null];
+            _.each(resp.responsesObj, (res, fi) => {
+              
+              if(res.field)
+                fields[p + '_' + i + '_' + fi + '_txt'] = [null];
+              if(resp.checkboxes)
+                chkGroup.push(new FormControl(false));
             });
-          } else {
-            fields[p + '_' + i] = validators;
+            
+            // Make array of any checkboxes
+            if(resp.checkboxes)
+              fields[p + '_' + i] = new FormArray(chkGroup);
+            else {
+
+              fields[p + '_' + i] = validators;
+            }
+
           }
+          else
+            fields[p + '_' + i] = validators;        
 
         });
       });
@@ -71,8 +87,36 @@ export class QuizComponent implements OnInit {
 
       Object.keys(this.quizForm.controls).forEach(index => {
 
-        // Watch all control changes
-        this.quizForm.get(index).valueChanges.subscribe(prompt => {
+        let ctrl = this.quizForm.get(index);
+        // Watch all control changes for checkboxes
+/*         if(ctrl['controls']) {
+          ctrl.valueChanges.subscribe(boxes => {
+            
+          // Clear all txt field validators first
+          let txtFields = document.querySelectorAll('#responses_' + index + ' .txt')
+          _.each(txtFields, (e, i) => {
+            const txtCtrl = this.quizForm.get(e.id);
+
+            if (txtCtrl && txtCtrl.validator) {
+              document.getElementById('error_' + e.id).style.display = 'none';
+              txtCtrl.setValidators(null);
+              txtCtrl.updateValueAndValidity();
+            }
+
+          });
+
+          // Now add validator to text entry if corresponding option picked
+          if (document.getElementById(index + '_' + prompt + '_txt')) {
+            const txtCtrl = this.quizForm.get(index + '_' + prompt + '_txt');
+            txtCtrl.setValidators([Validators.required, Validators.minLength(2)]);
+            txtCtrl.updateValueAndValidity();
+          }
+          });
+        } */
+
+        if(ctrl['controls']) return;
+        // Watch all control changes for non-arrays (checkboxes)
+        ctrl.valueChanges.subscribe(prompt => {
 
           // Clear all txt field validators first
           let txtFields = document.querySelectorAll('#responses_' + index + ' .txt')
@@ -129,6 +173,71 @@ export class QuizComponent implements OnInit {
 
   }
 
+  private recordResponses() {
+
+    _.each(this.quizForm.value, (val, id) => {
+      
+      if(val !== null) {
+
+        let key = id.substring(0, 3);
+        let elQuery = 'label[for="'+ id + '_' + val +'"]';
+
+        // If value is array, get all selected checkboxes and cache response strings
+        if(_.isArray(val)) {
+        
+          // Cached val is an array
+          this.quizPromptsResponses[key].value = [];
+        
+          // Cache all selected checkbox txt
+          val.filter(r => r === true).forEach((r, i) => {
+
+            elQuery = 'label[for="'+ id + '_' + i +'"]';
+            let resContent = document.querySelector(elQuery + ' .choice').textContent;
+            
+            // Add response content
+            this.quizPromptsResponses[key].value.push(resContent)
+        
+          });
+
+        }
+        else {
+
+          // Check for multiple choice response, and if null query potential text area entry
+          let resContent = document.querySelector(elQuery + ' .choice');
+          if(!resContent)
+            resContent = document.querySelector('textarea[id="' + id + '_0"]');
+
+          if(resContent) {
+
+            let response = resContent.textContent || val;
+      
+            // Append fill in response, if any found
+            let fillInField = resContent.parentNode.querySelector('input[type="text"]') as HTMLInputElement;
+            if(fillInField)
+              response = '<i>(' + response + ')</i> ' + fillInField.value;
+
+            if(this.quizPromptsResponses[key])
+              this.quizPromptsResponses[key].value = response;
+          
+          }
+          else {
+
+            if(document.getElementById(id + '_0')) {
+              let response = document.getElementById(id + '_0').textContent;
+              this.quizPromptsResponses[key].value = response;
+            }
+
+          }
+
+        }
+      }
+    
+    });
+
+    console.log(this.quizPromptsResponses)
+
+  }
+
   public getPage(pg: Number) {
 
     return this.quizPages[pg + ''];
@@ -136,6 +245,8 @@ export class QuizComponent implements OnInit {
   }
 
   public nextPage() {
+    
+    this.recordResponses();
 
     let pageFinished = this.formCheck();
     if (!pageFinished) return;
@@ -157,42 +268,7 @@ export class QuizComponent implements OnInit {
 
   public submitQuiz() {
     
-    _.each(this.quizForm.value, (val, id) => {
-      
-      if(val !== null) {
-
-        let key = id.substring(0, 3);
-        let elQuery = 'label[for="'+ id + '_' + val +'"]';
-
-        // Check for multiple choice response, and if null query potential text area entry
-        let resContent = document.querySelector(elQuery + ' .choice');
-        if(!resContent)
-          resContent = document.querySelector('textarea[id="' + id + '_0"]');
-
-        if(resContent) {
-
-          let response = resContent.textContent || val;
-     
-          // Append fill in response, if any found
-          let fillInField = resContent.parentNode.querySelector('input[type="text"]') as HTMLInputElement;
-          if(fillInField)
-            response = '<i>(' + response + ')</i> ' + fillInField.value;
-
-          if(this.quizPromptsResponses[key])
-            this.quizPromptsResponses[key].value = response;
-        
-        }
-        else {
-
-          if(document.getElementById(id + '_0')) {
-            let response = document.getElementById(id + '_0').textContent;
-            this.quizPromptsResponses[key].value = response;
-          }
-
-        }
-      }
-    
-    });
+    this.recordResponses();
 
     let pageFinished = this.formCheck();
     if (!pageFinished) return;
