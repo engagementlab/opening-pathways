@@ -51,4 +51,6 @@ router.get('/api/pathway/all', routeIncludes, routes.api.pathway.all);
 router.get('/api/pathway/limit/:limit', routeIncludes, routes.api.pathway.limit);
 router.get('/api/pathway/get/:id', routeIncludes, routes.api.pathway.get);
 
+router.get('/api/text/get/:ids', routeIncludes, routes.api.text.get);
+
 module.exports = router;

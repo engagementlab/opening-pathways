@@ -21,7 +21,8 @@ import {
   styleUrls: ['./submit.component.scss']
 })
 export class SubmitComponent implements OnInit {
-
+  
+  public hasContent: boolean;
   public submitted: boolean;
   public success: boolean;
   public bodyError: boolean;
@@ -30,6 +31,7 @@ export class SubmitComponent implements OnInit {
 
   public responseForm: FormGroup;
 
+  public textContent: string[];
   private formBody: string;
 
   constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder) {}
@@ -40,6 +42,13 @@ export class SubmitComponent implements OnInit {
       'email': ['', [Validators.required, Validators.email]],
       'name': ['', Validators.required],
       'title': ['', Validators.required]
+    });
+
+    this._dataSvc.getDataForUrl('/api/text/get/submit-narrative,submit-narrative-thanks').subscribe((response) => {
+  
+      this.textContent = response;
+      this.hasContent = true;
+      
     });
 
   }

@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="hasContent">
 
   <div id="top" class="column columns is-multiline is-mobile is-centered no-margin">
     <h2 class="outline pg-header column is-full" [attr.data-text]="success ? 'Thanks' : 'Submit your narrative'">
@@ -19,9 +19,12 @@
     <h5 class="gang column is-full" *ngIf="success">We’ve received your narrative.</h5>
 
     <div class="column is-12-mobile is-10-tablet is-7-desktop no-pad" *ngIf="success">
-      <p class="lg">
-        We will review it as soon as we can. <br /> In the meantime, check out some other narratives.
+      <p class="lg" [innerHtml]="textContent[1].text.html">
+        
       </p>
+    </div>
+    <div class="column is-12-mobile is-10-tablet is-7-desktop no-pad" *ngIf="!success">
+      <p class="lg" [innerHtml]="textContent[0].text.html"></p>
     </div>
 
     <div class="column is-full" *ngIf="success">

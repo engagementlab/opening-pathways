@@ -20,10 +20,10 @@ export class NarrativeComponent implements OnInit {
 
       this._dataSvc.getDataForUrl('/api/narrative/get/' + p['id']).subscribe((response) => {
         
-      this.narrative = response;
-      this.hasContent = true;
-      
-    });
+          this.narrative = response;
+          this.hasContent = true;
+          
+      });
     
   });
   }
