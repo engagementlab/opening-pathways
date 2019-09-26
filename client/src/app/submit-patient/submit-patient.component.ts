@@ -15,6 +15,7 @@ export class SubmitPatientComponent implements OnInit {
   
   public hasContent: boolean;
   public submitted: boolean;
+  public submitError: boolean;
   public success: boolean;
   public formError: boolean;
 
@@ -35,7 +36,10 @@ export class SubmitPatientComponent implements OnInit {
       this.fields = response;
       response.forEach((resp, i) => {
 
+        // Assign required validators if specified via field mapping from CMS
         let validators = resp.required ? [null, [Validators.required]] : [null];
+        // Field keys = response object keys
+        // e.g. StoryField model w/ 'pathway' mapping adds required validator to 'pathway' story field
         fields[resp['mapping']] = validators;
 
       });
@@ -53,6 +57,7 @@ export class SubmitPatientComponent implements OnInit {
     let pageFields = _.pick(this.responseForm.value, (v, key) => {
       return this.responseForm.get(key).status === 'INVALID';
     });
+    // Valid if all fields not INVALID
     let formFinished = _.every(pageFields, (v) => {
       return v !== null &&  v.length > 0;
     });
@@ -80,12 +85,20 @@ export class SubmitPatientComponent implements OnInit {
     if (!finished) return;
 
     let body = this.responseForm.value;
+    
+    // Append static fields values
     body['name.first'] = this.responseForm.get('firstName').value;
     body['name.last'] = this.responseForm.get('lastName').value;
     
     // Send form data
-    this._dataSvc.sendDataToUrl('/api/story/create', this.responseForm.value).subscribe(response => { 
+    this._dataSvc.sendDataToUrl('/api/story/create', this.responseForm.value)
+    .subscribe(response => {
+      // Submit success
+      // Show thanks and bump to top
       this.success = true;
+      window.scrollTo(0, 0);
+    }, e => {
+      this.submitError = true;
     });
 
   }

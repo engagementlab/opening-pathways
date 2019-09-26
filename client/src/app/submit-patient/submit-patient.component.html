@@ -76,6 +76,10 @@
         </button>
       </div>
 
+      <div class="column is-full center-content" *ngIf="submitError">
+        <p>Sorry, there was an error while submitting your story.<br />Please try again.</p>
+      </div>
+
     </div>
   </form>
 

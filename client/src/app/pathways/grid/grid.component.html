@@ -14,11 +14,11 @@
 
     <div id="svg-bg"></div>
 
-    <div id="{{ind}}" class="name column is-half-mobile is-4-tablet no-pad"
-      *ngFor="let story of names; let odd = odd; let i = index;">
+    <div id="{{ind}}" class="name column is-half-mobile is-4-tablet no-pad" 
+    *ngFor="let story of names; let odd = odd; let i = index;">
       
-      <div class="href">
-        <a routerLink="/pathway/{{pathway}}/story/{{story.slug}}">
+      <div class="href" [class.current]="story.current">
+        <a routerLink="/pathway/{{pathway}}/story/{{story.slug}}" *ngIf="!story.current">
           <div class="bg" [class.odd]="odd" [class.left]="i%3===0" [class.right]="i%3===2">
             <grid-icon [index]="i" [color]="nameIndices[i]"></grid-icon>
           </div>
@@ -27,6 +27,15 @@
             {{story.name.first}} {{story.name.last}}
           </span>
         </a>
+        <div *ngIf="story.current">
+            <div class="bg" [class.odd]="odd" [class.left]="i%3===0" [class.right]="i%3===2">
+                <grid-icon [index]="i" [color]="nameIndices[i]"></grid-icon>
+              </div>
+    
+              <div>
+                {{story.name.first}} {{story.name.last}}
+              </div>
+        </div>
       </div>
     </div>
 

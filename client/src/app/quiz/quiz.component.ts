@@ -58,23 +58,23 @@ export class QuizComponent implements OnInit {
             // Array for checkboxes, if any
             let chkGroup = [];
             
-            
-            // No validators for text fields
+            // No validators for text fields, just need to be in form group
             _.each(resp.responsesObj, (res, fi) => {
               
               if(res.field)
                 fields[p + '_' + i + '_' + fi + '_txt'] = [null];
+              
+              // Checkboxes are their own control
               if(resp.checkboxes)
                 chkGroup.push(new FormControl(false));
+
             });
             
             // Make array of any checkboxes
             if(resp.checkboxes)
               fields[p + '_' + i] = new FormArray(chkGroup);
-            else {
-
+            else
               fields[p + '_' + i] = validators;
-            }
 
           }
           else
@@ -88,35 +88,9 @@ export class QuizComponent implements OnInit {
       Object.keys(this.quizForm.controls).forEach(index => {
 
         let ctrl = this.quizForm.get(index);
-        // TODO: needed?
-        // Watch all control changes for checkboxes
-/*         if(ctrl['controls']) {
-          ctrl.valueChanges.subscribe(boxes => {
-            
-          // Clear all txt field validators first
-          let txtFields = document.querySelectorAll('#responses_' + index + ' .txt')
-          _.each(txtFields, (e, i) => {
-            const txtCtrl = this.quizForm.get(e.id);
-
-            if (txtCtrl && txtCtrl.validator) {
-              document.getElementById('error_' + e.id).style.display = 'none';
-              txtCtrl.setValidators(null);
-              txtCtrl.updateValueAndValidity();
-            }
-
-          });
-
-          // Now add validator to text entry if corresponding option picked
-          if (document.getElementById(index + '_' + prompt + '_txt')) {
-            const txtCtrl = this.quizForm.get(index + '_' + prompt + '_txt');
-            txtCtrl.setValidators([Validators.required, Validators.minLength(2)]);
-            txtCtrl.updateValueAndValidity();
-          }
-          });
-        } */
 
         if(ctrl['controls']) return;
-        // Watch all control changes for non-arrays (checkboxes)
+        // Watch all control changes for non-arrays (not checkboxes)
         ctrl.valueChanges.subscribe(prompt => {
 
           // Clear all txt field validators first

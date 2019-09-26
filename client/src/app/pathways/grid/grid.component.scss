@@ -8,7 +8,7 @@ section {
   }
 
   &.overlay {
-    position: fixed;
+    position: absolute;
     display: none;
 
     opacity: 0;
@@ -21,7 +21,6 @@ section {
     background-color: rgba(255, 255, 255, 0.95);
 
     z-index: 10;
-    padding-top: 15%;
   }
 }
 
@@ -142,6 +141,25 @@ section {
 
       &::after {
         @include scale(1.2);
+      }
+    }
+  }
+
+  &.current {
+    cursor: default;
+    div {
+      color: $very-light-pink;
+      text-align: center;
+    }
+    .bg {
+      background-color: rgba(244, 204, 199, 0.2);
+
+      grid-icon {
+        @include rotate(360);
+      }
+
+      &::after {
+        @include scale(1.6);
       }
     }
   }

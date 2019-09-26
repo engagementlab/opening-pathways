@@ -53,7 +53,10 @@ export class PathwayStoryComponent implements OnInit {
         this.prev = prevStory;
         this.next = nextStory;
 
-        this.stories = response.all.stories;
+        let currentStory = Object.assign(response.story, {current: true});
+        
+        response.all.stories.push(currentStory);
+        this.stories = _.sortBy(response.all.stories, (s) => { return s.submitDate; });
 
         this.hasContent = true;
 

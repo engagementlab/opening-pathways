@@ -112,7 +112,7 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
 
     if(ismobile.phone) return;
 
-    function drawVerts(side) {
+    function drawVerts(side, stage) {
 
       // Draw line from each name element to sibling below, if there is one
       side.forEach((nameEl, i) => {
@@ -124,14 +124,14 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
         let y = (nameEl.getBoundingClientRect()['y'] - parentY) + offset;
         let endY = bottomColRect['y'] - parentY;
         
-        let hLine = this.svgStage.line(x, y, x, endY);
+        let hLine = stage.line(x, y, x, endY);
         hLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
         
       });
 
     }
     
-    function drawDiagonal(side) {
+    function drawDiagonal(side, stage) {
       
       side.forEach((element, i) => {
         // Get middle column element at next row, if exists
@@ -145,7 +145,7 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
       let endY = (midColRect['y'] - parentY) + offset ;
       
       // Now draw diagonal line to sibling below and to side, if there is one
-      let hLine = this.svgStage.line(x, y, endX, endY);
+      let hLine = stage.line(x, y, endX, endY);
       hLine.stroke({ color: '#ddd', width: 1, linecap: 'round' });
 
       });
@@ -157,9 +157,9 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
       let rect = element.getBoundingClientRect();
       let leftColRect = leftCols[i].getBoundingClientRect();
       
-      let x = (rect['x'] - parentX) + offset ;
+      let x = (rect['x'] - parentX) + offset;
       let y = (rect['y'] - parentY) + offset;
-
+      
       let endXLeft = (leftColRect['x'] - parentX) + offset ;
       
       let leftLine = this.svgStage.line(x, y, endXLeft, y);
@@ -175,24 +175,28 @@ export class PathwayGridComponent implements OnInit, AfterViewInit {
       
 
     });
-    
-    drawVerts(leftCols);
-    drawVerts(midCols);
-    drawVerts(rightCols);
 
-    drawDiagonal(leftCols);
-    drawDiagonal(rightCols);
+    drawVerts(leftCols, this.svgStage);
+    drawVerts(midCols, this.svgStage);
+    drawVerts(rightCols, this.svgStage);
+
+    drawDiagonal(leftCols, this.svgStage);
+    drawDiagonal(rightCols, this.svgStage);
 
   }
 
-  overlayShow() {
+  public overlayShow() {
 
-    TweenLite.to(document.getElementById('grid-overlay'), .7, {opacity: 1, display: 'block'});
-
+    let overlay = document.getElementById('grid-overlay');
+    overlay.style.display = 'block';
+    
     // Re-draw lines now that grid shows
     this.drawLines();
 
+    TweenLite.to(overlay, .7, {opacity: 1});
+
   }
+
   public overlayHide() {
 
     TweenLite.to(document.getElementById('grid-overlay'), .7, {opacity: 0, display: 'none'});
