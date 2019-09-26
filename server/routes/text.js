@@ -2,14 +2,14 @@
 /**
  * Developed by Engagement Lab, 2019
  * ==============
- * Utility to retrieve text snippets
+ * Utility to retrieve text snippets by list of slugs
  * @class api
  * @author Johnny Richardson
  *
  * ==========
  */
 const keystone = global.keystone,
-                 TextSnippet = keystone.list('TextSnippet');;
+                 TextSnippet = keystone.list('TextSnippet');
 
 
 exports.get = async (textKeys) => {

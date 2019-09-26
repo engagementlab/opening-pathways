@@ -2,7 +2,7 @@
 /**
  * Developed by Engagement Lab, 2019
  * ==============
- * Route to retrieve all data
+ * Route to retrieve text snippets by slug IDS 
  * @class api
  * @author Johnny Richardson
  *
