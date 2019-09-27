@@ -33,3 +33,16 @@
   }
 
 }
+
+#arrows {
+
+  display: flex;
+  justify-content: space-between;
+
+  .arrow {
+    
+    @include arrow-btn();
+    margin-bottom: 10%;
+    
+  }
+}

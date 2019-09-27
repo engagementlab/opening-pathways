@@ -15,20 +15,26 @@ var getAdjacent = async (results, res) => {
 
 	// Get one next/prev narrative from selected one's submit date
 	let fields = 'slug -_id';
-	let next = Narrative.model.findOne({accepted: true, published: true, sortOrder: {
+	let next = Narrative.model.findOne({published: true, submitDate: {
 		$gt: results.submitDate
-	}}, fields).limit(1);
-	let prev = Narrative.model.findOne({accepted: true, published: true, sortOrder: {
+	}}, fields);
+	let prev = Narrative.model.findOne({published: true, submitDate: {
 		$lt: results.submitDate
-	}}, fields).sort({sortOrder: -1}).limit(1);
+	}}, fields).sort({submitDate: -1});
 
 	try {
 		
 		let nextExec = await next.lean().exec();
 		let prevExec = await prev.lean().exec();
+		let nextSlug = null;
+		let prevSlug = null;
 
-		let output = {narrative: results, next: nextExec, prev: prevExec};
-		console.log(output)
+		if(nextExec)
+			nextSlug = nextExec.slug;
+		if(prevExec)
+			prevSlug = prevExec.slug;
+
+		let output = {narrative: results, next: nextSlug, prev: prevSlug};
 		res.json(output);
 
 	} catch (e) {

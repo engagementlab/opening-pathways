@@ -11,6 +11,8 @@ export class NarrativeComponent implements OnInit {
  
   public hasContent: boolean;
   public narrative: any;
+  public slugNext: any;
+  public slugPrev: any;
 
   constructor(private _dataSvc: DataService, private _route: ActivatedRoute) { }
 
@@ -20,12 +22,17 @@ export class NarrativeComponent implements OnInit {
 
       this._dataSvc.getDataForUrl('/api/narrative/get/' + p['id']).subscribe((response) => {
         
-          this.narrative = response;
+          this.narrative = response.narrative;
+
+          this.slugNext = response.next;
+          this.slugPrev = response.prev;
+
           this.hasContent = true;
           
       });
     
-  });
+    });
+
   }
 
 }
