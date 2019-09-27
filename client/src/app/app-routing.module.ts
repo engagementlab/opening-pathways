@@ -25,6 +25,7 @@ import { SubmitPatientComponent } from './submit-patient/submit-patient.componen
 import { TermsComponent } from './terms/terms.component';
 
 import { QuizResultsComponent } from './quiz/results/results.component';
+import { PendingChangesGuard } from './utils/deactivate-guard';
 
 const routes: Routes = [
   {
@@ -57,7 +58,8 @@ const routes: Routes = [
   },
   {
     path: 'quiz/take',
-    component: QuizComponent
+    component: QuizComponent,
+    canDeactivate: [ PendingChangesGuard ]
   },
   {
     path: 'quiz/results/:key',
@@ -114,6 +116,7 @@ const mergedRoutes = environment.partner ? routes : routesPatient;
 
 @NgModule({
   imports: [RouterModule.forRoot(mergedRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [PendingChangesGuard]
 })
 export class AppRoutingModule { }
