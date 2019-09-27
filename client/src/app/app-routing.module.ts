@@ -26,6 +26,7 @@ import { TermsComponent } from './terms/terms.component';
 
 import { QuizResultsComponent } from './quiz/results/results.component';
 import { PendingChangesGuard } from './utils/deactivate-guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -74,6 +75,10 @@ const routes: Routes = [
     path: 'terms',
     component: TermsComponent,
     data: { tos: true }
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

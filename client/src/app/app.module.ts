@@ -35,6 +35,8 @@ import { ResourcesComponent } from './resources/resources.component';
 import { SubmitComponent } from './submit/submit.component';
 import { SubmitPatientComponent } from './submit-patient/submit-patient.component';
 import { TermsComponent } from './terms/terms.component';
+import { ResourceComponent } from './resources/resource/resource.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 // Cloudinary
 import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
@@ -44,7 +46,6 @@ import cloudinaryConfiguration from './cdn.config';
 // npm
 import { QuillModule } from 'ngx-quill';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { ResourceComponent } from './resources/resource/resource.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -53,31 +54,32 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
 
 @NgModule({
   declarations: [
-    CdnImageComponent,
-    SanitizeHtmlPipe,
     AppComponent,
     ButtonComponent,
-    SubmitComponent,
-    QuizComponent,
-    QuizResultsComponent,
-    QuizLandingComponent,
+    CdnImageComponent,
     FieldComponent,
+    FooterComponent,
+    GridIconComponent,
     HomeComponent,
+    HomeHeaderComponent,
     HomePatientComponent,
     NarrativeComponent,
-    NavComponent,
-    FooterComponent,
     NarrativeIndexComponent,
-    ResourcesComponent,
-    ResourceComponent,
-    PathwayGridComponent,
+    NavComponent,
+    NotFoundComponent,
     PathwayComponent,
-    HomeHeaderComponent,
-    GridIconComponent,
+    PathwayGridComponent,
+    PathwayIndexComponent,
     PathwayStoryComponent,
+    QuizComponent,
+    QuizLandingComponent,
+    QuizResultsComponent,
+    ResourceComponent,
+    ResourcesComponent,
+    SanitizeHtmlPipe,
+    SubmitComponent,
     SubmitPatientComponent,
-    TermsComponent,
-    PathwayIndexComponent
+    TermsComponent
   ],
   imports: [
     BrowserModule,
