@@ -145,7 +145,7 @@ exports.create = function(req, res) {
 exports.fields = async (req, res) => {
  
 	let StoryField = keystone.list('StoryField');
-	let data = StoryField.model.find({}, 'prompt note required order mapping -_id').sort({ order: 1 });
+	let data = StoryField.model.find({}, 'prompt note required order mapping halfSize -_id').sort({ order: 1 });
 
 	try {
 		let result = await data.lean().exec();

@@ -40,6 +40,6 @@
 </div>
 
 <div class="text" [formGroup]="parentForm" *ngIf="data.type === 'text'">
-  <textarea id="{{formCtrlName}}_0" rows="10" [formControlName]="formCtrlName"></textarea>
+  <textarea id="{{formCtrlName}}_0" [attr.rows]="data.halfSize ? 5 : 10" [formControlName]="formCtrlName"></textarea>
   <div [id]="'error_' + formCtrlName" class="error">Please fill field.</div>
 </div>
