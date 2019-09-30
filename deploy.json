@@ -29,6 +29,18 @@
       "env": {
         "NODE_ENV": "staging"
       }
+    },
+
+    "production" : {
+      "user": "node",
+      "host": "104.248.9.199",
+      "repo": "git@github.com:engagementlab/opening-pathways.git",
+      "ref": "origin/master",
+      "path": "/srv/opening-pathways",
+      "post-deploy" : "bash deploy.sh prod",
+      "env": {
+        "NODE_ENV": "staging"
+      }
     }
 
   }

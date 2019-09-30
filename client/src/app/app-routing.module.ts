@@ -114,6 +114,10 @@ const routesPatient: Routes = [
     path: 'terms',
     component: TermsComponent,
     data: { tos: true }
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
