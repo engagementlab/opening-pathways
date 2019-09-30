@@ -150,10 +150,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "opening-pathways:build:production"
+              "browserTarget": "opening-pathways:build:production-partner"
             },
             "qa": {
-              "browserTarget": "opening-pathways:build:qa"              
+              "browserTarget": "opening-pathways:build:qa-partner"              
             }
           }
         },
