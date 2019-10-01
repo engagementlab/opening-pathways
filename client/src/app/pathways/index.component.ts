@@ -15,6 +15,7 @@ export class PathwayIndexComponent implements OnInit {
 
   public pathways: any[];
   public hasContent: boolean;
+  public textContent: string[];
 
   public colorIndices: object = {};
 
@@ -46,10 +47,11 @@ export class PathwayIndexComponent implements OnInit {
   }
 
   ngOnInit() {
-
+      
     this._dataSvc.getDataForUrl('/api/pathway/all').subscribe((response) => {
-        
-      this.pathways = response;
+      
+      this.textContent = response.txt;
+      this.pathways = response.content;
 
       // Make randomized colors for pathway shape
       for(let p in this.pathways)

@@ -11,13 +11,17 @@ export class NarrativeIndexComponent implements OnInit {
   public hasContent: boolean;
   public narratives: any[];
 
+  public textContent: string[];
+
   constructor(private _dataSvc: DataService) { }
 
   ngOnInit() {
-
+    
     this._dataSvc.getDataForUrl('/api/narrative/get').subscribe((response) => {
       
-      this.narratives = response;
+      this.textContent = response.txt;
+      this.narratives = response.content;
+
       this.hasContent = true;
       
     });

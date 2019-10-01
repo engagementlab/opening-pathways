@@ -55,6 +55,15 @@ var buildData = async (res, id) => {
 
 	try {
 		let result = await data.lean().exec();
+
+        // Get index page text and append result
+        if(!id) {
+            const textUtil = require('../text');
+            let txtResult = await textUtil.get('resources-intro');
+
+            result = {content: result, txt: txtResult};
+		}
+		
 		res.json(result);
 	} catch (e) {
 		res.status(500).json({

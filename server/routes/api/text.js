@@ -16,6 +16,11 @@ const textUtil = require('../text');
 exports.get = async function (req, res) {
 
     let result = await textUtil.get(req.params.ids);
-    res.json(result);
+    if(result.length < 1) {
+        res.status(204).send();
+        return;
+    }
+    else
+        res.json(result);
 
 }

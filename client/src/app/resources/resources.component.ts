@@ -13,15 +13,17 @@ export class ResourcesComponent implements OnInit {
   public hasContent: boolean;
   public categories: string[];
   public resources: any[];
+  public textContent: string[];
 
   constructor(private _dataSvc: DataService) { }
 
   ngOnInit() {
-
+      
     this._dataSvc.getDataForUrl('/api/resource/all').subscribe((response) => {
       
-      this.categories = _.uniq(_.map(response, (r) => { return r.category.name; } ));
-      this.resources = _.groupBy(response, (r) => { return r.category.name; } );
+      this.textContent = response.txt;
+      this.categories = _.uniq(_.map(response.content, (r) => { return r.category.name; } ));
+      this.resources = _.groupBy(response.content, (r) => { return r.category.name; } );
 
       this.hasContent = true;
       

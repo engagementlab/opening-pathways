@@ -64,6 +64,15 @@ var buildData = async (res, id, featured) => {
 
 	try {
 		let result = await data.lean().exec();
+		
+		// Get index page text and append result
+        if(!id && !featured) {
+            const textUtil = require('../text');
+            let txtResult = await textUtil.get('narratives-intro');
+			
+            result = {content: result, txt: txtResult};
+		}
+
 		res.json(result);
 	} catch (e) {
 		res.status(500).json({

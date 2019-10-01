@@ -17,12 +17,17 @@ export class QuizResultsComponent implements OnInit {
 
   public content: any;
   public hasContent: boolean;
+  public textContent: string[];
   public url: string;
 
   constructor(private _dataSvc: DataService, private _route: ActivatedRoute) { }
   
   ngOnInit() {
-    
+
+    this._dataSvc.getDataForUrl('/api/text/get/quiz-results-intro').subscribe((response) => {
+
+      this.textContent = response
+
       // First checked for cached results, otherwise fetch by ID
       if(this._dataSvc.quizResults) {
     
@@ -52,6 +57,8 @@ export class QuizResultsComponent implements OnInit {
         TweenLite.fromTo('#url', 1.5, {autoAlpha:0}, {autoAlpha:1});
         e.clearSelection();
       });
+
+    });
   
   }
 
