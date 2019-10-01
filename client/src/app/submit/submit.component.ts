@@ -31,7 +31,7 @@ export class SubmitComponent implements OnInit {
 
   public responseForm: FormGroup;
 
-  public textContent: string[];
+  public textContent: any[];
   private formBody: string;
 
   constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder) {}

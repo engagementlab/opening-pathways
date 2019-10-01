@@ -17,7 +17,7 @@ export class QuizResultsComponent implements OnInit {
 
   public content: any;
   public hasContent: boolean;
-  public textContent: string[];
+  public textContent: any[];
   public url: string;
 
   constructor(private _dataSvc: DataService, private _route: ActivatedRoute) { }

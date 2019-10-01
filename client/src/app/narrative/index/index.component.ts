@@ -11,7 +11,7 @@ export class NarrativeIndexComponent implements OnInit {
   public hasContent: boolean;
   public narratives: any[];
 
-  public textContent: string[];
+  public textContent: any[];
 
   constructor(private _dataSvc: DataService) { }
 
@@ -19,8 +19,8 @@ export class NarrativeIndexComponent implements OnInit {
     
     this._dataSvc.getDataForUrl('/api/narrative/get').subscribe((response) => {
       
-      this.textContent = response.txt;
-      this.narratives = response.content;
+      this.textContent = response['txt'];
+      this.narratives = response['content'];
 
       this.hasContent = true;
       

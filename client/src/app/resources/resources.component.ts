@@ -13,7 +13,7 @@ export class ResourcesComponent implements OnInit {
   public hasContent: boolean;
   public categories: string[];
   public resources: any[];
-  public textContent: string[];
+  public textContent: any[];
 
   constructor(private _dataSvc: DataService) { }
 
@@ -21,7 +21,7 @@ export class ResourcesComponent implements OnInit {
       
     this._dataSvc.getDataForUrl('/api/resource/all').subscribe((response) => {
       
-      this.textContent = response.txt;
+      this.textContent = response['txt'];
       this.categories = _.uniq(_.map(response.content, (r) => { return r.category.name; } ));
       this.resources = _.groupBy(response.content, (r) => { return r.category.name; } );
 
