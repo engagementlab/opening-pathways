@@ -18,10 +18,10 @@ export class ResourcesComponent implements OnInit {
 
   ngOnInit() {
 
-    this._dataSvc.getDataForUrl('/api/data/get/resources').subscribe((response) => {
+    this._dataSvc.getDataForUrl('/api/resource/all').subscribe((response) => {
       
-      this.categories = _.uniq(_.map(response[0], (r) => { return r.category.name; } ));
-      this.resources = _.groupBy(response[0], (r) => { return r.category.name; } );
+      this.categories = _.uniq(_.map(response, (r) => { return r.category.name; } ));
+      this.resources = _.groupBy(response, (r) => { return r.category.name; } );
 
       this.hasContent = true;
       

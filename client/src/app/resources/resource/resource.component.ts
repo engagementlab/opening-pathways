@@ -11,6 +11,8 @@ export class ResourceComponent implements OnInit {
 
   public hasContent: boolean;
   public content: any;
+  public slugNext: string;
+  public slugPrev: string;
 
   constructor(private _dataSvc: DataService, private _route: ActivatedRoute) { }
 
@@ -18,9 +20,17 @@ export class ResourceComponent implements OnInit {
 
     this._route.params.subscribe((p) => {
 
-      this._dataSvc.getDataForUrl('/api/data/get/resource/' + p['key']).subscribe((response) => {
+      this._dataSvc.getDataForUrl('/api/resource/get/' + p['key']).subscribe((response) => {
         
-        this.content = response[0];
+        this.slugNext = null;
+        this.slugPrev = null;
+
+        if(response.next)
+          this.slugNext = response.next.slug;
+        if(response.prev)
+          this.slugPrev = response.prev.slug;
+
+        this.content = response.resource;
         this.hasContent = true;
       
       });
