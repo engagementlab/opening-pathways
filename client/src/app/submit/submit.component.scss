@@ -26,6 +26,16 @@
 
 }
 
+// Fix for app button width; inelegant but works fine
+#back {
+  app-button {
+    max-width: 182px;
+    @include phones {
+      max-width: 94px;
+    }
+  }
+}
+
 form p {
   @include pxtoem(18, 36);
 }
