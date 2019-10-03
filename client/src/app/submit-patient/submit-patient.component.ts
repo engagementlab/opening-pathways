@@ -58,11 +58,11 @@ export class SubmitPatientComponent extends FormCanDeactivate implements OnInit 
       this.responseForm = this._formBuilder.group(fields);
       this.hasContent = true;
 
-    });
+      // Can't leave once changes begin
+      this.responseForm.statusChanges.subscribe(o => {
+        this.canLeave = false;
+      });
 
-    // Can't leave once changes begin
-    this.responseForm.statusChanges.subscribe(o => {
-      this.canLeave = false;
     });
 
   }

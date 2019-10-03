@@ -20,7 +20,7 @@ var buildData = async (res, id, limit) => {
         data = Pathway.model.findOne({slug: id}, storyFields + ' description -_id').populate('stories', storyFields + ' -_id');
     else {
         // Get blurbs when getting all
-        if(!limit) storyFields += ' blurb';
+        storyFields += ' blurb';
         data = Pathway.model.find({}, storyFields + ' -_id').populate('stories', storyFields + ' -_id');
     }
 
