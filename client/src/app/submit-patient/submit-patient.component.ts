@@ -100,17 +100,17 @@ export class SubmitPatientComponent extends FormCanDeactivate implements OnInit 
     let finished = this.formCheck();
     if (!finished) return;
 
-    let body = this.responseForm.value;
-    
     // Append static fields values
-    body['name.first'] = this.responseForm.get('firstName').value;
-    body['name.last'] = this.responseForm.get('lastName').value;
+    let submitBody = {};
+    Object.assign(submitBody, this.responseForm.value);
+    submitBody['name.first'] = this.responseForm.get('firstName').value;
+    submitBody['name.last'] = this.responseForm.get('lastName').value;
 
     // Allow leave
     this.canLeave = true;
     
     // Send form data
-    this._dataSvc.sendDataToUrl('/api/story/create', this.responseForm.value)
+    this._dataSvc.sendDataToUrl('/api/story/create', submitBody)
     .subscribe(response => {
       // Submit success
       // Show thanks and bump to top

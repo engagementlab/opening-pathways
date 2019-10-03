@@ -10,8 +10,7 @@
  */
 const keystone = global.keystone,
 	  Story = keystone.list('Story'),
-	  Pathway = keystone.list('Pathway'),
-      _l = require('lodash') ;
+	  Pathway = keystone.list('Pathway');
 
 var getAdjacent = async (results, res, pathwayId) => {
 
@@ -132,8 +131,30 @@ exports.create = function(req, res) {
 				code: err.detail.code
 			});
 		
-		res.apiResponse({
-			result: item
+			console.log(item)
+
+		let mailgun = require('mailgun-js')({
+			apiKey: process.env.MAILGUN_KEY,
+			domain: process.env.MAILGUN_DOMAIN
+		});
+		let emailData = {
+			from: '<noreply@openingpathways.org>',
+			to: process.env.MAILGUN_CONTACT,
+			subject: '(OP Patient) New Story Submission',
+			text: "A new story was submitted to Opening Pathways' patient site. Review and edit/approve here: https://partner.openingpathways.org/cms/stories/" + item._id
+		};
+		mailgun.messages().send(emailData, function (error, body) {
+			if (error) {
+				console.error('Mailgun error: ' + error)
+				res.status(500).send({
+					err: error
+				});
+				return;
+			}
+	
+			res.status(200).send({
+				msg: 'Message sent.'
+			});
 		});
 		
 	});
