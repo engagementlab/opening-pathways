@@ -24,7 +24,8 @@
   }
 
   ::ng-deep ol {
-    padding-left: 4%;
+    padding-left: 0;
+    list-style-position: inside;
   }
 
   .arrow {

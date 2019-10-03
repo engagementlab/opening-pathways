@@ -9,10 +9,13 @@ import {
   Form
 } from '@angular/forms';
 
-import * as _ from 'underscore';
+import { CanDeactivateGuard } from '../utils/deactivate/can-deactivate.guard';
 import {
   DataService
 } from '../utils/data.service';
+
+import * as _ from 'underscore';
+import { FormCanDeactivate } from '../utils/deactivate/form-can-deactivate';
 
 
 @Component({
@@ -20,7 +23,7 @@ import {
   templateUrl: './submit.component.html',
   styleUrls: ['./submit.component.scss']
 })
-export class SubmitComponent implements OnInit {
+export class SubmitComponent extends FormCanDeactivate implements OnInit {
   
   public hasContent: boolean;
   public submitted: boolean;
@@ -34,9 +37,19 @@ export class SubmitComponent implements OnInit {
   public textContent: any[];
   private formBody: string;
 
-  constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder) {}
+  // Can leave form?
+  canLeave: boolean;
+
+  constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder) {
+
+    super();
+
+  }
 
   ngOnInit() {
+
+    // Can leave until entry begins
+    this.canLeave = true;
 
     this.responseForm = this._formBuilder.group({
       'email': ['', [Validators.required, Validators.email]],
@@ -49,6 +62,11 @@ export class SubmitComponent implements OnInit {
       this.textContent = response;
       this.hasContent = true;
       
+    });
+
+    // Can't leave once changes begin
+    this.responseForm.statusChanges.subscribe(o => {
+      this.canLeave = false;
     });
 
   }
@@ -65,6 +83,9 @@ export class SubmitComponent implements OnInit {
     }
 
     this.formError = false;
+
+    // Allow leave
+    this.canLeave = true;
 
     // Merge body val w/ rest of form and try to submit
     this._dataSvc.sendDataToUrl('/api/narrative/create', _.extend(this.responseForm.value, {

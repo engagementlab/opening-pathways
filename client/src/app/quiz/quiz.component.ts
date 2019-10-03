@@ -5,13 +5,14 @@ import { DataService } from '../utils/data.service';
 
 import * as _ from 'underscore';
 import { Router } from '@angular/router';
+import { FormCanDeactivate } from '../utils/deactivate/form-can-deactivate';
 
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.scss']
 })
-export class QuizComponent implements OnInit {
+export class QuizComponent extends FormCanDeactivate implements OnInit {
 
   public hasContent: boolean;
   public formError: boolean;
@@ -27,7 +28,11 @@ export class QuizComponent implements OnInit {
 
   public quizPage: number = 0;
 
-  constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder, private _router: Router) {}
+  canLeave: boolean;
+
+  constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder, private _router: Router) {
+    super();
+  }
 
   ngOnInit() {
 
@@ -271,10 +276,12 @@ export class QuizComponent implements OnInit {
 
     // Send all results as array to data observer and backend, and redirect to results
     this._dataSvc.quizResults = _.values(this.quizPromptsResponses);
+
     
     this._dataSvc.sendDataToUrl('/api/quiz/save', this._dataSvc.quizResults)
     .subscribe(response => {
       // Submit success
+      this.canLeave = this.lastPage;
       this._router.navigateByUrl('/quiz/results/' + response.result);
     }, e => {
       this.submitError = true;

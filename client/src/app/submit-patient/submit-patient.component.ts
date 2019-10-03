@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+
 import { DataService } from '../utils/data.service';
+import { FormCanDeactivate } from '../utils/deactivate/form-can-deactivate';
 
 import * as _ from 'underscore';
 
@@ -9,7 +11,7 @@ import * as _ from 'underscore';
   templateUrl: './submit-patient.component.html',
   styleUrls: ['./submit-patient.component.scss']
 })
-export class SubmitPatientComponent implements OnInit {
+export class SubmitPatientComponent extends FormCanDeactivate implements OnInit {
 
   public fields: any;
   
@@ -21,9 +23,18 @@ export class SubmitPatientComponent implements OnInit {
 
   public responseForm: FormGroup;
 
-  constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder) {}
+  canLeave: boolean;
+
+  constructor(private _dataSvc: DataService, private _formBuilder: FormBuilder) {
+
+    super();
+
+  }
 
   ngOnInit() {
+
+    // Can leave until entry begins
+    this.canLeave = true;
 
     this._dataSvc.getDataForUrl('/api/story/fields').subscribe((response) => {
 
@@ -47,6 +58,11 @@ export class SubmitPatientComponent implements OnInit {
       this.responseForm = this._formBuilder.group(fields);
       this.hasContent = true;
 
+    });
+
+    // Can't leave once changes begin
+    this.responseForm.statusChanges.subscribe(o => {
+      this.canLeave = false;
     });
 
   }
@@ -89,6 +105,9 @@ export class SubmitPatientComponent implements OnInit {
     // Append static fields values
     body['name.first'] = this.responseForm.get('firstName').value;
     body['name.last'] = this.responseForm.get('lastName').value;
+
+    // Allow leave
+    this.canLeave = true;
     
     // Send form data
     this._dataSvc.sendDataToUrl('/api/story/create', this.responseForm.value)
