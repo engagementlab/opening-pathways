@@ -32,7 +32,7 @@ export class HomePatientComponent implements OnInit {
       dots: false,
       nav: true,
       items: ismobile.phone ? 1 : 3,
-      
+
       navSpeed: 700,
       margin: 10,
       stagePadding: 50
@@ -42,7 +42,7 @@ export class HomePatientComponent implements OnInit {
       this.slideWidth = 360;
     else if(ismobile.phone)
       this.slideWidth = 220;
-    
+
   }
 
   ngOnInit() {
@@ -50,9 +50,9 @@ export class HomePatientComponent implements OnInit {
     this._dataSvc.getDataForUrl('/api/data/get/home-patient').subscribe((intro) => {
 
       this.intro = intro[0];
-      
-      this._dataSvc.getDataForUrl('/api/pathway/limit/2').subscribe((response) => {
-        
+
+      this._dataSvc.getDataForUrl('/api/pathway/limit/3').subscribe((response) => {
+
         this.pathways = response;
 
         // Make randomized colors for pathway shape
@@ -83,16 +83,16 @@ export class HomePatientComponent implements OnInit {
           a.classList.add('disable');
         });
       }
-      
+
     }, 50);
 
   }
 
   slideChange(sliderIndex: number) {
 
-    // Find out if at end/begin based on class of the built in nav we've hidden, 
+    // Find out if at end/begin based on class of the built in nav we've hidden,
     // since owl output infuriatingly does not return specifics on this
-    
+
     let stageEl = document.querySelectorAll('.pathway .owl-nav')[sliderIndex];
     let navEl = document.querySelectorAll('.pathway nav')[sliderIndex];
     let next = navEl.querySelector('.arrow.next');
