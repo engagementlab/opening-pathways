@@ -21,4 +21,12 @@ if [ "$1" == "qa" ]; then
     mv dist/patient/index.qa.html dist/patient/index.html
     mv dist/partner/index.qa.html dist/partner/index.html
 
+else
+
+    ng build --configuration=production-patient --prod --index=src/index.prod.html
+    ng build --configuration=production-partner --prod --index=src/index.prod.html
+
+    mv dist/patient/index.prod.html dist/patient/index.html
+    mv dist/partner/index.prod.html dist/partner/index.html
+
 fi
