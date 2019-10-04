@@ -3,11 +3,14 @@ import { environment } from '../environments/environment';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { CanDeactivateGuard } from './utils/deactivate/can-deactivate.guard';
+
 import { HomeComponent } from './home/home.component';
 import { HomePatientComponent } from './home-patient/home-patient.component';
 
 import { QuizComponent } from './quiz/quiz.component';
 import { QuizLandingComponent } from './quiz/landing/landing.component';
+import { QuizResultsComponent } from './quiz/results/results.component';
 
 import { NarrativeComponent } from './narrative/narrative.component';
 import { NarrativeIndexComponent } from './narrative/index/index.component';
@@ -24,8 +27,6 @@ import { SubmitPatientComponent } from './submit-patient/submit-patient.componen
 
 import { TermsComponent } from './terms/terms.component';
 
-import { QuizResultsComponent } from './quiz/results/results.component';
-import { PendingChangesGuard } from './utils/deactivate-guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
@@ -51,7 +52,8 @@ const routes: Routes = [
   },
   {
     path: 'submit',
-    component: SubmitComponent
+    component: SubmitComponent,
+    canDeactivate: [ CanDeactivateGuard ]
   }, 
   {
     path: 'quiz',
@@ -60,7 +62,7 @@ const routes: Routes = [
   {
     path: 'quiz/take',
     component: QuizComponent,
-    canDeactivate: [ PendingChangesGuard ]
+    canDeactivate: [ CanDeactivateGuard ]
   },
   {
     path: 'quiz/results/:key',
@@ -103,7 +105,8 @@ const routesPatient: Routes = [
   },
   {
     path: 'submit',
-    component: SubmitPatientComponent
+    component: SubmitPatientComponent,
+    canDeactivate: [ CanDeactivateGuard ]
   },
   {
     path: 'privacy',
@@ -125,7 +128,6 @@ const mergedRoutes = environment.partner ? routes : routesPatient;
 
 @NgModule({
   imports: [RouterModule.forRoot(mergedRoutes)],
-  exports: [RouterModule],
-  providers: [PendingChangesGuard]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -15,13 +15,12 @@ var buildData = async (res, id, limit) => {
 
     let storyFields = 'name slug'
     let data;
-
     
 	if(id)
         data = Pathway.model.findOne({slug: id}, storyFields + ' description -_id').populate('stories', storyFields + ' -_id');
     else {
-        // Get blurbs when getting sll
-        if(!limit) storyFields += ' blurb';
+        // Get blurbs when getting all
+        storyFields += ' blurb';
         data = Pathway.model.find({}, storyFields + ' -_id').populate('stories', storyFields + ' -_id');
     }
 
@@ -30,6 +29,15 @@ var buildData = async (res, id, limit) => {
 
     try {
         let result = await data.lean().exec();
+
+        // Get index page text and append result
+        if(!id && !limit) {
+            const textUtil = require('../text');
+            let txtResult = await textUtil.get('pathways-intro');
+
+            result = {content: result, txt: txtResult};
+
+        }
 
         res.json(result);
     } catch (e) {

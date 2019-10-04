@@ -35,7 +35,7 @@ var TextSnippet = new keystone.List('TextSnippet',
  */
 TextSnippet.add({
         
-	location: { type: Types.Select, options: 'submit narrative, submit narrative thanks', required: true, initial: true, note: 'Page snippet shows on.' },    
+	location: { type: Types.Select, options: 'submit narrative, submit narrative thanks, narratives intro, pathways intro, resources intro, quiz results intro', required: true, initial: true, note: 'Page snippet shows on.' },    
     text: { type: Types.Markdown, required: true, initial: true }
 
 });

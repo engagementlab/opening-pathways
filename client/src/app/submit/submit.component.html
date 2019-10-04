@@ -27,15 +27,15 @@
       <p class="lg" [innerHtml]="textContent[0].text.html"></p>
     </div>
 
-    <div class="column is-full" *ngIf="success">
+    <div class="column is-full center-content" *ngIf="success">
       <app-button label="see all narratives" route="/narratives"></app-button>
     </div>
   </div>
 
   <form [formGroup]="responseForm" (submit)="submitForm()" *ngIf="!success">
-    <div class="fields column columns is-mobile is-multiline">
+    <div class="fields column columns is-mobile is-multiline is-11-mobile">
 
-      <div class="column is-full-mobile is-half-desktop">
+      <div class="column is-full-mobile is-half-tablet">
         <input formControlName="name" id="name" placeholder="Name" required />
         <div *ngIf="submitted && f.name.invalid">Required.</div>
       </div>
@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <div id="body" class="column is-full">
+      <div id="body" class="column is-full-mobile is-full-tablet">
         <p>Narrative Title</p>
         <input formControlName="title" id="title" required />
         <div *ngIf="submitted && f.title.invalid">Required.</div>
@@ -68,17 +68,13 @@
       </div>
     </div>
 
-    <div class="column columns is-multiline">
+    <div class="column columns is-multiline is-mobile">
       <div class="column is-full">
         <p *ngIf="formError">Please resolve errors above.</p>
         <p *ngIf="titleError">There is a submission with this title already. Please try another.</p>
       </div>
 
-      <div id="back" class="column is-half-mobile is-half-tablet">
-        <app-button [back]="true" label="back" class="white" route="/narratives"></app-button>
-      </div>
-      <div id="submit" class="column">
-
+      <div id="submit" class="column is-full center-content">
         <button type="submit">
           submit
         </button>

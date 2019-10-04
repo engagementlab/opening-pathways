@@ -64,6 +64,15 @@ var buildData = async (res, id, featured) => {
 
 	try {
 		let result = await data.lean().exec();
+		
+		// Get index page text and append result
+        if(!id && !featured) {
+            const textUtil = require('../text');
+            let txtResult = await textUtil.get('narratives-intro');
+			
+            result = {content: result, txt: txtResult};
+		}
+
 		res.json(result);
 	} catch (e) {
 		res.status(500).json({
@@ -115,6 +124,34 @@ exports.create = function(req, res) {
 		
 		res.apiResponse({
 			result: item
+		})
+		
+		// TEMP
+		return;
+		
+		// Send email notification
+		let mailgun = require('mailgun-js')({
+			apiKey: process.env.MAILGUN_KEY,
+			domain: process.env.MAILGUN_DOMAIN
+		});
+		let emailData = {
+			from: '<noreply@openingpathways.org>',
+			to: process.env.MAILGUN_CONTACT,
+			subject: '(OP Partner) New Narrative Submission',
+			text: "A new narrative was submitted to Opening Pathways' partner site. Review and edit/approve here: https://partner.openingpathways.org/cms/narratives/" + item._id
+		};
+		mailgun.messages().send(emailData, function (error, body) {
+			if (error) {
+				console.error('Mailgun error: ' + error)
+				res.status(500).send({
+					err: error
+				});
+				return;
+			}
+	
+			res.status(200).send({
+				msg: 'Message sent.'
+			});
 		});
 		
 	});
