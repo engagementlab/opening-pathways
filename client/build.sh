@@ -8,6 +8,11 @@ fi
 
 echo "Running build"
 
+# Source/load nvm
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh;
+
+nvm use;
+
 if [ "$1" == "qa" ]; then
 
     ng build --configuration=qa-patient --prod --index=src/index.qa.html
@@ -15,4 +20,5 @@ if [ "$1" == "qa" ]; then
 
     mv dist/patient/index.qa.html dist/patient/index.html
     mv dist/partner/index.qa.html dist/partner/index.html
+
 fi
