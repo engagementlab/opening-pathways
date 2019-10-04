@@ -122,6 +122,13 @@ exports.create = function(req, res) {
 		if (err)
 			return res.status(500).send({code: err.detail.code});
 		
+		res.apiResponse({
+			result: item
+		})
+		
+		// TEMP
+		return;
+		
 		// Send email notification
 		let mailgun = require('mailgun-js')({
 			apiKey: process.env.MAILGUN_KEY,
