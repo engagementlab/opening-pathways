@@ -122,8 +122,29 @@ exports.create = function(req, res) {
 		if (err)
 			return res.status(500).send({code: err.detail.code});
 		
-		res.apiResponse({
-			result: item
+		// Send email notification
+		let mailgun = require('mailgun-js')({
+			apiKey: process.env.MAILGUN_KEY,
+			domain: process.env.MAILGUN_DOMAIN
+		});
+		let emailData = {
+			from: '<noreply@openingpathways.org>',
+			to: process.env.MAILGUN_CONTACT,
+			subject: '(OP Partner) New Narrative Submission',
+			text: "A new narrative was submitted to Opening Pathways' partner site. Review and edit/approve here: https://partner.openingpathways.org/cms/narratives/" + item._id
+		};
+		mailgun.messages().send(emailData, function (error, body) {
+			if (error) {
+				console.error('Mailgun error: ' + error)
+				res.status(500).send({
+					err: error
+				});
+				return;
+			}
+	
+			res.status(200).send({
+				msg: 'Message sent.'
+			});
 		});
 		
 	});

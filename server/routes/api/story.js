@@ -127,12 +127,9 @@ exports.create = function(req, res) {
 	item.getUpdateHandler(req).process(data, function(err) {
 		
 		if (err)
-			return res.status(500).send({
-				code: err.detail.code
-			});
+			return res.status(500).send({code: err.detail.code});
 		
-			console.log(item)
-
+		// Send email notification
 		let mailgun = require('mailgun-js')({
 			apiKey: process.env.MAILGUN_KEY,
 			domain: process.env.MAILGUN_DOMAIN

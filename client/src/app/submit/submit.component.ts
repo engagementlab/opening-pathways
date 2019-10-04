@@ -94,6 +94,8 @@ export class SubmitComponent extends FormCanDeactivate implements OnInit {
     .subscribe(response => {
       // Submit success
       this.success = true;
+      // Bring to top
+      window.scrollTo(0, 0);
     }, e => {
       if (e.error.code === 11000)
         this.titleError = true;
