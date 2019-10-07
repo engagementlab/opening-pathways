@@ -133,7 +133,7 @@ exports.create = function(req, res) {
 		});
 
 		// Send Pushover message
-		push.send('Partner Narrative Submission', 'A new  new narrative was submitted to Opening Pathways\' partner site. Review and edit/approve here: https://partner.openingpathways.org/cms/narratives/" + item._id',
+		push.send('Partner Narrative Submission', 'A new  new narrative was submitted to Opening Pathways\' partner site. Review and edit/approve here: https://partner.openingpathways.org/cms/narratives/' + item._id,
 		 (err, res) => {
 			if(err)
 				console.error('Cannot send push.', err.stack)
