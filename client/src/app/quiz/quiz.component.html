@@ -24,16 +24,21 @@
           <hr *ngIf="!last" />
         </div>
 
-        <!-- <div class="error"></div> -->
         <strong *ngIf="formError"><br />Please select/fill out required (*) responses.</strong>
 
         <div class="center-content">
 
-          <app-button label="next" clickData="true" (clickEvent)="nextPage()" [arrow]="true" *ngIf="!lastPage">
-          </app-button>
-          <app-button label="submit quiz" clickData="true" (clickEvent)="submitQuiz()" *ngIf="lastPage"></app-button>
-
+          <label class="submit-btn" *ngIf="!lastPage">
+            <input type="submit" title="next" name="next" value="next" (click)="nextPage()" aria-label="Go to next page" />
+            <svg width="42" height="42" fill="none" viewBox="0 0 42 42">
+                <path stroke="#fff" stroke-width="2" d="M20.283.717L40.566 21 20.283 41.283M0 20.751h40.541" />
+            </svg>
+          </label>
           
+          <label class="submit-btn" *ngIf="lastPage">
+            <input type="submit" title="submit quiz" name="submit" value="submit quiz" (click)="submitQuiz()" aria-label="Submit the quiz" />
+          </label>
+        
         </div>
 
         <div class="center-content" *ngIf="submitError">
