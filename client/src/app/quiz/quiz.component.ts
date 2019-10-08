@@ -155,16 +155,16 @@ export class QuizComponent extends FormCanDeactivate implements OnInit {
 
   private recordResponses() {
 
+    // For all form values.....
     _.each(this.quizForm.value, (val, id) => {
       
       if(val !== null) {
 
         let key = id.substring(0, 3);
-        let elQuery = 'label[for="'+ id + '_' + val +'"]';
 
         // If value is array, get all selected checkboxes and cache response strings
         if(_.isArray(val)) {
-        
+
           // Cached val is an array
           this.quizPromptsResponses[key].value = [];
 
@@ -192,13 +192,18 @@ export class QuizComponent extends FormCanDeactivate implements OnInit {
         }
         else {
 
-          // Check for multiple choice response, and if null query potential text area entry
-          let resContent = document.querySelector(elQuery + ' .choice');
-          if(!resContent)
-            resContent = document.querySelector('textarea[id="' + id + '_0"]');
+          let resContent = document.querySelector('textarea[id="' + id + '_0"]');
+          
+          // If not text, check for multiple choice response
+          if(!resContent) {
+            // Get label for choices array prompt
+            let choiceLabel = 'label[for="'+ id + '_' + val +'"]';
+            resContent = document.querySelector(choiceLabel + ' .choice');
+          }
 
           if(resContent) {
 
+            // If no text, use val
             let response = resContent.textContent || val;
       
             // Append fill in response, if any found
@@ -206,6 +211,7 @@ export class QuizComponent extends FormCanDeactivate implements OnInit {
             if(fillInField)
               response = '<i>(' + response + ')</i> ' + fillInField.value;
 
+            // Cache response
             if(this.quizPromptsResponses[key])
               this.quizPromptsResponses[key].value = response;
           

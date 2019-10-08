@@ -106,9 +106,18 @@ nav {
     border: solid 1px #ddd;
     margin-top: 6%;
   }
+}
 
-  app-button {
-    display: block;
-    margin-top: 15%;
+.submit-btn {
+  
+  @include button-style();
+  margin-top: 15%;
+
+  input {
+    font-size: 1em;
+    background: none;
+    border: none;
+    color: white;
   }
+
 }

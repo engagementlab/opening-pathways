@@ -10,7 +10,8 @@
  */
 const keystone = global.keystone,
 	  Story = keystone.list('Story'),
-	  Pathway = keystone.list('Pathway');
+	  Pathway = keystone.list('Pathway'),
+	  Pushover = require('node-pushover');
 
 var getAdjacent = async (results, res, pathwayId) => {
 
@@ -131,34 +132,23 @@ exports.create = function(req, res) {
 		
 		res.apiResponse({
 			result: item
-		})
-		
-		// TEMP
-		return;
-		
-		// Send email notification
-		let mailgun = require('mailgun-js')({
-			apiKey: process.env.MAILGUN_KEY,
-			domain: process.env.MAILGUN_DOMAIN
 		});
-		let emailData = {
-			from: '<noreply@openingpathways.org>',
-			to: process.env.MAILGUN_CONTACT,
-			subject: '(OP Patient) New Story Submission',
-			text: "A new story was submitted to Opening Pathways' patient site. Review and edit/approve here: https://partner.openingpathways.org/cms/stories/" + item._id
-		};
-		mailgun.messages().send(emailData, function (error, body) {
-			if (error) {
-				console.error('Mailgun error: ' + error);
-				res.status(500).send({
-					err: error
+		
+		let push = new Pushover({
+			token: process.env.PUSHOVER_KEY_APP,
+			user: process.env.PUSHOVER_KEY_USER
+		});
+
+		// Send Pushover message
+		push.send('Patient Story Submission', 'A new story was submitted to Opening Pathways\' patient site. Review and edit/approve here: https://partner.openingpathways.org/cms/stories/' + item._id, 
+		(err, res) => {
+			if(err)
+				console.error('Cannot send push.', err.stack)
+			else {
+				res.status(200).send({
+					msg: 'Message sent.'
 				});
-				return;
 			}
-	
-			res.status(200).send({
-				msg: 'Message sent.'
-			});
 		});
 		
 	});

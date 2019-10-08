@@ -19,12 +19,10 @@
     <h5 class="gang column is-full" *ngIf="success">We’ve received your narrative.</h5>
 
     <div class="column is-12-mobile is-10-tablet is-7-desktop no-pad" *ngIf="success">
-      <p class="lg" [innerHtml]="textContent[1].text.html">
-        
-      </p>
+      <p class="lg" [innerHtml]="textContent[1].text.html"></p>
     </div>
-    <div class="column is-12-mobile is-10-tablet is-7-desktop no-pad" *ngIf="!success">
-      <p class="lg" [innerHtml]="textContent[0].text.html"></p>
+    <div class="column is-12-mobile is-10-tablet no-pad" *ngIf="!success">
+      <p [innerHtml]="textContent[0].text.html"></p>
     </div>
 
     <div class="column is-full center-content" *ngIf="success">
