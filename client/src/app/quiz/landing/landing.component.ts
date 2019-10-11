@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/utils/data.service';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizLandingComponent implements OnInit {
 
-  constructor() { }
+  public textContent: string;
 
+  constructor(private _dataSvc: DataService) { }
+  
   ngOnInit() {
+
+    this._dataSvc.getDataForUrl('/api/text/get/quiz-landing-intro').subscribe((response) => {
+
+      this.textContent = response[0].text;
+
+    });
+  
   }
 
 }
