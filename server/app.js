@@ -52,7 +52,7 @@ bootstrap.start(
 	app,
 	__dirname + '/', 
 	{
-		'name':  'Opening Pathways ' + (process.env.NODE_ENV === 'staging' ? '(QA) CMS' : 'CMS'),
+		'name': (process.env.NODE_ENV === 'staging' ? '(QA) ' : '') + ' Opening Pathways',
 		'wysiwyg menubar': false,
 	},
 	() => {
