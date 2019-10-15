@@ -32,7 +32,7 @@ var Story = new keystone.List('Story',
  */
 Story.add({
 	
-	name: { type: Types.Name, required: true, initial: true, noedit: true },
+	name: { type: Types.Name, required: true, initial: true },
     email: { type: String, required: true, initial: true, noedit: true },
     
 	pathway: { type: Types.Textarea, required: true, initial: true },

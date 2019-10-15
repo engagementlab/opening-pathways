@@ -34,9 +34,9 @@ var Narrative = new keystone.List('Narrative',
  */
 Narrative.add({
 	
-	name: { type: String, required: true, initial: true, noedit: true },
+	name: { type: String, required: true, initial: true, },
 	email: { type: String, required: true, initial: true, noedit: true },
-	title: { type: String, required: true, initial: true, noedit: true, unique: true },
+	title: { type: String, required: true, initial: true, unique: true },
 	body: { type: Types.Html, wysiwyg: true, required: true, initial: true, note: 'Blockquote button will format as pull-quote.' },
 	blurb: { type: Types.Textarea, dependsOn: {accepted:true}, note: 'Summary to show on home page, if featured.' },
 	submitDate: { type: Types.Datetime, noedit: true, required: true, initial: true },
