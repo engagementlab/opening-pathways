@@ -41,7 +41,7 @@ StoryField.add({
 	order: { type: Number, required: true, initial: true, note: 'Ordering of field on form. Should be unique amongst siblings on page.' },
 	note: { type: String, note: 'Shows below prompt.' }, 
 	halfSize: { type: Boolean, note: 'Text box is half the default height.' },
-	mapping: { type: Types.Select, options: 'pathway, why, what, how, deadCows, vision, links', required: true, initial: true, note: 'Which <a href="/cms/stories">stories</a> section does this field show under? Must be unique.' },
+	mapping: { type: Types.Select, options: 'pathway, why, what, how, lessonsLearned, vision, links', required: true, initial: true, note: 'Which <a href="/cms/stories">stories</a> section does this field show under? Must be unique.' },
     required: { type: Boolean },
     
 });

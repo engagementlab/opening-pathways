@@ -41,7 +41,7 @@ var getAdjacent = async (results, res, pathwayId) => {
 
 var buildData = async (res, id, pathwayId, featured) => {
 
-	let storyFields = 'name	pathway	why what how deadCows vision links.html submitDate -_id';
+	let storyFields = 'name	pathway	why what how lessonsLearned vision links.html submitDate -_id';
 	let query = !id ? {published: true} : {slug: id};
 
 	if(featured)
@@ -141,14 +141,12 @@ exports.create = function(req, res) {
 
 		// Send Pushover message
 		push.send('Patient Story Submission', 'A new story was submitted to Opening Pathways\' patient site. Review and edit/approve here: https://partner.openingpathways.org/cms/stories/' + item._id, 
-		(err, res) => {
+		(err, result) => {
 			if(err)
 				console.error('Cannot send push.', err.stack)
-			else {
-				res.status(200).send({
-					msg: 'Message sent.'
-				});
-			}
+			else
+				console.log('Message sent.');
+				
 		});
 		
 	});
