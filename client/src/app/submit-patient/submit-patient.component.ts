@@ -22,6 +22,7 @@ export class SubmitPatientComponent extends FormCanDeactivate implements OnInit 
   public formError: boolean;
 
   public responseForm: FormGroup;
+  public textContent: any[];
 
   canLeave: boolean;
 
@@ -56,12 +57,19 @@ export class SubmitPatientComponent extends FormCanDeactivate implements OnInit 
       });
 
       this.responseForm = this._formBuilder.group(fields);
-      this.hasContent = true;
-
+      
       // Can't leave once changes begin
       this.responseForm.statusChanges.subscribe(o => {
         this.canLeave = false;
       });
+      
+      this._dataSvc.getDataForUrl('/api/text/get/submit-story-intro').subscribe((response) => {
+        
+        this.textContent = response;
+        this.hasContent = true;
+        
+      });
+
 
     });
 

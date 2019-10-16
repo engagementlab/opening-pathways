@@ -26,6 +26,10 @@
       </p>
     </div>
 
+    <div class="column is-12-mobile is-10-tablet no-pad" *ngIf="!success && textContent">
+      <p [innerHtml]="textContent[0].text.html"></p>
+    </div>
+
     <div class="column is-full center-content" *ngIf="success">
       <app-button label="patient pathways" route="/pathways"></app-button>
     </div>

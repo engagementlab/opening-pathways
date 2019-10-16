@@ -4,8 +4,8 @@
 
 export const environment = {
     qa: false,
-    partner: true,
-    patient: false,
+    partner: false,
+    patient: true,
     production: false  
 };
 
