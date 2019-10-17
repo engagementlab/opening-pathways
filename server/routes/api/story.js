@@ -99,15 +99,6 @@ exports.get = function (req, res) {
 }
 
 /*
-* Get story by slug id
-*/
-exports.get = function (req, res) {
-
-	return buildData(res, req.params.id);
-
-}
-
-/*
 * Get story by slug id and retrive adjacent stories via its pathway
 */
 exports.pathway = function (req, res) {

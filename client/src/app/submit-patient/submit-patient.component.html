@@ -61,6 +61,7 @@
 
       <div class="prompt column is-11-mobile is-full-tablet" *ngFor="let prompt of fields;">
         <p class="lg">{{prompt.prompt}}</p>
+        <p>{{prompt.note}}</p>
         <textarea id="{{prompt.mapping}}" [attr.rows]="prompt.halfSize ? 5 : 10" [formControlName]="prompt.mapping"
           [class.required]="prompt.required"></textarea>
         <div [id]="'error_' + prompt.mapping" class="error" *ngIf="prompt.required">Please fill field.</div>
