@@ -1,0 +1,108 @@
+# server {
+
+#   set $legacy_browser 0;
+
+#   listen 80;
+#   server_name qa.partner.openingpathways.org partner.openingpathways.org;
+
+#   # All other traffic
+#   location / {
+
+#     ## redirect http to https ##
+#     rewrite ^ https://$server_name$request_uri? permanent;
+
+#   }
+
+# }
+
+# Secure server is setup after letsencrypt-auto issues cert
+# Secure server
+server {
+
+  listen 80;
+#   server_name qa.partner.openingpathways.org partner.openingpathways.org;
+#   include ssl.conf;
+
+    root /usr/share/nginx/html/partner;
+    index index.html;
+
+  error_page 404 @error;
+  error_page 500 502 503 504 @500;
+
+  # Page for legacy agents
+  location /unsupported {
+    root /usr/share/nginx/html/static;
+
+    try_files $uri $uri.html $uri/unsupported.html /unsupported.html;
+  }
+
+  # Handle legacy/unsupported agent
+  if ($outdated = 1) {
+     set $legacy_browser 1;
+  }
+
+  if ($uri = '/unsupported') {
+     set $legacy_browser 0;
+  }
+
+  if ($legacy_browser = 1) {
+      rewrite ^ http://$server_name/unsupported;
+  }
+
+  location / {
+
+      # Send user to error page via 404 block if respective dist/ dir missing (site is deploying)
+      if (!-d /srv/opening-pathways/source/client/dist/partner) {
+        return 404;
+      }
+
+      proxy_pass http://docker-nginx;
+      include proxy.conf;
+
+      try_files $uri $uri.html $uri/index.html $uri/$uri/index.html /index.html;
+   
+  }
+
+  location ^~ /keystone/ {
+
+      proxy_pass http://127.0.0.1:3000/keystone/;
+      include proxy.conf;
+
+  }
+
+  location ^~ /cms/ {
+
+      proxy_pass http://127.0.0.1:3000/cms/;
+      include proxy.conf;
+
+  }
+
+   location ^~ /cms/callback/ {
+
+      proxy_pass http://127.0.0.1:3000/callback/;
+      include proxy.conf;
+
+  }
+
+  location ^~ /api/ {
+
+      proxy_pass http://127.0.0.1:3000/api/;
+      include proxy.conf;
+
+  }
+
+  location @500 {
+      root /srv/opening-pathways/source/client/static;
+      index 50x.html;
+      break;
+  }
+
+  location @error {
+      root /srv/opening-pathways/source/client/static;
+
+      # this page is either 404 or 'downtime' message, toggled via toggledowntime.sh
+      try_files /error.html =404;
+      break;
+  }
+
+}

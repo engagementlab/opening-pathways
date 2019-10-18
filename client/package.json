@@ -9,6 +9,7 @@
     "browser-testing": "ng serve --port 8000 --host 0.0.0.0 --disableHostCheck true",
     "api": "cd ../server; nodemon",
     "build": "bash build.sh prod",
+    "build-docker": "bash build.sh prod docker",
     "build-qa": "bash build.sh qa",
     "build-ci": "ng build --configuration=qa-patient --prod; ng build --configuration=qa-partner --prod",
     "test": "ng test",
